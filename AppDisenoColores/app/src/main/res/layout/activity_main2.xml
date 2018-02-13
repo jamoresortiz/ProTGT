@@ -8,13 +8,13 @@
     android:background="@drawable/degradaoazulrosa">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonVolver"
         android:layout_width="158dp"
         android:layout_height="36dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/botonblanco"
-        android:text="TERMINAR"
+        android:text="VOLVER"
         android:textColor="#50506B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
