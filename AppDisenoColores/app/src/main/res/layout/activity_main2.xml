@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mramallo.appdiseocolores.Main2Activity"
-    android:background="@drawable/degradaoazulrosa">
+    android:background="@drawable/degradadosombra">
 
     <Button
         android:id="@+id/buttonVolver"
