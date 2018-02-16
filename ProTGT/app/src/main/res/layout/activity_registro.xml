@@ -14,31 +14,30 @@
         android:id="@+id/imageView2"
         android:layout_width="123dp"
         android:layout_height="130dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:src="@drawable/ic_shield"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41000003"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:hint="Nombre"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textAutoCorrect|textCapWords"
+        android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:layout_editor_absoluteX="64dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editText2"
@@ -48,29 +47,30 @@
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:hint="Apellidos"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textAutoCorrect|textCapWords"
+        android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerPais"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        tools:layout_editor_absoluteX="64dp"
+        tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editText3"
+
+    <Button
+        android:id="@+id/buttonRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@android:color/white"
-        android:ems="10"
-        android:hint="Pais"
-        android:inputType="textPersonName"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/boton_cambio_color"
+        android:text="Registrarse"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editText4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintStart_toStartOf="@+id/editText4"
+        app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
     <EditText
         android:id="@+id/editText4"
@@ -80,29 +80,28 @@
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:hint="Telefono"
-        android:inputType="textPersonName"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/editText3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/boton_blanco"
-        android:text="Registrarse"
+        android:inputType="phone"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText4"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRegistro"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerPais"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintStart_toStartOf="@+id/spinnerPais"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPais" />
+
+    <Spinner
+        android:id="@+id/spinnerPais"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@android:color/white"
+        android:entries="@array/paises"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintEnd_toEndOf="@+id/editText2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
 
 </android.support.constraint.ConstraintLayout>

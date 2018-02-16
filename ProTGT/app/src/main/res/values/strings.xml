@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ProTGT</string>
+    <string-array name="paises">
+        <item>Selecciona tu país</item>
+        <item>España</item>
+        <item>Argentina</item>
+        <item>Marruecos</item>
+        <item>Italia</item>
+        <item>Grecia</item>
+    </string-array>
 </resources>
