@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:hint="Nombre *"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
@@ -52,6 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <android.support.design.widget.TextInputEditText
@@ -60,6 +63,7 @@
             android:layout_height="wrap_content"
             android:hint="Apellidos *"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
@@ -69,6 +73,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout5"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <android.support.design.widget.TextInputEditText
@@ -77,6 +82,7 @@
             android:layout_height="wrap_content"
             android:hint="Provincia *"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
@@ -86,6 +92,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout6"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
         <android.support.design.widget.TextInputEditText
@@ -93,6 +100,7 @@
             android:layout_height="wrap_content"
             android:hint="Localidad *"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
@@ -100,6 +108,7 @@
         android:id="@+id/textInputLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
@@ -109,6 +118,7 @@
             android:layout_height="wrap_content"
             android:hint="Calle *"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
@@ -118,6 +128,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColorHint="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
         <android.support.design.widget.TextInputEditText
@@ -125,6 +136,7 @@
             android:layout_height="wrap_content"
             android:hint="Piso"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
@@ -134,6 +146,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@+id/textInputLayout8"
         app:layout_constraintHorizontal_bias="0.0"
+        android:textColorHint="@android:color/white"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
@@ -142,6 +155,7 @@
             android:layout_height="wrap_content"
             android:hint="Numero *"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
@@ -152,6 +166,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
 
         <android.support.design.widget.TextInputEditText
@@ -159,6 +174,7 @@
             android:layout_height="wrap_content"
             android:hint="Bloque"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
@@ -168,6 +184,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
 
         <android.support.design.widget.TextInputEditText
@@ -175,6 +192,7 @@
             android:layout_height="wrap_content"
             android:hint="Puerta"
             android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
