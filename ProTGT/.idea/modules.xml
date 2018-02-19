@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProTGT.iml" filepath="$PROJECT_DIR$/ProTGT.iml" />
+      <module fileurl="file://C:\Users\Jorge Amores\Desktop\Proyectos Android Extraescolares\ProTGT\ProTGT\ProTGT.iml" filepath="C:\Users\Jorge Amores\Desktop\Proyectos Android Extraescolares\ProTGT\ProTGT\ProTGT.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Jorge Amores\Desktop\Proyectos Android Extraescolares\ProTGT\ProTGT\app\app.iml" filepath="C:\Users\Jorge Amores\Desktop\Proyectos Android Extraescolares\ProTGT\ProTGT\app\app.iml" />
     </modules>
   </component>
 </project>
