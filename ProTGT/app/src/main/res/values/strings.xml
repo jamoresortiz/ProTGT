@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ProTGT</string>
+    <string-array name="paises">
+        <item>Selecciona tu país</item>
+        <item>España</item>
+        <item>Londres</item>
+        <item>Francia</item>
+        <item>Italia</item>
+        <item>Grecia</item>
+    </string-array>
+    <string name="aviso">ProTGT te enviará un mensaje para verificar tu número. Introduce el codigo de 4 cifras como aparece en el ejemplo</string>
+</resources>
