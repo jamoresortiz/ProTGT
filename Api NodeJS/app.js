@@ -22,7 +22,9 @@ mongoose.connect(config.MONGODB_URI,
                     apellidos: "Amores Ortiz",
                     pais: "España",
                     telefono: "625946146",
-                    direccion: mongoose.Types.ObjectId('5a8b2919628b400cf4ed1d38')
+                    email: "jamoresortiz@gmail.com",
+                    password: "12345",
+                    direccion: mongoose.Types.ObjectId('5a8c3a036b471523182c54ae')
                 });
 
                 user1.save((err, result) => {
