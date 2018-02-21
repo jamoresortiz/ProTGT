@@ -10,4 +10,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="HomeTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorBar</item>
+        <item name="colorPrimaryDark">@color/colorBar</item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowActionBar">true</item>
+    </style>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.joandma.protgt.Activities;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import com.joandma.protgt.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
+    
     TextView registro;
     TextInputEditText email, password;
     Button iniciarSesion;
@@ -52,8 +54,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     email.setError("Escriba el email por favor");
                 } else if(password.getText().toString().length() == 0){
                     password.setError("Escriba la contraseña por favor");
+                } else {
+                    Intent intentLogin = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intentLogin);
                 }
+
+                //openLocationSettings();
         }
 
     }
+
+    //Esto es un intent que manda a la parte de settings de localizacion de android
+    //TODO Falta hacer la comprobacion de que la localización está activada, si no lo está manda el intent
+   /* public void openLocationSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }*/
 }
