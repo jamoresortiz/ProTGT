@@ -1,4 +1,4 @@
-package com.joandma.protgt;
+package com.joandma.protgt.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,30 +8,30 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class RegistroActivity extends AppCompatActivity {
+import com.joandma.protgt.R;
 
-    Button buttonRegistro;
+public class TelefonoActivity extends AppCompatActivity {
+
+    Button siguiente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        setContentView(R.layout.activity_telefono);
 
         final Spinner pais = findViewById(R.id.spinnerPais);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.paises, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         pais.setAdapter(adapter);
 
-        buttonRegistro = findViewById(R.id.buttonRegistro);
+        siguiente = findViewById(R.id.button_telefono_siguiente);
 
-        buttonRegistro.setOnClickListener(new View.OnClickListener() {
+        siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(RegistroActivity.this, MensajeScreenActivity.class);
-                startActivity(i);
+                Intent intentTelefono = new Intent(TelefonoActivity.this, MensajeScreenActivity.class);
+                startActivity(intentTelefono);
             }
         });
-
-
     }
 }
