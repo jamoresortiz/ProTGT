@@ -50,25 +50,39 @@ module.exports.signUp = (req, res) => {
 
 module.exports.signIn = (req, res) => {
 
-    User.findOne({email: req.body.email}).select('_id nombre apellidos email pais domicilio +password').exec((err, user) => {
+    User
+        .findOne({email: req.body.email})
+        .select('_id password nombre apellidos email pais telefono domicilio')
+        .exec((err, user) => {
 
-        if (err) return res.status(401).jsonp({error: 401, mensaje: 'Fallo de Allow Origin'});
-        if (!user) return res.status(404).jsonp({error: 404, mensaje: 'No existe el usuario'});
+            if (err) return res.status(401).jsonp({error: 401, mensaje: 'Fallo de Allow Origin'});
+            if (!user) return res.status(404).jsonp({error: 404, mensaje: 'No existe el usuario'});
 
-        bcrypt.compare(req.body.password, user.password, (err, result) => {
-            if (err) return res.status(401).jsonp({error: 401, mensaje: 'Error en la autenticación'});
-            if (result == false)
-                return res.status(401).jsonp({error: 401, mensaje: 'Error en la autenticación'});
-            else {
-                req.user = user;
-                res.status(200).jsonp({
-                    mensaje: 'Login correcto',
-                    token: service.createToken(user),
-                    nombre: user.nombre,
-                    apellidos: user.apellidos
-                });
-            }
-        });
+            //console.log(user.toString());
+            /*let password = req.body.password;
+            let password2 = user.password;
+
+            console.log("Password metido: " +password);
+            console.log("Password bbdd: " +password2);*/
+
+            bcrypt.compare(req.body.password, user.password, (err, result) => {
+                if (err) return res.status(401).jsonp({error: 401, mensaje: 'Error dentro de bcrypt'});
+                if (result == false)
+                    return res.status(401).jsonp({error: 401, mensaje: 'Error en la autenticación'});
+                else {
+                    req.user = user;
+                    res.status(200).jsonp({
+                        mensaje: 'Login correcto',
+                        token: service.createToken(user),
+                        nombre: user.nombre,
+                        apellidos: user.apellidos,
+                        email: user.email,
+                        pais: user.pais,
+                        telefono: user.telefono,
+                        domicilio: user.domicilio
+                    });
+                }
+            });
 
 
     });

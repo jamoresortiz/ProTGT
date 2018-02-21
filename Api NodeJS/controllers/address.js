@@ -22,16 +22,7 @@ module.exports.addAddress = (req, res) => {
                    mensaje: `${err.message}`
                });
 
-        return res.status(201).jsonp({
-            id: result._id,
-            provincia: result.provincia,
-            localidad: result.localidad,
-            calle: result.calle,
-            numero: result.numero,
-            piso: result.piso,
-            bloque: result.bloque,
-            puerta: result.puerta
-        });
+        return res.status(201).jsonp(result);
     });
 
 };

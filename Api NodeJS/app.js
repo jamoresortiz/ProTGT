@@ -64,6 +64,7 @@ mongoose.Promise = global.Promise;
 
 const user = require('./routes/user');
 const address = require('./routes/address');
+const aviso = require('./routes/aviso');
 
 let app = express();
 
@@ -76,5 +77,6 @@ app.use(cookieParser())
 
 app.use('/protgt/api/v1/auth', user);
 app.use('/protgt/api/v1/address', address);
+app.use('/protgt/api/v1/aviso', auth.isAuth, aviso);
 
 module.exports = app;
