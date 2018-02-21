@@ -16,11 +16,10 @@ module.exports.addAddress = (req, res) => {
     });
 
     address.save((err, result) => {
-        if (err)
-               return res.status(500).jsonp({
+        if (err) return res.status(500).jsonp({
                    error: 500,
                    mensaje: `${err.message}`
-               });
+        });
 
         return res.status(201).jsonp(result);
     });
