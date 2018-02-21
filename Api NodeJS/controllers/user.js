@@ -47,7 +47,6 @@ module.exports.signUp = (req, res) => {
 };
 
 //POST Iniciar sesión
-
 module.exports.signIn = (req, res) => {
 
     User
@@ -87,4 +86,47 @@ module.exports.signIn = (req, res) => {
 
     });
 
+};
+
+module.exports.editUser = (req, res) => {
+  User
+      .findOne({_id: req.user}, (err, user) => {
+          if (err) return res.status(401).jsonp({
+              error: 401,
+              mensaje: `Error de autentificación`
+          });
+
+          if (!user) return res.status(404).jsonp({
+              error: 404,
+              mensaje: `No se encuentra el usuario`
+          });
+
+          User.findOne({_id: user._id}, (err, user) => {
+              if (err) return res.status(500).jsonp({
+                  error: 500,
+                  mensaje: `Error de servidor`
+              });
+
+              if (req.body.nombre)
+                user.nombre = req.body.nombre;
+              if (req.body.apellidos)
+                user.apellidos = req.body.apellidos;
+              if (req.body.email)
+                  user.email = req.body.email;
+              if (req.body.password)
+                user.password = req.body.password;
+              if (req.body.pais)
+                user.pais = req.body.pais;
+              if (req.body.telefono)
+                user.telefono = req.user.telefono;
+
+              user.save(function (err, result) {
+                  if (err) return res.status(500).jsonp({
+                      error: 500,
+                      mensaje: `${err.message}`
+                  });
+                  res.status(201).jsonp(result);
+              });
+          });
+      });
 };

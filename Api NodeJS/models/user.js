@@ -10,7 +10,7 @@ const userSchema = new Schema({
     password: String,
     pais: String,
     telefono: String,
-    direccion: {type: Schema.ObjectId, ref: 'Address'}
+    direccion: [{type: Schema.ObjectId, ref: 'Address'}]
 });
 
 userSchema.pre('save', function (next) {
