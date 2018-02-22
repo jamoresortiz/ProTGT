@@ -33,10 +33,10 @@
 
     <TextView
         android:id="@+id/textViewLocalizacion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
-        android:text="Condes de Bustillo, Sevilla"
+        android:text=""
         android:textAlignment="center"
         android:textSize="18sp"
         android:layout_marginStart="64dp"

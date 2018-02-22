@@ -184,7 +184,6 @@ public class HomeActivity extends AppCompatActivity
                     actualizar = true;
                 }
 
-                Toast.makeText(HomeActivity.this, "Tu ubicación se ha actualizado", Toast.LENGTH_SHORT).show();
                 swipeContainer.setRefreshing(false);
             }
         }, 2000);

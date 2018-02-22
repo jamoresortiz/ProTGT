@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,7 +16,7 @@ import com.joandma.protgt.R;
 public class TelefonoActivity extends AppCompatActivity {
 
     Button siguiente;
-    TextInputEditText telefono;
+    EditText telefono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class TelefonoActivity extends AppCompatActivity {
         pais.setAdapter(adapter);
 
         siguiente = findViewById(R.id.button_telefono_siguiente);
-        telefono = findViewById(R.id.textInputTelefono);
+        telefono = findViewById(R.id.editTextTelefono);
 
 
         siguiente.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +38,7 @@ public class TelefonoActivity extends AppCompatActivity {
                 if (telefono.getText().toString().equals("")){
                     telefono.setError("Escriba su telefono por favor");
                 } else if(pais.getSelectedItemPosition() == 0){
-                    Toast.makeText(TelefonoActivity.this, "Seleccione un país por favor", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelefonoActivity.this, " un país por favor", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intentTelefono = new Intent(TelefonoActivity.this, MensajeScreenActivity.class);
                     startActivity(intentTelefono);
