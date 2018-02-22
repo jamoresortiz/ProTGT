@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.joandma.protgt.R;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    
+
     TextView registro;
     TextInputEditText email, password;
     Button iniciarSesion;
@@ -44,33 +44,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         int seleccion = v.getId();
 
-        switch (seleccion){
+        switch (seleccion) {
             case R.id.textViewRegistro:
                 Intent intentRegistro = new Intent(LoginActivity.this, RegistroActivity.class);
                 startActivity(intentRegistro);
 
             case R.id.button_iniciarSesion:
-                if(email.getText().toString().length() == 0){
+                if (email.getText().toString().length() == 0) {
                     email.setError("Escriba el email por favor");
-                } else if(password.getText().toString().length() == 0){
+                } else if (password.getText().toString().length() == 0) {
                     password.setError("Escriba la contraseña por favor");
                 } else {
                     Intent intentLogin = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intentLogin);
+                    finish();
                 }
 
-                //openLocationSettings();
         }
 
     }
-
-    //Esto es un intent que manda a la parte de settings de localizacion de android
-    //TODO Falta hacer la comprobacion de que la localización está activada, si no lo está manda el intent
-   /* public void openLocationSettings() {
-        Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }*/
 }
+
+
