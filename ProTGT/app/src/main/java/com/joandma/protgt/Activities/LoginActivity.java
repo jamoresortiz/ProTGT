@@ -50,9 +50,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intentRegistro);
 
             case R.id.button_iniciarSesion:
-                if (email.getText().toString().length() == 0) {
+                if (email.getText().toString().equals("")) {
                     email.setError("Escriba el email por favor");
-                } else if (password.getText().toString().length() == 0) {
+                } else if (password.getText().toString().equals("")) {
                     password.setError("Escriba la contraseña por favor");
                 } else {
                     Intent intentLogin = new Intent(LoginActivity.this, HomeActivity.class);

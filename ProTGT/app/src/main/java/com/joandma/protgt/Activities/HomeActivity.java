@@ -99,15 +99,10 @@ public class HomeActivity extends AppCompatActivity
 
         provider = new LocationGooglePlayServicesProvider();
         provider.setCheckLocationSettings(true);
-        localizacion.setText("Localizando posición GPS...");
+        localizacion.setText("Active la ubicación o deslize para actualizar su posición");
 
         SmartLocation smartLocation = new SmartLocation.Builder(this).logging(true).build();
 
-       /* if(SmartLocation.with(this).location().state().isGpsAvailable()) {
-            Toast.makeText(this, "GPS disponible", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "GPS no disponible", Toast.LENGTH_SHORT).show();
-        }*/
 
         // NAVIGATION cambia cada 0 metros
         smartLocation.location().config(LocationParams.NAVIGATION).start(this);
