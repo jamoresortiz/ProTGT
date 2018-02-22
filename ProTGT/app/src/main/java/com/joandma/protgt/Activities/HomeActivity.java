@@ -1,20 +1,27 @@
 package com.joandma.protgt.Activities;
 
+import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.joandma.protgt.R;
 
 import java.util.ArrayList;
@@ -27,16 +34,17 @@ import io.nlopez.smartlocation.location.config.LocationParams;
 import io.nlopez.smartlocation.location.providers.LocationGooglePlayServicesProvider;
 
 public class HomeActivity extends AppCompatActivity
-        implements  SwipeRefreshLayout.OnRefreshListener, OnLocationUpdatedListener {
+        implements SwipeRefreshLayout.OnRefreshListener, OnLocationUpdatedListener {
 
-    private static final int PETICION_PERMISO_LOCALIZACION = 1001;
+    private static final int LOCATION_PERMISSION_ID = 101;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
     private LocationGooglePlayServicesProvider provider;
     TextView localizacion;
 
     //TODO Falta actualizar la imagen cuando pinches en ella y darle accion
     //TODO Falta darle una accion al boton del telefono para el intent inplicito de la llamada
     SwipeRefreshLayout swipeContainer;
-    ImageView imagenEmergencia;
+    ImageView imagenEmergencia, imagenLlamada;
 
 
     @Override
@@ -47,6 +55,7 @@ public class HomeActivity extends AppCompatActivity
         localizacion = findViewById(R.id.textViewLocalizacion);
 
         imagenEmergencia = findViewById(R.id.imageViewEmergencia);
+        imagenLlamada = findViewById(R.id.imageViewLlamada);
 
         startLocation();
 
@@ -60,9 +69,34 @@ public class HomeActivity extends AppCompatActivity
                     Toast.makeText(HomeActivity.this, "Se han enviado los datos de emergencia", Toast.LENGTH_SHORT).show();
                     enviado = false;
                 }
-
             }
         });
+
+
+        imagenLlamada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialPhoneNumber();
+            }
+        });
+
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        LOCATION_PERMISSION_ID);
+
+            }
+        }
 
 
         //RefreshLayout para actualizar deslizando la pantalla hacia abajo
@@ -75,11 +109,66 @@ public class HomeActivity extends AppCompatActivity
                 android.R.color.holo_red_light);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == PETICION_PERMISO_LOCALIZACION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            startLocation();
+    //Esto es para hacer la llamada
+    public void dialPhoneNumber() {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:653675459"));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            startActivity(intent);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.opciones, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Intent intentConfiguracion = new Intent(HomeActivity.this, ConfiguracionActivity.class);
+            startActivity(intentConfiguracion);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+       /* switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length >
+                        && grantResults[] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                return;
+            }
+        }*/
     }
 
     //Muestra la ultima localización, esto hay que setearlo en el textView del XML

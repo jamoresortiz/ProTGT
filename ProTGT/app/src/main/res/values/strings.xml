@@ -18,5 +18,7 @@
 
     <string name="address_found">Address found</string>
 
+    <string name="msg">Por favor activa todos los permisos</string>
+
 
 </resources>
