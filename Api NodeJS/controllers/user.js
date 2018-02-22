@@ -48,7 +48,7 @@ module.exports.signUp = (req, res) => {
 
 };
 
-//POST Iniciar sesión
+// POST Iniciar sesión
 module.exports.signIn = (req, res) => {
 
     User
@@ -73,14 +73,39 @@ module.exports.signIn = (req, res) => {
                         email: user.email,
                         pais: user.pais,
                         telefono: user.telefono,
-                        domicilio: user.domicilio
+                        direccion: user.direccion
                     });
                 }
             });
 
-
     });
 
+};
+
+module.exports.showAdressesOfUser = (req, res) => {
+  User
+      .findOne({_id: req.user}, (err, user) => {
+          if (err) return res.status(401).jsonp({
+              error: 401,
+              mensaje: `Error de autentificación`
+          });
+
+          if (!user) return res.status(404).jsonp({
+              error: 404,
+              mensaje: `No se encuentra el usuario`
+          });
+
+
+          User.populate(user, {path: "direccion", select: '_id provincia localidad calle numero piso bloque puerta'}, (err, user) => {
+
+
+              if (err) return res.status(500).jsonp({
+                  error: 500,
+                  mensaje: `${err.message}`
+              });
+              res.status(200).jsonp(user.direccion);
+          });
+      });
 };
 
 module.exports.editUser = (req, res) => {
@@ -96,32 +121,25 @@ module.exports.editUser = (req, res) => {
               mensaje: `No se encuentra el usuario`
           });
 
-          User.findById({_id: user._id}, (err, user) => {
+          if (req.body.nombre)
+              user.nombre = req.body.nombre;
+          if (req.body.apellidos)
+              user.apellidos = req.body.apellidos;
+          if (req.body.email)
+              user.email = req.body.email;
+          if (req.body.password)
+              user.password = req.body.password;
+          if (req.body.pais)
+              user.pais = req.body.pais;
+          if (req.body.telefono)
+              user.telefono = req.user.telefono;
+
+          user.save(function (err, result) {
               if (err) return res.status(500).jsonp({
                   error: 500,
-                  mensaje: `Error de servidor`
+                  mensaje: `${err.message}`
               });
-
-              if (req.body.nombre)
-                user.nombre = req.body.nombre;
-              if (req.body.apellidos)
-                user.apellidos = req.body.apellidos;
-              if (req.body.email)
-                  user.email = req.body.email;
-              if (req.body.password)
-                user.password = req.body.password;
-              if (req.body.pais)
-                user.pais = req.body.pais;
-              if (req.body.telefono)
-                user.telefono = req.user.telefono;
-
-              user.save(function (err, result) {
-                  if (err) return res.status(500).jsonp({
-                      error: 500,
-                      mensaje: `${err.message}`
-                  });
-                  res.status(201).jsonp(result);
-              });
+              res.status(201).jsonp(result);
           });
       });
 };
@@ -140,45 +158,152 @@ module.exports.editAddressOfUser = (req, res) => {
                 mensaje: `No se encuentra el usuario`
             });
 
-            User
-                .findById({_id: user._id}, (err, user) => {
+            Address
+                .findById({_id: req.body.id_direccion}, (err, address) => {
                     if (err) return res.status(500).jsonp({
                         error: 500,
                         mensaje: `Error de servidor`
                     });
+                    if (req.body.provincia)
+                        address.provincia = req.body.provincia;
+                    if (req.body.localidad)
+                        address.localidad = req.body.localidad;
+                    if (req.body.calle)
+                        address.calle = req.body.calle;
+                    if (req.body.numero)
+                        address.numero = req.body.numero;
+                    if (req.body.piso)
+                        address.piso = req.body.piso;
+                    if (req.body.bloque)
+                        address.bloque = req.body.bloque;
+                    if (req.body.puerta)
+                        address.puerta = req.body.puerta;
 
-                    Address
-                        .findById({_id: user.direccion}, (err, address) => {
+                    address.save((err, address) => {
+                        if (err) return res.status(500).jsonp({
+                            error: 500,
+                            mensaje: `${err.message}`
+                        });
+                        return res.status(201).jsonp(address);
+                        });
+
+                    });
+        });
+};
+
+// Añadir una dirección a un usuario
+module.exports.addAddressToUser = (req, res) => {
+    User
+        .findOne({_id: req.user}, (err, user) => {
+            if (err) return res.status(401).jsonp({
+                error: 401,
+                mensaje: `Error de autentificación`
+            });
+
+            if (!user) return res.status(404).jsonp({
+                error: 404,
+                mensaje: `No se encuentra el usuario`
+            });
+
+            console.log(user.email);
+
+                    let address = new Address({
+                        provincia: req.body.provincia,
+                        localidad: req.body.localidad,
+                        calle: req.body.calle,
+                        numero: req.body.numero,
+                        piso: req.body.piso,
+                        bloque: req.body.bloque,
+                        puerta: req.body.puerta
+                    });
+
+                    address.save((err, address) => {
+                        if (err) return res.status(500).jsonp({
+                            error: 500,
+                            mensaje: `${err.message}`
+                        });
+                        User.update(user, {$push: {direccion: address}}, (err) => {
                             if (err) return res.status(500).jsonp({
                                 error: 500,
-                                mensaje: `Error de servidor`
+                                mensaje: `${err.message}`
                             });
-
-                            if (req.body.provincia)
-                                address.provincia = req.body.provincia;
-                            if (req.body.localidad)
-                                address.localidad = req.body.localidad;
-                            if (req.body.calle)
-                                address.calle = req.body.calle;
-                            if (req.body.numero)
-                                address.numero = req.body.numero;
-                            if (req.body.piso)
-                                address.piso = req.body.piso;
-                            if (req.body.bloque)
-                                address.bloque = req.body.bloque;
-                            if (req.body.puerta)
-                                address.puerta = req.body.puerta;
-
-                            address.save((err, address) => {
-                                if (err) return res.status(500).jsonp({
-                                        error: 500,
-                                        mensaje: `${err.message}`
-                                });
-
-                                return res.status(201).jsonp(address);
-                            });
-
+                            res.status(200).jsonp(address);
                         });
-            });
+                    });
         });
+};
+
+// POST Comprobar email o móvil
+module.exports.verifyEmailTelephone = (req, res) => {
+    if (req.body.email){
+        User
+            .findOne({email: req.body.email}, (err, user) => {
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: `${err.message}`
+                });
+                if (user) return res.status(400).jsonp({
+                    error: 400,
+                    mensaje: 'Usuario ya registrado con ese email'
+                });
+                if (!user) return res.status(200).jsonp({
+                    mensaje: 'Email correcto'
+                });
+            });
+    }
+
+    if (req.body.telefono){
+        User
+            .findOne({telefono: req.body.telefono}, (err, user) => {
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: `${err.message}`
+                });
+                if (user) return res.status(400).jsonp({
+                    error: 400,
+                    mensaje: 'Usuario ya registrado con ese telefono'
+                });
+                if (!user) return res.status(200).jsonp({
+                    mensaje: 'Teléfono correcto'
+                });
+            });
+    }
+};
+
+// DELETE Eliminar una dirección de un usuario
+module.exports.deleteAddressOfUser = (req, res) => {
+
+    User
+        .findOne({_id: req.user}, (err, user) => {
+            if (err) return res.status(401).jsonp({
+                error: 401,
+                mensaje: `Error de autentificación`
+            });
+
+            if (!user) return res.status(404).jsonp({
+                error: 404,
+                mensaje: `No se encuentra el usuario`
+            });
+
+            Address.findById({_id: req.body.id_direccion}, (err, address) => {
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: `Error de servidor`
+                });
+                if (!address) return res.status(404).jsonp({
+                    error: 404,
+                    mensaje: `No se encuentra la dirección`
+                });
+
+                address.remove((err) => {
+                   if (err) return res.status(500).jsonp({
+                      error: 500,
+                      mensaje: `Error de servidor`
+                   });
+
+                   res.sendStatus(204);
+                });
+
+            });
+    });
 };

@@ -6,10 +6,10 @@ const crypto = require('crypto');
 const userSchema = new Schema({
     nombre: String,
     apellidos: String,
-    email: String,
+    email: {type: String, unique: true, lowercase: true},
     password: String,
     pais: String,
-    telefono: String,
+    telefono: {type: String, unique: true},
     direccion: [{type: Schema.ObjectId, ref: 'Address'}]
 });
 

@@ -96,7 +96,45 @@ module.exports.showOneAviso = (req, res) => {
     });
 };
 
-//PUT Cambiar estado aviso
+// PUT Enviar localización
+//TODO NO FUNCIONA DEL TODO
+module.exports.sendLocation = (req, res) => {
+    User
+        .findOne({_id: req.user}, (err, user) => {
+            if (err) return res.status(401).jsonp({
+                error: 401,
+                mensaje: `Error de autentificación`
+            });
+
+            if (!user) return res.status(404).jsonp({
+                error: 404,
+                mensaje: `No se encuentra el usuario`
+            });
+
+            Aviso
+                .findById({_id: req.params.id_aviso},(err, aviso) => {
+                    if (err) return res.status(500).jsonp({
+                        error: 401,
+                        mensaje: `Error de servidor`
+                    });
+
+                    if (!aviso) return res.status(404).jsonp({
+                        error: 404,
+                        mensaje: `No se encuentra el aviso`
+                    });
+
+                    Aviso.update(aviso, {$push: {localizacion: req.body.localizacion}}, (err) => {
+                       if (err) return res.status(500).jsonp({
+                           error: 500,
+                           mensaje: `${err.message}`
+                       });
+                        res.status(200).jsonp(aviso);
+                    });
+                });
+        });
+};
+
+// PUT Cambiar estado aviso
 module.exports.changeStatusAviso = (req, res) => {
     Aviso.findById({_id: req.params.id_aviso}, (err, aviso) => {
         if (err) return res.status(401).jsonp({
