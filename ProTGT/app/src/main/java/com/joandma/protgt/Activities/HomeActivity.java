@@ -13,6 +13,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
     TextView localizacion;
     SwipeRefreshLayout swipeContainer;
     LocationRequest locRequest;
+    ImageView imagenEmergencia;
 
     private GoogleApiClient apiClient;
 
@@ -51,6 +54,22 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         setContentView(R.layout.activity_home);
 
         localizacion = findViewById(R.id.textViewLocalizacion);
+
+        imagenEmergencia = findViewById(R.id.imageViewEmergencia);
+
+        imagenEmergencia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean enviado = true;
+
+                if (enviado == true){
+                    imagenEmergencia.setImageResource(R.drawable.ic_checked);
+                    Toast.makeText(HomeActivity.this, "Se han enviado los datos de emergencia", Toast.LENGTH_SHORT).show();
+                    enviado = false;
+                }
+
+            }
+        });
 
         //Construccion cliente API Google
         apiClient = new GoogleApiClient.Builder(this)
@@ -182,7 +201,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         if(loc != null){
             localizacion.setText("Latitud: " + String.valueOf(loc.getLatitude()) + "  Longitud: " + String.valueOf(loc.getLongitude()));
         } else {
-            localizacion.setText("Latitud: (desconocida)  Longitud: (desconocida)");
+            localizacion.setText("Active la localización o deslize para actualizar tu ubicación");
         }
     }
 
