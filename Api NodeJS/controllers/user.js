@@ -82,6 +82,7 @@ module.exports.signIn = (req, res) => {
 
 };
 
+// GET Mostrar direcciones de un usuario
 module.exports.showAdressesOfUser = (req, res) => {
   User
       .findOne({_id: req.user}, (err, user) => {
@@ -108,6 +109,7 @@ module.exports.showAdressesOfUser = (req, res) => {
       });
 };
 
+// PUT Editar datos usuario
 module.exports.editUser = (req, res) => {
   User
       .findOne({_id: req.user}, (err, user) => {
@@ -139,11 +141,12 @@ module.exports.editUser = (req, res) => {
                   error: 500,
                   mensaje: `${err.message}`
               });
-              res.status(201).jsonp(result);
+              res.status(200).jsonp(result);
           });
       });
 };
 
+// PUT Editar dirección usuario
 module.exports.editAddressOfUser = (req, res) => {
 
     User
@@ -184,14 +187,14 @@ module.exports.editAddressOfUser = (req, res) => {
                             error: 500,
                             mensaje: `${err.message}`
                         });
-                        return res.status(201).jsonp(address);
+                        return res.status(200).jsonp(address);
                         });
 
                     });
         });
 };
 
-// Añadir una dirección a un usuario
+// PUT Añadir una dirección a un usuario
 module.exports.addAddressToUser = (req, res) => {
     User
         .findOne({_id: req.user}, (err, user) => {

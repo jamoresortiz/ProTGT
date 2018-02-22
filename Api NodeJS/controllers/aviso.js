@@ -123,7 +123,7 @@ module.exports.sendLocation = (req, res) => {
                         mensaje: `No se encuentra el aviso`
                     });
 
-                    Aviso.update(aviso, {$push: {localizacion: req.body.localizacion}}, (err) => {
+                    Aviso.update(aviso, {$push: {localizacion: req.body.localizacion}}, (err, aviso) => {
                        if (err) return res.status(500).jsonp({
                            error: 500,
                            mensaje: `${err.message}`
@@ -155,7 +155,7 @@ module.exports.changeStatusAviso = (req, res) => {
                 mensaje: `${err.message}`
             });
 
-            res.status(201).jsonp(result);
+            res.status(200).jsonp(result);
         });
     });
 };
