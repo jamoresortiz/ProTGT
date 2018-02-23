@@ -36,13 +36,11 @@ import io.nlopez.smartlocation.location.providers.LocationGooglePlayServicesProv
 public class HomeActivity extends AppCompatActivity
         implements SwipeRefreshLayout.OnRefreshListener, OnLocationUpdatedListener {
 
-    private static final int LOCATION_PERMISSION_ID = 101;
-    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
+    private static final int LOCATION_PERMISSION_ID = 1001;
     private LocationGooglePlayServicesProvider provider;
     TextView localizacion;
 
-    //TODO Falta actualizar la imagen cuando pinches en ella y darle accion
-    //TODO Falta darle una accion al boton del telefono para el intent inplicito de la llamada
+    //TODO Falta darle retrofit a la imagen para que mande los datos
     SwipeRefreshLayout swipeContainer;
     ImageView imagenEmergencia, imagenLlamada;
 
@@ -81,7 +79,8 @@ public class HomeActivity extends AppCompatActivity
         });
 
 
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        //TODO PERMISOS
+       /* int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -96,7 +95,7 @@ public class HomeActivity extends AppCompatActivity
                         LOCATION_PERMISSION_ID);
 
             }
-        }
+        }*/
 
 
         //RefreshLayout para actualizar deslizando la pantalla hacia abajo
@@ -109,19 +108,12 @@ public class HomeActivity extends AppCompatActivity
                 android.R.color.holo_red_light);
     }
 
-    //Esto es para hacer la llamada
+    //Esto es para hacer la llamada de telefono
     public void dialPhoneNumber() {
-        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:653675459"));
         if (intent.resolveActivity(getPackageManager()) != null) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
                 return;
             }
             startActivity(intent);
@@ -144,8 +136,8 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intentConfiguracion = new Intent(HomeActivity.this, ConfiguracionActivity.class);
-            startActivity(intentConfiguracion);
+            /*Intent intentConfiguracion = new Intent(HomeActivity.this, ConfiguracionActivity.class);
+            startActivity(intentConfiguracion);*/
             return true;
         }
 
@@ -154,7 +146,7 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-
+    //Este metodo es donde se piden los permisos de lo que vayamos a usar
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
        /* switch (requestCode) {
@@ -169,6 +161,9 @@ public class HomeActivity extends AppCompatActivity
                 return;
             }
         }*/
+        if (requestCode == LOCATION_PERMISSION_ID && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startLocation();
+        }
     }
 
     //Muestra la ultima localización, esto hay que setearlo en el textView del XML
