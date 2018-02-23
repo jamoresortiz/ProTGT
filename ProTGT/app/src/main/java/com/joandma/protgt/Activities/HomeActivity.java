@@ -127,7 +127,7 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.opciones, menu);
@@ -143,13 +143,13 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            /*Intent intentConfiguracion = new Intent(HomeActivity.this, ConfiguracionActivity.class);
-            startActivity(intentConfiguracion);*/
+            *//*Intent intentConfiguracion = new Intent(HomeActivity.this, ConfiguracionActivity.class);
+            startActivity(intentConfiguracion);*//*
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     private void toggleLocationUpdates(boolean enable) {
         if (enable) {
