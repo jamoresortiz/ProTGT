@@ -8,6 +8,16 @@
         <item>Italia</item>
         <item>Grecia</item>
     </string-array>
+
+    <string-array name="codigopais">
+        <item>ESP</item>
+        <item>LON</item>
+        <item>FRA</item>
+        <item>ITA</item>
+        <item>GRE</item>
+    </string-array>
+
+
     <string name="aviso">ProTGT te enviará un mensaje para verificar tu número. Introduce el codigo de 4 cifras como aparece en el ejemplo</string>
     <string name="registro">¿No tienes cuenta? Registrate</string>
 

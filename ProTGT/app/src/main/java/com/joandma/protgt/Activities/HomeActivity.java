@@ -4,11 +4,13 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -21,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +61,7 @@ public class HomeActivity extends AppCompatActivity
     TextView localizacion;
     LocationRequest locRequest;
     private GoogleApiClient apiClient;
+    ImageButton botonSettings;
 
 
     //TODO Quitar el action bar y ponerlo con una simple imagen que muestre la pantalla de settings
@@ -72,6 +76,8 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
 
         localizacion = findViewById(R.id.textViewLocalizacion);
+
+        botonSettings = findViewById(R.id.imageButtonSettings);
 
         imagenEmergencia = findViewById(R.id.imageViewEmergencia);
         imagenLlamada = findViewById(R.id.imageViewLlamada);
@@ -88,6 +94,27 @@ public class HomeActivity extends AppCompatActivity
                 }
             }
         });
+
+
+        //////////////////////////// SETTINGS //////////////////////////////
+
+        botonSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSettings = new Intent(HomeActivity.this, SettingsActivity.class);
+                startActivity(intentSettings);
+            }
+        });
+
+        //Esto recoge las preferencias que se están guardando cuando escribes algo en el Dialog
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
+
+        //Muestra las preferencias que se están guardando como ejemplo
+        Log.i("Pref", "Nombre: " + pref.getString("pref_nombre", ""));
+        Log.i("Pref", "Apellidos: " + pref.getString("pref_apellidos", ""));
+        Log.i("Pref", "Email: " + pref.getString("pref_email", ""));
+
+        //////////////////////////////////////////////////////////////////////
 
         //Construccion cliente API Google
         apiClient = new GoogleApiClient.Builder(this)
