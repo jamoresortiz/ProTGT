@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const service = require('../services');
 const Aviso = require('../models/aviso');
 const User = require('../models/user');
+const Ruta = require('../models/ruta');
 
 // POST Registrar un aviso
 module.exports.addAviso = (req, res) => {
@@ -17,20 +18,33 @@ module.exports.addAviso = (req, res) => {
             mensaje: `No se encuentra el usuario`
         });
 
-        let aviso = new Aviso({
-            localizacion: req.body.localizacion,
-            user: mongoose.Types.ObjectId(user._id),
-            estado: 0
+        let ruta = new Ruta({
+            localizacion: req.body.localizacion
         });
 
-        aviso.save(function (err, result) {
+        ruta.save(function (err, ruta) {
             if (err) return res.status(500).jsonp({
                 error: 500,
                 mensaje: `${err.message}`
             });
 
-            res.status(201).jsonp(result);
+            let aviso = new Aviso({
+                rutas: mongoose.Types.ObjectId(ruta._id),
+                user: mongoose.Types.ObjectId(user._id),
+                estado: 0
+            });
+
+            aviso.save(function (err, aviso) {
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: `${err.message}`
+                });
+
+                res.status(201).jsonp(aviso);
+            });
+
         });
+
     });
 };
 
@@ -47,7 +61,14 @@ module.exports.showAllAvisos = (req, res) => {
                 error: 500,
                 mensaje: `${err.message}`
             });
-            res.status(200).jsonp(avisos);
+
+            Aviso.populate(avisos, {path:"rutas", select: '_id localizacion fecha_envio_loc'}, (err, avisos) => {
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: `${err.message}`
+                });
+                res.status(200).jsonp(avisos);
+            });
         });
     });
 };
@@ -66,7 +87,13 @@ module.exports.showAllAvisosSinResolver = (req, res) => {
                 error: 500,
                 mensaje: `${err.message}`
             });
-            res.status(200).jsonp(avisos);
+            Aviso.populate(avisos, {path:"rutas", select: '_id localizacion fecha_envio_loc'}, (err, avisos) => {
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: `${err.message}`
+                });
+                res.status(200).jsonp(avisos);
+            });
         });
     });
 };
@@ -90,14 +117,19 @@ module.exports.showOneAviso = (req, res) => {
                 error: 500,
                 mensaje: `${err.message}`
             });
-            res.status(200).jsonp(aviso);
+            Aviso.populate(aviso, {path:"rutas", select: '_id localizacion fecha_envio_loc'}, (err, aviso) => {
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: `${err.message}`
+                });
+                res.status(200).jsonp(aviso);
+            });
 
         });
     });
 };
 
 // PUT Enviar localización
-//TODO NO FUNCIONA DEL TODO
 module.exports.sendLocation = (req, res) => {
     User
         .findOne({_id: req.user}, (err, user) => {
@@ -123,13 +155,26 @@ module.exports.sendLocation = (req, res) => {
                         mensaje: `No se encuentra el aviso`
                     });
 
-                    Aviso.update(aviso, {$push: {localizacion: req.body.localizacion}}, (err, aviso) => {
-                       if (err) return res.status(500).jsonp({
-                           error: 500,
-                           mensaje: `${err.message}`
-                       });
-                        res.status(200).jsonp(aviso);
+                    let ruta = new Ruta({
+                        localizacion: req.body.localizacion
                     });
+
+                    ruta.save(function (err, ruta) {
+                        if (err) return res.status(500).jsonp({
+                            error: 500,
+                            mensaje: `${err.message}`
+                        });
+
+                        Aviso.update(aviso, {$push: {rutas: mongoose.Types.ObjectId(ruta._id)}}, (err, aviso) => {
+                            if (err) return res.status(500).jsonp({
+                                error: 500,
+                                mensaje: `${err.message}`
+                            });
+                            res.status(200).jsonp(aviso);
+                        });
+                    });
+
+
                 });
         });
 };
