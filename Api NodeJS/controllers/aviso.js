@@ -165,7 +165,7 @@ module.exports.sendLocation = (req, res) => {
                             mensaje: `${err.message}`
                         });
 
-                        Aviso.update(aviso, {$push: {rutas: mongoose.Types.ObjectId(ruta._id)}}, (err, aviso) => {
+                        Aviso.update(aviso, {$push: {rutas: mongoose.Types.ObjectId(ruta._id)}}, (err) => {
                             if (err) return res.status(500).jsonp({
                                 error: 500,
                                 mensaje: `${err.message}`

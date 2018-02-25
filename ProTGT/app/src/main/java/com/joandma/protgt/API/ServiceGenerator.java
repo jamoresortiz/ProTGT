@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ServiceGenerator {
-    private static final String BASE_URL = "https://maps.googleapis.com/";
+    private static final String BASE_URL = "https://apinodejs-zrgxkkznqt.now.sh/";
 
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
@@ -40,7 +40,7 @@ public class ServiceGenerator {
 
         if (!httpClient.interceptors().contains(logging)) {
             httpClient.addInterceptor(logging);
-            httpClient.addInterceptor(new Interceptor() {
+            /*httpClient.addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
                     Request original = chain.request();
@@ -60,7 +60,7 @@ public class ServiceGenerator {
                     Request request = requestBuilder.build();
                     return chain.proceed(request);
                 }
-            });
+            });*/
 
             builder.client(httpClient.build());
             retrofit = builder.build();
