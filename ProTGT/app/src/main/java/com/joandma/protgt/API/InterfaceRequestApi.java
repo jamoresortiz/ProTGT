@@ -3,10 +3,12 @@ package com.joandma.protgt.API;
 import com.joandma.protgt.Models.Aviso;
 import com.joandma.protgt.Models.Direccion;
 import com.joandma.protgt.Models.User;
+import com.joandma.protgt.Models.VerifyModel;
 
 import java.security.PublicKey;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -27,12 +29,12 @@ public interface InterfaceRequestApi {
     public Call<User> registerUser(@Body User newUser);
 
     //Verificar si ya existe el email o teléfono introducido por el usuario en la base de datos
-    //TODO Duda en la respuesta Call<User>
+    //TODO Duda en la respuesta Call<ResponseBody>
     @POST("protgt/api/v1/auth/register/verify")
-    public Call<User> verifyEmailTelephone(@Body String emailOrTelephone);
+    public Call<ResponseBody> verifyEmailTelephone(@Body VerifyModel verifyModel);
 
     //Login de usuario
-    @POST("/protgt/api/v1/auth/login")
+    @POST("protgt/api/v1/auth/login")
     public Call<User> loginUser(@Body User userLoged);
 
     //Añadir una dirección

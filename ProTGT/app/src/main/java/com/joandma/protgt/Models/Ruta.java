@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 class Ruta {
-    private Long id;
+    private String _id;
     private String localizacion;
     private Date fecha_envio_loc;
 
@@ -16,12 +16,12 @@ class Ruta {
         this.fecha_envio_loc = fecha_envio_loc;
     }
 
-    public Long getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
     }
 
     public String getLocalizacion() {
@@ -47,7 +47,7 @@ class Ruta {
 
         Ruta ruta = (Ruta) o;
 
-        if (id != null ? !id.equals(ruta.id) : ruta.id != null) return false;
+        if (_id != null ? !_id.equals(ruta._id) : ruta._id != null) return false;
         if (localizacion != null ? !localizacion.equals(ruta.localizacion) : ruta.localizacion != null)
             return false;
         return fecha_envio_loc != null ? fecha_envio_loc.equals(ruta.fecha_envio_loc) : ruta.fecha_envio_loc == null;
@@ -55,7 +55,7 @@ class Ruta {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = _id != null ? _id.hashCode() : 0;
         result = 31 * result + (localizacion != null ? localizacion.hashCode() : 0);
         result = 31 * result + (fecha_envio_loc != null ? fecha_envio_loc.hashCode() : 0);
         return result;
@@ -64,7 +64,7 @@ class Ruta {
     @Override
     public String toString() {
         return "Ruta{" +
-                "id=" + id +
+                "id=" + _id +
                 ", localizacion='" + localizacion + '\'' +
                 ", fecha_envio_loc=" + fecha_envio_loc +
                 '}';

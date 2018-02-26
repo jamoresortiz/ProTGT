@@ -11,13 +11,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.joandma.protgt.API.InterfaceRequestApi;
 import com.joandma.protgt.API.ServiceGenerator;
 import com.joandma.protgt.Constant.PreferenceKeys;
-import com.joandma.protgt.Models.User;
+import com.joandma.protgt.Models.VerifyModel;
 import com.joandma.protgt.R;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,12 +57,19 @@ public class RegistroActivity extends AppCompatActivity {
 
                     InterfaceRequestApi api = ServiceGenerator.createService(InterfaceRequestApi.class);
 
-                    Call<User> call = api.verifyEmailTelephone(correo.getText().toString());
 
-                    call.enqueue(new Callback<User>() {
+                    VerifyModel verifyModel = new VerifyModel();
+                    String email = correo.getText().toString();
+
+                    verifyModel.setEmail(email);
+
+                    Call<ResponseBody> call = api.verifyEmailTelephone(verifyModel);
+
+                    call.enqueue(new Callback<ResponseBody>() {
                         @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            if (response.isSuccessful()){
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                            if (response.code() == 200){
                                 SharedPreferences prefs = RegistroActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = prefs.edit();
 
@@ -79,7 +88,7 @@ public class RegistroActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<User> call, Throwable t) {
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
                             Log.e("TAG","onFailure login: "+t.toString());
                         }
                     });

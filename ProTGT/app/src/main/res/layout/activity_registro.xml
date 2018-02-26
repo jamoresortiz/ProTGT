@@ -44,7 +44,7 @@
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/poppins"
             android:hint="Nombre"
-            android:inputType="textImeMultiLine"
+            android:inputType="textImeMultiLine|textCapWords"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
@@ -67,7 +67,7 @@
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/poppins"
             android:hint="Apellidos"
-            android:inputType="textImeMultiLine"
+            android:inputType="textImeMultiLine|textCapWords"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>

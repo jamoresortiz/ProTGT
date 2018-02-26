@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public class User {
-    private Long id;
+    private String _id;
     private String token;
     private String nombre;
     private String apellidos;
@@ -34,12 +34,12 @@ public class User {
     public User() {
     }
 
-    public Long getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
     }
 
     public String getToken() {
@@ -113,7 +113,7 @@ public class User {
 
         User user = (User) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (_id != null ? !_id.equals(user._id) : user._id != null) return false;
         if (token != null ? !token.equals(user.token) : user.token != null) return false;
         if (nombre != null ? !nombre.equals(user.nombre) : user.nombre != null) return false;
         if (apellidos != null ? !apellidos.equals(user.apellidos) : user.apellidos != null)
@@ -129,7 +129,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = _id != null ? _id.hashCode() : 0;
         result = 31 * result + (token != null ? token.hashCode() : 0);
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (apellidos != null ? apellidos.hashCode() : 0);
@@ -144,7 +144,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + _id +
                 ", token='" + token + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +

@@ -5,7 +5,7 @@ package com.joandma.protgt.Models;
  */
 
 public class Direccion {
-    private Long id;
+    private String _id;
     private String provincia;
     private String localidad;
     private String calle;
@@ -27,12 +27,12 @@ public class Direccion {
     public Direccion() {
     }
 
-    public Long getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
     }
 
     public String getProvincia() {
@@ -99,7 +99,7 @@ public class Direccion {
         Direccion direccion = (Direccion) o;
 
         if (numero != direccion.numero) return false;
-        if (id != null ? !id.equals(direccion.id) : direccion.id != null) return false;
+        if (_id != null ? !_id.equals(direccion._id) : direccion._id != null) return false;
         if (provincia != null ? !provincia.equals(direccion.provincia) : direccion.provincia != null)
             return false;
         if (localidad != null ? !localidad.equals(direccion.localidad) : direccion.localidad != null)
@@ -113,7 +113,7 @@ public class Direccion {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = _id != null ? _id.hashCode() : 0;
         result = 31 * result + (provincia != null ? provincia.hashCode() : 0);
         result = 31 * result + (localidad != null ? localidad.hashCode() : 0);
         result = 31 * result + (calle != null ? calle.hashCode() : 0);
@@ -127,7 +127,7 @@ public class Direccion {
     @Override
     public String toString() {
         return "Direccion{" +
-                "id=" + id +
+                "_id='" + _id + '\'' +
                 ", provincia='" + provincia + '\'' +
                 ", localidad='" + localidad + '\'' +
                 ", calle='" + calle + '\'' +
