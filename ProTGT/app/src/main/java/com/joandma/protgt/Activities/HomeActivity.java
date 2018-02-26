@@ -61,7 +61,7 @@ public class HomeActivity extends AppCompatActivity
     TextView localizacion;
     LocationRequest locRequest;
     private GoogleApiClient apiClient;
-    ImageButton botonSettings;
+    ImageView botonSettings;
 
 
     //TODO Quitar el action bar y ponerlo con una simple imagen que muestre la pantalla de settings

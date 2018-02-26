@@ -12,11 +12,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="123dp"
-        android:layout_height="130dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="96dp"
-        android:src="@drawable/ic_shield"
+        android:src="@mipmap/ic_protgt_foreground"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -29,7 +29,7 @@
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,9 +43,9 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:drawableLeft="@drawable/ic_man_user"
+            android:fontFamily="@font/poppins"
             android:hint=" Email"
             android:inputType="textEmailAddress|textImeMultiLine"
-            android:fontFamily="@font/poppins"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
@@ -109,6 +109,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_iniciarSesion"/>
+
 
 
 </android.support.constraint.ConstraintLayout>

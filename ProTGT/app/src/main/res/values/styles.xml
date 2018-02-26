@@ -15,8 +15,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorBar</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="windowNoTitle">false</item>
     </style>
 
 </resources>

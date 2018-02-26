@@ -11,11 +11,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="123dp"
-        android:layout_height="130dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginBottom="32dp"
         android:layout_marginTop="96dp"
-        android:src="@drawable/ic_shield"
+        android:src="@mipmap/ic_protgt_foreground"
         app:layout_constraintBottom_toTopOf="@+id/spinnerPais"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -68,7 +68,7 @@
         android:layout_height="38dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/white"
         android:entries="@array/paises"
         android:spinnerMode="dialog"
