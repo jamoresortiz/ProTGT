@@ -3,7 +3,7 @@
     <string-array name="paises">
         <item>Selecciona tu país</item>
         <item>España</item>
-        <item>Londres</item>
+        <item>Reino Unido</item>
         <item>Francia</item>
         <item>Italia</item>
         <item>Grecia</item>
@@ -11,7 +11,7 @@
 
     <string-array name="codigopais">
         <item>ESP</item>
-        <item>LON</item>
+        <item>UK</item>
         <item>FRA</item>
         <item>ITA</item>
         <item>GRE</item>
@@ -34,14 +34,13 @@
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
+    <string name="pref_datos_personales">Datos Personales</string>
 
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
         based on your message history
     </string>
 
-    <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
@@ -94,7 +93,7 @@
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
+    <string name="pref_domicilio">Domicilio</string>
 
     <string name="pref_title_new_message_notifications">New message notifications</string>
 

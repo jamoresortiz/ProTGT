@@ -4,13 +4,13 @@
 
     <header
         android:fragment="com.joandma.protgt.Activities.SettingsActivity$GeneralPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/pref_header_general" />
+        android:icon="@drawable/ic_man_user_blue"
+        android:title="@string/pref_datos_personales" />
 
     <header
         android:fragment="com.joandma.protgt.Activities.SettingsActivity$NotificationPreferenceFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/pref_header_notifications" />
+        android:icon="@drawable/ic_home"
+        android:title="@string/pref_domicilio" />
 
     <header
         android:fragment="com.joandma.protgt.Activities.SettingsActivity$DataSyncPreferenceFragment"

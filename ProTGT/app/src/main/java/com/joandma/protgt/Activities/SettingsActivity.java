@@ -1,5 +1,6 @@
 package com.joandma.protgt.Activities;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -124,13 +125,23 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         setupActionBar();
     }
 
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
+    //Este método vuelve para el HomeActivity pulsando en la flecha de atrás
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @SuppressLint("RestrictedApi")
     private void setupActionBar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -172,15 +183,32 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_general);
+            addPreferencesFromResource(R.xml.pref_datos_personales);
             setHasOptionsMenu(true);
 
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("example_text"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+            //La key que hay que poner es la que se le da dentro del EditTextPreference
+            bindPreferenceSummaryToValue(findPreference("etpNombre"));
+            bindPreferenceSummaryToValue(findPreference("etpApellidos"));
+            bindPreferenceSummaryToValue(findPreference("etpEmail"));
+            bindPreferenceSummaryToValue(findPreference("etpTelefono"));
+
+            //Esto es para saber que pais está eligiendo en las preferencias
+            final ListPreference listPreference = (ListPreference) findPreference("lpPais");
+            if(listPreference.getEntry()==null) {
+                listPreference.setValueIndex(0);
+            }
+            listPreference.setSummary(listPreference.getEntry().toString());
+            listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    listPreference.setValue(newValue.toString());
+                    preference.setSummary(listPreference.getEntry());
+                    return false;
+                }
+            });
+
+
         }
 
         @Override
@@ -203,14 +231,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_notification);
+            addPreferencesFromResource(R.xml.pref_domicilio);
             setHasOptionsMenu(true);
 
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+            bindPreferenceSummaryToValue(findPreference("etpLocalidad"));
+            bindPreferenceSummaryToValue(findPreference("etpCalle"));
+            bindPreferenceSummaryToValue(findPreference("etpNumero"));
+
         }
 
         @Override

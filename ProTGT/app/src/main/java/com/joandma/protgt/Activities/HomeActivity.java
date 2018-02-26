@@ -107,12 +107,12 @@ public class HomeActivity extends AppCompatActivity
         });
 
         //Esto recoge las preferencias que se están guardando cuando escribes algo en el Dialog
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
+        /*SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
 
         //Muestra las preferencias que se están guardando como ejemplo
         Log.i("Pref", "Nombre: " + pref.getString("pref_nombre", ""));
         Log.i("Pref", "Apellidos: " + pref.getString("pref_apellidos", ""));
-        Log.i("Pref", "Email: " + pref.getString("pref_email", ""));
+        Log.i("Pref", "Email: " + pref.getString("pref_email", ""));*/
 
         //////////////////////////////////////////////////////////////////////
 
