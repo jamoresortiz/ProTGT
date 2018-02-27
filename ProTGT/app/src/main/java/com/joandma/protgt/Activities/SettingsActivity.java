@@ -234,9 +234,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             addPreferencesFromResource(R.xml.pref_domicilio);
             setHasOptionsMenu(true);
 
+            bindPreferenceSummaryToValue(findPreference("etpProvincia"));
             bindPreferenceSummaryToValue(findPreference("etpLocalidad"));
             bindPreferenceSummaryToValue(findPreference("etpCalle"));
             bindPreferenceSummaryToValue(findPreference("etpNumero"));
+            bindPreferenceSummaryToValue(findPreference("etpPiso"));
+            bindPreferenceSummaryToValue(findPreference("etpBloque"));
+            bindPreferenceSummaryToValue(findPreference("etpPuerta"));
 
         }
 

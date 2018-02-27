@@ -18,6 +18,14 @@
         android:dependency="notifications_new_message"
         android:key="notifications_new_message_vibrate"
         android:title="@string/pref_title_vibrate" />-->
+    <EditTextPreference
+        android:capitalize="words"
+        android:inputType="textCapWords"
+        android:key="etpProvincia"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Provincia" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -39,14 +47,39 @@
 
     <EditTextPreference
         android:capitalize="words"
-        android:inputType="number"
+        android:inputType="textCapWords"
         android:key="etpNumero"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Número" />
 
-    <!--TODO SEGUIR METIENDO LAS PREFERENCIAS AL COMPLETO-->
+    <EditTextPreference
+        android:capitalize="words"
+        android:inputType="textCapWords"
+        android:key="etpPiso"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Piso" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:inputType="textCapWords"
+        android:key="etpBloque"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Bloque" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:inputType="textCapWords"
+        android:key="etpPuerta"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Puerta" />
 
 
 </PreferenceScreen>
