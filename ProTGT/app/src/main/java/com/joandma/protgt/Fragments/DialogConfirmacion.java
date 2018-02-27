@@ -23,7 +23,7 @@ public class DialogConfirmacion extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setMessage("¿Estás segur@ que es una alerta?")
+        builder.setMessage("¿Estás seguro/a que es una alerta?")
                 .setTitle("Confirmación de alerta")
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
