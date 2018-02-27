@@ -35,7 +35,7 @@ public interface InterfaceRequestApi {
 
     //Login de usuario
     @POST("protgt/api/v1/auth/login")
-    public Call<UserRegister> loginUser(@Body User userLoged);
+    public Call<UserRegister> loginUser(@Body UserRegister userLoged);
 
     //Obtener detalles de un usuario
     @GET("protgt/api/v1/auth/user")
@@ -71,7 +71,7 @@ public interface InterfaceRequestApi {
 
     //Editar datos de usuario
     @PUT("protgt/api/v1/auth/edit")
-    public Call<User> editUser(@Header("Authorization") String token, @Body User user);
+    public Call<UserRegister> editUser(@Header("Authorization") String token, @Body UserRegister user);
 
     //Editar una dirección del usuario
     @PUT("protgt/api/v1/auth/edit/address")

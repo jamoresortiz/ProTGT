@@ -3,49 +3,78 @@ const bcrypt = require('bcrypt-nodejs');
 const service = require('../services');
 const User = require('../models/user');
 const Address = require('../models/address');
+const ContactoConfianza = require('../models/contacto_confianza');
 
 // POST Registrar usuario
 module.exports.signUp = (req, res) => {
 
     Address
         .findOne({_id: req.body.address_id}, (err, address) => {
-        if (err) return res.status(404).jsonp({
-            error: 404,
-            mensaje: 'No existe la dirección'});
-
-        let user = new User({
-            nombre: req.body.nombre,
-            apellidos: req.body.apellidos,
-            email: req.body.email,
-            password: req.body.password,
-            pais: req.body.pais,
-            telefono: req.body.telefono,
-            direccion: mongoose.Types.ObjectId(address._id)
-        });
-
-        user
-            .save((err, user) => {
-            if (err)
-                return res.status(500).jsonp({
-                    error: 500,
-                    mensaje: `${err.message}`
-                });
-
-            return res.status(201).jsonp({
-                mensaje: 'Registro correcto',
-                token: service.createToken(user),
-                nombre: user.nombre,
-                apellidos: user.apellidos,
-                email: user.email,
-                pais: user.pais,
-                telefono: user.telefono,
-                direccion: user.direccion
+            if (err) return res.status(404).jsonp({
+                error: 404,
+                mensaje: 'No existe la dirección'
             });
 
-        });
+            ContactoConfianza
+                .findOne({_id: req.body.contacto_id}, (err, contacto) => {
+                    if (err) return res.status(404).jsonp({
+                        error: 404,
+                        mensaje: 'No existe la dirección'});
+
+                let user = new User({
+                    nombre: req.body.nombre,
+                    apellidos: req.body.apellidos,
+                    email: req.body.email,
+                    password: req.body.password,
+                    pais: req.body.pais,
+                    telefono: req.body.telefono,
+                    direccion: mongoose.Types.ObjectId(address._id),
+                    contactos_confianza: mongoose.Types.ObjectId(contacto._id)
+                });
+
+                user
+                    .save((err, user) => {
+                        if (err)
+                            return res.status(500).jsonp({
+                                error: 500,
+                                mensaje: `${err.message}`
+                            });
+
+                        return res.status(201).jsonp({
+                            mensaje: 'Registro correcto',
+                            token: service.createToken(user),
+                            nombre: user.nombre,
+                            apellidos: user.apellidos,
+                            email: user.email,
+                            pais: user.pais,
+                            telefono: user.telefono,
+                            direccion: user.direccion,
+                            contactos: user.contactos_confianza
+                        });
+
+                    });
+
+            });
 
     });
 
+};
+
+//POST Crear contacto de confianza
+module.exports.addContactoDeConfianza = (req, res) => {
+    let contacto = new ContactoConfianza({
+        telefono: req.body.telefono,
+        nombre: req.body.nombre
+    });
+
+    contacto.save((err, result) => {
+        if (err) return res.status(500).jsonp({
+            error: 500,
+            mensaje: `${err.message}`
+        });
+
+        return res.status(201).jsonp(result);
+    });
 };
 
 // POST Iniciar sesión

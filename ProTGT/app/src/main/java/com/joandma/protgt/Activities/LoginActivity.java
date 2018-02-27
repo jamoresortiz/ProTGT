@@ -50,43 +50,47 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (token != null){
 
-            api = ServiceGenerator.createService(InterfaceRequestApi.class);
+            Intent intentConToken = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intentConToken);
+            finish();
 
-            Call<UserRegister> call = api.detailUser("Bearer "+token);
-
-            call.enqueue(new Callback<UserRegister>() {
-                @Override
-                public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
-                    if (response.isSuccessful()){
-
-                        result = response.body();
-
-                        //TODO POR ACABAR
-                        Log.i("USER", "user: " +result);
-
-                        editor = prefs.edit();
-
-                        editor.putString(PreferenceKeys.USER_NAME, result.getNombre());
-                        editor.putString(PreferenceKeys.USER_SURNAME, result.getApellidos());
-                        editor.putString(PreferenceKeys.USER_EMAIL, result.getEmail());
-                        editor.putString(PreferenceKeys.USER_PAIS, result.getPais());
-                        editor.putString(PreferenceKeys.USER_TELEFONO, result.getTelefono());
-
-
-                        Intent intentConToken = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intentConToken);
-                        finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Error crítico", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<UserRegister> call, Throwable t) {
-                    Log.e("TAG","onFailure login: "+t.toString());
-                }
-            });
+//            api = ServiceGenerator.createService(InterfaceRequestApi.class);
+//
+//            Call<UserRegister> call = api.detailUser("Bearer "+token);
+//
+//            call.enqueue(new Callback<UserRegister>() {
+//                @Override
+//                public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
+//                    if (response.isSuccessful()){
+//
+//                        result = response.body();
+//
+//                        //TODO POR ACABAR
+//                        Log.i("USER", "user: " +result);
+//
+//                        editor = prefs.edit();
+//
+//                        editor.putString(PreferenceKeys.USER_NAME, result.getNombre());
+//                        editor.putString(PreferenceKeys.USER_SURNAME, result.getApellidos());
+//                        editor.putString(PreferenceKeys.USER_EMAIL, result.getEmail());
+//                        editor.putString(PreferenceKeys.USER_PAIS, result.getPais());
+//                        editor.putString(PreferenceKeys.USER_TELEFONO, result.getTelefono());
+//
+//
+//                        Intent intentConToken = new Intent(LoginActivity.this, HomeActivity.class);
+//                        startActivity(intentConToken);
+//                        finish();
+//                    } else {
+//                        Toast.makeText(LoginActivity.this, "Error crítico", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<UserRegister> call, Throwable t) {
+//                    Log.e("TAG","onFailure login: "+t.toString());
+//                }
+//            });
 
         }
 
@@ -123,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     password.setError("Escriba la contraseña por favor");
                 } else {
 
-                    User userLoged = new User();
+                    UserRegister userLoged = new UserRegister();
 
                     userLoged.setEmail(email.getText().toString());
                     userLoged.setPassword(password.getText().toString());
@@ -144,11 +148,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 editor = prefs.edit();
 
                                 editor.putString(PreferenceKeys.USER_TOKEN, result.getToken());
-                                editor.putString(PreferenceKeys.USER_NAME, result.getNombre());
-                                editor.putString(PreferenceKeys.USER_SURNAME, result.getApellidos());
-                                editor.putString(PreferenceKeys.USER_EMAIL, result.getEmail());
-                                editor.putString(PreferenceKeys.USER_PAIS, result.getPais());
-                                editor.putString(PreferenceKeys.USER_TELEFONO, result.getTelefono());
 
                                 editor.commit();
 

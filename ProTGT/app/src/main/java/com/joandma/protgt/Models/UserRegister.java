@@ -18,8 +18,9 @@ public class UserRegister {
     private String pais;
     private String telefono;
     private List<String> address_id;
+    private List<String> contacto_id;
 
-    public UserRegister(String token, String nombre, String apellidos, String email, String password, String pais, String telefono, List<String> address_id) {
+    public UserRegister(String token, String nombre, String apellidos, String email, String password, String pais, String telefono, List<String> address_id, List<String> contacto_id) {
         this.token = token;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -27,11 +28,11 @@ public class UserRegister {
         this.password = password;
         this.pais = pais;
         this.telefono = telefono;
-        this.address_id = new ArrayList<>();
+        this.address_id = address_id;
+        this.contacto_id = contacto_id;
     }
 
     public UserRegister() {
-        this.address_id = new ArrayList<>();
     }
 
     public String get_id() {
@@ -106,6 +107,14 @@ public class UserRegister {
         this.address_id = address_id;
     }
 
+    public List<String> getContacto_id() {
+        return contacto_id;
+    }
+
+    public void setContacto_id(List<String> contacto_id) {
+        this.contacto_id = contacto_id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,7 +133,9 @@ public class UserRegister {
         if (pais != null ? !pais.equals(that.pais) : that.pais != null) return false;
         if (telefono != null ? !telefono.equals(that.telefono) : that.telefono != null)
             return false;
-        return address_id != null ? address_id.equals(that.address_id) : that.address_id == null;
+        if (address_id != null ? !address_id.equals(that.address_id) : that.address_id != null)
+            return false;
+        return contacto_id != null ? contacto_id.equals(that.contacto_id) : that.contacto_id == null;
     }
 
     @Override
@@ -138,6 +149,7 @@ public class UserRegister {
         result = 31 * result + (pais != null ? pais.hashCode() : 0);
         result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
         result = 31 * result + (address_id != null ? address_id.hashCode() : 0);
+        result = 31 * result + (contacto_id != null ? contacto_id.hashCode() : 0);
         return result;
     }
 
@@ -153,6 +165,7 @@ public class UserRegister {
                 ", pais='" + pais + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", address_id=" + address_id +
+                ", contacto_id=" + contacto_id +
                 '}';
     }
 }
