@@ -108,7 +108,7 @@ public class DomicilioActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
                                         if (response.isSuccessful()){
-                                            Intent intentDomicilio = new Intent(DomicilioActivity.this, HomeActivity.class);
+                                            Intent intentDomicilio = new Intent(DomicilioActivity.this, ContactosActivity.class);
                                             startActivity(intentDomicilio);
                                         } else {
                                             Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();

@@ -44,8 +44,6 @@ import java.util.List;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
-    SharedPreferences prefs;
-    SharedPreferences.Editor editor;
 
     /**
      * A preference value change listener that updates the preference's summary
@@ -108,15 +106,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
     }
 
-    /**
-     * Binds a preference's summary to its value. More specifically, when the
-     * preference's value is changed, its summary (line of text below the
-     * preference title) is updated to reflect the value. The summary is also
-     * immediately updated upon calling this method. The exact display format is
-     * dependent on the type of preference.
-     *
-     * @see #sBindPreferenceSummaryToValueListener
-     */
+
     private static void bindPreferenceSummaryToValue(Preference preference) {
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
@@ -147,8 +137,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-      /*  prefs = SettingsActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
-        editor = prefs.edit();*/
 
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
@@ -159,13 +147,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // Este case vuelve al login de la aplicación borrando el token del usuario
 
             case R.id.action_logout:
-
-                //editor.remove(PreferenceKeys.USER_TOKEN);
-               /* String token = prefs.getString(PreferenceKeys.USER_TOKEN, "No hay kbsa");
-
-
-                editor.putString(PreferenceKeys.USER_TOKEN, null);
-                editor.commit();*/
 
                 FragmentManager fragmentManager = getFragmentManager();
                 DialogLogOut dialogLogOut = new DialogLogOut();
