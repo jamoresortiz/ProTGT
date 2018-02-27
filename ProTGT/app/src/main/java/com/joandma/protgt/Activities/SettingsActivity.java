@@ -11,6 +11,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -154,10 +155,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return true;
 
             // Este case vuelve al login de la aplicación borrando el token del usuario
-            //TODO HACER LO DEL TOKEN
+
             case R.id.action_logout:
-//                editor.remove(PreferenceKeys.USER_TOKEN);
-                String token = prefs.getString(PreferenceKeys.USER_TOKEN, "No hay kbsa");
 
                 editor.putString(PreferenceKeys.USER_TOKEN, null);
                 editor.commit();
@@ -214,11 +213,32 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class GeneralPreferenceFragment extends PreferenceFragment {
+        SharedPreferences prefs;
+        EditTextPreference etNombre, etApellidos, etEmail, etTelefono;
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_datos_personales);
             setHasOptionsMenu(true);
+
+            prefs = getActivity().getSharedPreferences("datos", Context.MODE_PRIVATE);
+
+            String nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
+            String apellidos = prefs.getString(PreferenceKeys.USER_SURNAME, null);
+            String email = prefs.getString(PreferenceKeys.USER_EMAIL, null);
+            String telefono = prefs.getString(PreferenceKeys.USER_TELEFONO, null);
+            String pais = prefs.getString(PreferenceKeys.USER_PAIS, null);
+
+            etNombre = (EditTextPreference) findPreference("etpNombre");
+            etApellidos = (EditTextPreference) findPreference("etpApellidos");
+            etEmail = (EditTextPreference) findPreference("etpEmail");
+            etTelefono = (EditTextPreference) findPreference("etpTelefono");
+
+            etNombre.setText(nombre);
+            etApellidos.setText(apellidos);
+            etEmail.setText(email);
+            etTelefono.setText(telefono);
+
 
             //La key que hay que poner es la que se le da dentro del EditTextPreference
             bindPreferenceSummaryToValue(findPreference("etpNombre"));
@@ -228,10 +248,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             //Esto es para saber que pais está eligiendo en las preferencias
             final ListPreference listPreference = (ListPreference) findPreference("lpPais");
+
+
             if(listPreference.getEntry()==null) {
                 listPreference.setValueIndex(0);
             }
-            listPreference.setSummary(listPreference.getEntry().toString());
+
+            listPreference.setSummary(pais);
             listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
                 @Override
