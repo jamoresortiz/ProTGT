@@ -82,6 +82,31 @@ module.exports.signIn = (req, res) => {
 
 };
 
+// GET Obtener detalles de un usuario
+module.exports.showUser = (req, res) => {
+    User
+        .findOne({_id: req.user}, (err, user) => {
+            if (err) return res.status(401).jsonp({
+                error: 401,
+                mensaje: `Error de autentificación`
+            });
+
+            if (!user) return res.status(404).jsonp({
+                error: 404,
+                mensaje: `No se encuentra el usuario`
+            });
+
+            res.status(200).jsonp({
+                nombre: user.nombre,
+                apellidos: user.apellidos,
+                email: user.email,
+                pais: user.pais,
+                telefono: user.telefono,
+                direccion: user.direccion
+            });
+        });
+};
+
 // GET Mostrar direcciones de un usuario
 module.exports.showAdressesOfUser = (req, res) => {
   User

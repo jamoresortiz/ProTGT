@@ -93,9 +93,6 @@ public class DomicilioActivity extends AppCompatActivity {
                         public void onResponse(Call<Direccion> call, Response<Direccion> response) {
                             if (response.code() == 201){
                                 Direccion result = response.body();
-                                
-                                //id_direccion = result.getId();
-                                Log.i("DIRECCION", "direccion " +result);
 
                                 newUser.setNombre(nombre);
                                 newUser.setApellidos(apellidos);
@@ -114,7 +111,7 @@ public class DomicilioActivity extends AppCompatActivity {
                                             Intent intentDomicilio = new Intent(DomicilioActivity.this, HomeActivity.class);
                                             startActivity(intentDomicilio);
                                         } else {
-                                            Toast.makeText(DomicilioActivity.this, "ERROR CREANDO EL USER", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();
                                         }
                                     }
 
@@ -125,7 +122,7 @@ public class DomicilioActivity extends AppCompatActivity {
                                 });
 
                             } else {
-                                Toast.makeText(DomicilioActivity.this, "ERROR CREANDO LA DIRECCIÓN", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();
                             }
                         }
 

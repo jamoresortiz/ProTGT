@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ServiceGenerator {
-    private static final String BASE_URL = "https://apinodejs-zrgxkkznqt.now.sh/";
+    private static final String BASE_URL = "https://apinodejs-mfzeyznwpx.now.sh";
 
     private static Retrofit.Builder builder =
             new Retrofit.Builder()

@@ -30,13 +30,16 @@ public interface InterfaceRequestApi {
     public Call<UserRegister> registerUser(@Body UserRegister newUser);
 
     //Verificar si ya existe el email o teléfono introducido por el usuario en la base de datos
-    //TODO Duda en la respuesta Call<ResponseBody>
     @POST("protgt/api/v1/auth/register/verify")
     public Call<ResponseBody> verifyEmailTelephone(@Body VerifyModel verifyModel);
 
     //Login de usuario
     @POST("protgt/api/v1/auth/login")
-    public Call<User> loginUser(@Body User userLoged);
+    public Call<UserRegister> loginUser(@Body User userLoged);
+
+    //Obtener detalles de un usuario
+    @GET("protgt/api/v1/auth/user")
+    Call<UserRegister> detailUser(@Header("Authorization") String token);
 
     //Añadir una dirección
     @POST("protgt/api/v1/address/addaddress")
