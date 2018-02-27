@@ -5,6 +5,7 @@ let router = express.Router();
 
 
 router.post('/register', userController.signUp);
+router.post('/addcontacto', userController.addContactoDeConfianza);
 router.post('/login', userController.signIn);
 router.post('/register/verify', userController.verifyEmailTelephone);
 router.get('/user', auth.isAuth, userController.showUser);

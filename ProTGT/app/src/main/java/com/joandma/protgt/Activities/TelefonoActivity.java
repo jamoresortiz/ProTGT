@@ -49,8 +49,6 @@ public class TelefonoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (telefono.getText().toString().equals("")){
                     telefono.setError("Escriba su teléfono por favor");
-                } else if(pais.getSelectedItemPosition() == 0){
-                    Toast.makeText(TelefonoActivity.this, " un país por favor", Toast.LENGTH_SHORT).show();
                 } else {
 
                     VerifyModel verifyModel = new VerifyModel();

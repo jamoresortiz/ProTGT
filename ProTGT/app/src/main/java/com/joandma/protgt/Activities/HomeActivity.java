@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
@@ -41,9 +42,13 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.joandma.protgt.API.InterfaceRequestApi;
+import com.joandma.protgt.API.ServiceGenerator;
+import com.joandma.protgt.Constant.PreferenceKeys;
 import com.joandma.protgt.Fragments.DialogCancelacion;
 import com.joandma.protgt.Fragments.DialogConfirmacion;
 import com.joandma.protgt.Interfaces.ICancelacionDialog;
+import com.joandma.protgt.Models.UserRegister;
 import com.joandma.protgt.R;
 
 import java.util.ArrayList;
@@ -54,6 +59,9 @@ import io.nlopez.smartlocation.OnReverseGeocodingListener;
 import io.nlopez.smartlocation.SmartLocation;
 import io.nlopez.smartlocation.location.config.LocationParams;
 import io.nlopez.smartlocation.location.providers.LocationGooglePlayServicesProvider;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity
         implements SwipeRefreshLayout.OnRefreshListener, LocationListener, GoogleApiClient.OnConnectionFailedListener,
@@ -70,6 +78,12 @@ public class HomeActivity extends AppCompatActivity
 
     boolean enviado = false;
 
+    SharedPreferences prefs;
+    String token;
+    InterfaceRequestApi api;
+    UserRegister result;
+    SharedPreferences.Editor editor;
+
 
     //TODO Falta darle retrofit a la imagen para que mande los datos
     SwipeRefreshLayout swipeContainer;
@@ -81,12 +95,54 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        prefs = HomeActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
+
+        token = prefs.getString(PreferenceKeys.USER_TOKEN, null);
+
+        api = ServiceGenerator.createService(InterfaceRequestApi.class);
+
+            Call<UserRegister> call = api.detailUser("Bearer "+token);
+
+            call.enqueue(new Callback<UserRegister>() {
+                @Override
+                public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
+                    if (response.isSuccessful()){
+
+                        result = response.body();
+
+
+                        Log.i("USER", "user: " +result);
+
+                        editor = prefs.edit();
+
+                        editor.putString(PreferenceKeys.USER_NAME, result.getNombre());
+                        editor.putString(PreferenceKeys.USER_SURNAME, result.getApellidos());
+                        editor.putString(PreferenceKeys.USER_EMAIL, result.getEmail());
+                        editor.putString(PreferenceKeys.USER_PAIS, result.getPais());
+                        editor.putString(PreferenceKeys.USER_TELEFONO, result.getTelefono());
+
+                        editor.commit();
+
+                    } else {
+                        Toast.makeText(HomeActivity.this, "Error crítico", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<UserRegister> call, Throwable t) {
+                    Log.e("TAG","onFailure login: "+t.toString());
+                }
+            });
+
         localizacion = findViewById(R.id.textViewLocalizacion);
 
         botonSettings = findViewById(R.id.imageButtonSettings);
 
         imagenEmergencia = findViewById(R.id.imageViewEmergencia);
         imagenLlamada = findViewById(R.id.imageViewLlamada);
+
+
 
         imagenEmergencia.setOnClickListener(new View.OnClickListener() {
             @Override
