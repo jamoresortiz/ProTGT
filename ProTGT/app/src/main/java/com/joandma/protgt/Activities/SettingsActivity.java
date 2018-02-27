@@ -2,6 +2,7 @@ package com.joandma.protgt.Activities;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.joandma.protgt.Constant.PreferenceKeys;
+import com.joandma.protgt.Fragments.DialogLogOut;
 import com.joandma.protgt.R;
 
 import java.util.List;
@@ -145,8 +147,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        prefs = SettingsActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
-        editor = prefs.edit();
+      /*  prefs = SettingsActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
+        editor = prefs.edit();*/
 
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
@@ -158,12 +160,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             case R.id.action_logout:
 
-                editor.putString(PreferenceKeys.USER_TOKEN, null);
-                editor.commit();
+                //editor.remove(PreferenceKeys.USER_TOKEN);
+               /* String token = prefs.getString(PreferenceKeys.USER_TOKEN, "No hay kbsa");
 
-                Intent intentLogOut = new Intent(SettingsActivity.this, LoginActivity.class);
-                startActivity(intentLogOut);
-                finish();
+
+                editor.putString(PreferenceKeys.USER_TOKEN, null);
+                editor.commit();*/
+
+                FragmentManager fragmentManager = getFragmentManager();
+                DialogLogOut dialogLogOut = new DialogLogOut();
+
+                dialogLogOut.show(fragmentManager, "tagLogOut");
 
                 return true;
         }

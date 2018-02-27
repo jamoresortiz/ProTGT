@@ -71,7 +71,6 @@ public class HomeActivity extends AppCompatActivity
     boolean enviado = false;
 
 
-    //TODO Quitar el action bar y ponerlo con una simple imagen que muestre la pantalla de settings
     //TODO Falta darle retrofit a la imagen para que mande los datos
     SwipeRefreshLayout swipeContainer;
     ImageView imagenEmergencia, imagenLlamada;
