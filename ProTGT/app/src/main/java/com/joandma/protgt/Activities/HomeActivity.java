@@ -2,6 +2,8 @@ package com.joandma.protgt.Activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
@@ -39,6 +41,9 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.joandma.protgt.Fragments.DialogCancelacion;
+import com.joandma.protgt.Fragments.DialogConfirmacion;
+import com.joandma.protgt.Interfaces.ICancelacionDialog;
 import com.joandma.protgt.R;
 
 import java.util.ArrayList;
@@ -52,7 +57,7 @@ import io.nlopez.smartlocation.location.providers.LocationGooglePlayServicesProv
 
 public class HomeActivity extends AppCompatActivity
         implements SwipeRefreshLayout.OnRefreshListener, LocationListener, GoogleApiClient.OnConnectionFailedListener,
-        GoogleApiClient.ConnectionCallbacks {
+        GoogleApiClient.ConnectionCallbacks, ICancelacionDialog {
 
     private static final String LOGTAG = "android-localizacion";
     private static final int PETICION_PERMISO_LOCALIZACION = 101;
@@ -62,6 +67,8 @@ public class HomeActivity extends AppCompatActivity
     LocationRequest locRequest;
     private GoogleApiClient apiClient;
     ImageView botonSettings;
+
+    boolean enviado = false;
 
 
     //TODO Quitar el action bar y ponerlo con una simple imagen que muestre la pantalla de settings
@@ -85,11 +92,21 @@ public class HomeActivity extends AppCompatActivity
         imagenEmergencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean enviado = true;
 
-                if (enviado == true) {
-                    imagenEmergencia.setImageResource(R.drawable.ic_checked);
-                    Toast.makeText(HomeActivity.this, "Se han enviado los datos de emergencia", Toast.LENGTH_SHORT).show();
+                FragmentManager fragmentManager = getFragmentManager();
+                DialogConfirmacion dialogConfirmacion = new DialogConfirmacion();
+                DialogCancelacion dialogCancelacion = new DialogCancelacion();
+                
+                
+                if (enviado == false) {
+                    //imagenEmergencia.setImageResource(R.drawable.ic_checked);
+                    //Toast.makeText(HomeActivity.this, "Se han enviado los datos de emergencia", Toast.LENGTH_SHORT).show();
+                    dialogConfirmacion.show(fragmentManager, "tagConfirmacion");
+                    enviado = true;
+                }  else {
+                    /*Toast.makeText(HomeActivity.this, "¿Seguro que quiere parar la emergencia?", Toast.LENGTH_SHORT).show();
+                    imagenEmergencia.setImageResource(R.drawable.ic_emergency);*/
+                    dialogCancelacion.show(fragmentManager, "tagCancelacion");
                     enviado = false;
                 }
             }
@@ -370,8 +387,7 @@ public class HomeActivity extends AppCompatActivity
 
 
     //Esto es del refreshLayout para actualizar solo con bajar el activity
-    //TODO Esto tenemos que probarlo con el movil de jorge caminando por la calle para comprobar si está cogiendo de verdad la localización o no
-    @Override
+       @Override
     public void onRefresh() {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -391,4 +407,8 @@ public class HomeActivity extends AppCompatActivity
         }, 2000);
     }
 
+    @Override
+    public void onCancelarClick(String password) {
+
+    }
 }
