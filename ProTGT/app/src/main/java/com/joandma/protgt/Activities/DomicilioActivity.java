@@ -31,6 +31,7 @@ public class DomicilioActivity extends AppCompatActivity {
     TextInputEditText provincia, localidad, calle, numero, piso, bloque, puerta;
     Long id_direccion;
     Button terminar;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class DomicilioActivity extends AppCompatActivity {
 
                     final UserRegister newUser = new UserRegister();
 
-                    SharedPreferences prefs = DomicilioActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
+                    final SharedPreferences prefs = DomicilioActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
                     final String nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
                     final String apellidos = prefs.getString(PreferenceKeys.USER_SURNAME, null);
                     final String email = prefs.getString(PreferenceKeys.USER_EMAIL, null);
@@ -108,6 +109,11 @@ public class DomicilioActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
                                         if (response.isSuccessful()){
+                                            UserRegister result = response.body();
+                                            editor = prefs.edit();
+                                            editor.putString(PreferenceKeys.USER_TOKEN, result.getToken());
+                                            editor.commit();
+
                                             Intent intentDomicilio = new Intent(DomicilioActivity.this, HomeActivity.class);
                                             startActivity(intentDomicilio);
                                         } else {
