@@ -18,6 +18,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.joandma.protgt.R;
@@ -125,6 +126,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         setupActionBar();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.opciones, menu);
+        return true;
+    }
+
+
     //Este método vuelve para el HomeActivity pulsando en la flecha de atrás
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -132,6 +141,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 onBackPressed();
+                return true;
+
+            // Este case vuelve al login de la aplicación borrando el token del usuario
+            case R.id.action_settings:
+                Intent intentLogOut = new Intent(SettingsActivity.this, LoginActivity.class);
+                startActivity(intentLogOut);
                 return true;
         }
         return super.onOptionsItemSelected(item);
