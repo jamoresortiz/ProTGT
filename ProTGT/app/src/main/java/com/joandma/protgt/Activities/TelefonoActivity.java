@@ -71,6 +71,7 @@ public class TelefonoActivity extends AppCompatActivity {
                                 editor.putString(PreferenceKeys.USER_TELEFONO, telefono.getText().toString());
                                 editor.putString(PreferenceKeys.USER_PAIS, pais.getSelectedItem().toString());
 
+                                editor.commit();
                                 Intent intentTelefono = new Intent(TelefonoActivity.this, MensajeScreenActivity.class);
                                 startActivity(intentTelefono);
                             } else {

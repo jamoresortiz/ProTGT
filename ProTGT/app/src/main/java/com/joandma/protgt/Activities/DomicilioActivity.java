@@ -17,6 +17,7 @@ import com.joandma.protgt.API.ServiceGenerator;
 import com.joandma.protgt.Constant.PreferenceKeys;
 import com.joandma.protgt.Models.Direccion;
 import com.joandma.protgt.Models.User;
+import com.joandma.protgt.Models.UserRegister;
 import com.joandma.protgt.R;
 
 import java.io.IOException;
@@ -59,7 +60,7 @@ public class DomicilioActivity extends AppCompatActivity {
                     numero.setError("Escriba el número por favor");
                 } else {
 
-                    final User newUser = new User();
+                    final UserRegister newUser = new UserRegister();
 
                     SharedPreferences prefs = DomicilioActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
                     final String nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
@@ -102,29 +103,29 @@ public class DomicilioActivity extends AppCompatActivity {
                                 newUser.setPassword(password);
                                 newUser.setPais(pais);
                                 newUser.setTelefono(telefono);
-                                newUser.getListaDirecciones().add(result);
+                                newUser.getAddress_id().add(result.getId());
 
-                                Call<User> call2 = api.registerUser(newUser);
+                                Call<UserRegister> call2 = api.registerUser(newUser);
                                 
-                                call2.enqueue(new Callback<User>() {
+                                call2.enqueue(new Callback<UserRegister>() {
                                     @Override
-                                    public void onResponse(Call<User> call, Response<User> response) {
+                                    public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
                                         if (response.isSuccessful()){
                                             Intent intentDomicilio = new Intent(DomicilioActivity.this, HomeActivity.class);
                                             startActivity(intentDomicilio);
                                         } else {
-                                            Toast.makeText(DomicilioActivity.this, "Ocurrió un error inesperado", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DomicilioActivity.this, "ERROR CREANDO EL USER", Toast.LENGTH_SHORT).show();
                                         }
                                     }
 
                                     @Override
-                                    public void onFailure(Call<User> call, Throwable t) {
+                                    public void onFailure(Call<UserRegister> call, Throwable t) {
                                         Log.e("TAG","onFailure newUser: "+t.toString());
                                     }
                                 });
 
                             } else {
-                                Toast.makeText(DomicilioActivity.this, "Ocurrió un error inesperado", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DomicilioActivity.this, "ERROR CREANDO LA DIRECCIÓN", Toast.LENGTH_SHORT).show();
                             }
                         }
 

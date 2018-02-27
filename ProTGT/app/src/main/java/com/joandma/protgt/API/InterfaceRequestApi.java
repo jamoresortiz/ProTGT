@@ -3,6 +3,7 @@ package com.joandma.protgt.API;
 import com.joandma.protgt.Models.Aviso;
 import com.joandma.protgt.Models.Direccion;
 import com.joandma.protgt.Models.User;
+import com.joandma.protgt.Models.UserRegister;
 import com.joandma.protgt.Models.VerifyModel;
 
 import java.security.PublicKey;
@@ -26,7 +27,7 @@ public interface InterfaceRequestApi {
 
     //Registro de usuario
     @POST("protgt/api/v1/auth/register")
-    public Call<User> registerUser(@Body User newUser);
+    public Call<UserRegister> registerUser(@Body UserRegister newUser);
 
     //Verificar si ya existe el email o teléfono introducido por el usuario en la base de datos
     //TODO Duda en la respuesta Call<ResponseBody>
