@@ -159,11 +159,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // Este case vuelve al login de la aplicación borrando el token del usuario
 
             case R.id.action_logout:
-<<<<<<< HEAD
-//                editor.remove(PreferenceKeys.USER_TOKEN);
+
+                //editor.remove(PreferenceKeys.USER_TOKEN);
                /* String token = prefs.getString(PreferenceKeys.USER_TOKEN, "No hay kbsa");
-=======
->>>>>>> a0663a7a1e978d8d0d75b6df5b9be78b51c4bf0b
+
 
                 editor.putString(PreferenceKeys.USER_TOKEN, null);
                 editor.commit();*/
