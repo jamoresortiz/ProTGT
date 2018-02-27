@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -20,7 +21,9 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.joandma.protgt.Constant.PreferenceKeys;
 import com.joandma.protgt.R;
 
 import java.util.List;
@@ -37,6 +40,9 @@ import java.util.List;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
+
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
 
     /**
      * A preference value change listener that updates the preference's summary
@@ -137,6 +143,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     //Este método vuelve para el HomeActivity pulsando en la flecha de atrás
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        prefs = SettingsActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
+        editor = prefs.edit();
+
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
@@ -144,9 +154,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return true;
 
             // Este case vuelve al login de la aplicación borrando el token del usuario
+            //TODO HACER LO DEL TOKEN
             case R.id.action_logout:
+//                editor.remove(PreferenceKeys.USER_TOKEN);
+                String token = prefs.getString(PreferenceKeys.USER_TOKEN, "No hay kbsa");
+
+                editor.putString(PreferenceKeys.USER_TOKEN, null);
+                editor.commit();
+
                 Intent intentLogOut = new Intent(SettingsActivity.this, LoginActivity.class);
                 startActivity(intentLogOut);
+                finish();
+
                 return true;
         }
         return super.onOptionsItemSelected(item);
