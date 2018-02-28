@@ -43,6 +43,7 @@ public class EditContactoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentEditContact = new Intent(EditContactoActivity.this, SettingsActivity.class);
                 startActivity(intentEditContact);
+                finish();
             }
         });
 
