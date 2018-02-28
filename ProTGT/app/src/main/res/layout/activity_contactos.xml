@@ -32,7 +32,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Seleccione un dispositivo haciendo click en icono"
+        android:text="Seleccione un contacto haciendo click en el icono"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/ivAgregarContacto"
