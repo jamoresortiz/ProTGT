@@ -52,7 +52,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
-        <activity android:name=".Activities.ContactosActivity" android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".Activities.ContactosActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activities.EditContactoActivity" android:theme="@style/AppTheme.Settings"></activity>
     </application>
 
 </manifest>
