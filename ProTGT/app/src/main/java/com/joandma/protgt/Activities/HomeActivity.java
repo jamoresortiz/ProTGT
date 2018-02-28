@@ -49,6 +49,7 @@ import com.joandma.protgt.Constant.PreferenceKeys;
 import com.joandma.protgt.Fragments.DialogCancelacion;
 import com.joandma.protgt.Fragments.DialogConfirmacion;
 import com.joandma.protgt.Interfaces.ICancelacionDialog;
+import com.joandma.protgt.Models.Direccion;
 import com.joandma.protgt.Models.UserRegister;
 import com.joandma.protgt.R;
 
@@ -80,7 +81,7 @@ public class HomeActivity extends AppCompatActivity
     boolean enviado = false;
 
     SharedPreferences prefs;
-    String token;
+    String token, nombre, provincia, address_id;
     InterfaceRequestApi api;
     UserRegister result;
     SharedPreferences.Editor editor;
@@ -98,21 +99,25 @@ public class HomeActivity extends AppCompatActivity
 
         prefs = HomeActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
 
+
         token = prefs.getString(PreferenceKeys.USER_TOKEN, null);
+        nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
 
-        api = ServiceGenerator.createService(InterfaceRequestApi.class);
+        address_id = prefs.getString(PreferenceKeys.ADDRESS_ID, null);
 
-            Call<UserRegister> call = api.detailUser("Bearer "+token);
+        // Comprueba si ya están los datos del usuario cargados en las preferencias o no
+        if (nombre == null) {
+
+            api = ServiceGenerator.createService(InterfaceRequestApi.class);
+
+            Call<UserRegister> call = api.detailUser("Bearer " + token);
 
             call.enqueue(new Callback<UserRegister>() {
                 @Override
                 public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
 
                         result = response.body();
-
-
-                        Log.i("USER", "user: " +result);
 
                         editor = prefs.edit();
 
@@ -132,9 +137,64 @@ public class HomeActivity extends AppCompatActivity
 
                 @Override
                 public void onFailure(Call<UserRegister> call, Throwable t) {
-                    Log.e("TAG","onFailure login: "+t.toString());
+                    Log.e("TAG", "onFailure login: " + t.toString());
                 }
             });
+
+        }
+
+        // Comprueba si ya están los datos de la dirección del usuario cargados en las preferencias o no
+        if (address_id == null) {
+
+            api = ServiceGenerator.createService(InterfaceRequestApi.class);
+
+            Call<List<Direccion>> call = api.showAddressesOfUser("Bearer " +token);
+
+            call.enqueue(new Callback<List<Direccion>>() {
+                @Override
+                public void onResponse(Call<List<Direccion>> call, Response<List<Direccion>> response) {
+
+                    if (response.isSuccessful()){
+                        //Recogemos la primera dirección de la lista, ya que por ahora solo guardamos una dirección
+                        Direccion result = response.body().get(0);
+
+                        Log.i("DIRECCION","address: " +result);
+
+                        editor = prefs.edit();
+
+                        editor.putString(PreferenceKeys.ADDRESS_ID, result.getId());
+                        editor.putString(PreferenceKeys.ADDRESS_PROVINCIA, result.getProvincia());
+                        editor.putString(PreferenceKeys.ADDRESS_LOCALIDAD, result.getLocalidad());
+                        editor.putString(PreferenceKeys.ADDRESS_CALLE, result.getCalle());
+                        editor.putInt(PreferenceKeys.ADDRESS_NUMERO, result.getNumero());
+
+                        if (result.getPiso() != null)
+                            editor.putString(PreferenceKeys.ADDRESS_PISO, result.getPiso());
+                        else
+                            editor.putString(PreferenceKeys.ADDRESS_PISO, null);
+                        if (result.getBloque() != null)
+                            editor.putString(PreferenceKeys.ADDRESS_BLOQUE, result.getBloque());
+                        else
+                            editor.putString(PreferenceKeys.ADDRESS_BLOQUE, null);
+                        if (result.getPuerta() != null)
+                            editor.putString(PreferenceKeys.ADDRESS_PUERTA, result.getPuerta());
+                        else
+                            editor.putString(PreferenceKeys.ADDRESS_PUERTA, null);
+
+                        editor.commit();
+
+                    } else {
+                        Toast.makeText(HomeActivity.this, "Error crítico recogiendo dirección", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Direccion>> call, Throwable t) {
+
+                }
+            });
+        }
+
 
         localizacion = findViewById(R.id.textViewLocalizacion);
 

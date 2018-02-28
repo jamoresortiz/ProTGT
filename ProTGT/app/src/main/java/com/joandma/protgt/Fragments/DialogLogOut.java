@@ -37,9 +37,9 @@ public class DialogLogOut extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String token = prefs.getString(PreferenceKeys.USER_TOKEN, "No hay kbsa");
-
                         editor.putString(PreferenceKeys.USER_TOKEN, null);
+                        editor.putString(PreferenceKeys.USER_NAME, null);
+                        editor.putString(PreferenceKeys.ADDRESS_ID, null);
                         editor.commit();
 
 
