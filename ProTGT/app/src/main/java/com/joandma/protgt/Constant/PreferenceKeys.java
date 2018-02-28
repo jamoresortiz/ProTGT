@@ -5,6 +5,7 @@ package com.joandma.protgt.Constant;
  */
 
 public interface PreferenceKeys {
+    //Constantes para atributos de usuario
     final String USER_TOKEN = "userToken";
     final String USER_NAME = "userNombre";
     final String USER_SURNAME = "userApellidos";
@@ -12,4 +13,14 @@ public interface PreferenceKeys {
     final String USER_PASSWORD = "userPassword";
     final String USER_PAIS = "userPais";
     final String USER_TELEFONO = "userTelefono";
+
+    //Constantes para atributo de dirección
+    final String ADDRESS_ID = "addressId";
+    final String ADDRESS_PROVINCIA = "addressProvincia";
+    final String ADDRESS_LOCALIDAD = "addressLocalidad";
+    final String ADDRESS_CALLE = "addressCalle";
+    final String ADDRESS_NUMERO = "addressNumero";
+    final String ADDRESS_PISO = "addressPiso";
+    final String ADDRESS_BLOQUE = "addressBloque";
+    final String ADDRESS_PUERTA = "addressPuerta";
 }

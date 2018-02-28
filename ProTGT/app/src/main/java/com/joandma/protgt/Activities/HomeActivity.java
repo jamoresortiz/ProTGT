@@ -124,7 +124,7 @@ public class HomeActivity extends AppCompatActivity
                         editor.commit();
 
                     } else {
-                        Toast.makeText(HomeActivity.this, "Error crítico", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeActivity.this, "Fallo crítico recogiendo token en home", Toast.LENGTH_SHORT).show();
                     }
 
                 }

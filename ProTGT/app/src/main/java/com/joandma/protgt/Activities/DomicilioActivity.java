@@ -2,6 +2,7 @@ package com.joandma.protgt.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.support.design.widget.TextInputEditText;
@@ -64,12 +65,12 @@ public class DomicilioActivity extends AppCompatActivity {
                     final UserRegister newUser = new UserRegister();
 
                     final SharedPreferences prefs = DomicilioActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
-                    final String nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
-                    final String apellidos = prefs.getString(PreferenceKeys.USER_SURNAME, null);
-                    final String email = prefs.getString(PreferenceKeys.USER_EMAIL, null);
-                    final String password = prefs.getString(PreferenceKeys.USER_PASSWORD, null);
-                    final String pais = prefs.getString(PreferenceKeys.USER_PAIS, null);
-                    final String telefono = prefs.getString(PreferenceKeys.USER_TELEFONO, null);
+//                    final String nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
+//                    final String apellidos = prefs.getString(PreferenceKeys.USER_SURNAME, null);
+//                    final String email = prefs.getString(PreferenceKeys.USER_EMAIL, null);
+//                    final String password = prefs.getString(PreferenceKeys.USER_PASSWORD, null);
+//                    final String pais = prefs.getString(PreferenceKeys.USER_PAIS, null);
+//                    final String telefono = prefs.getString(PreferenceKeys.USER_TELEFONO, null);
 
 
                     Direccion direccion = new Direccion();
@@ -94,39 +95,60 @@ public class DomicilioActivity extends AppCompatActivity {
                         public void onResponse(Call<Direccion> call, Response<Direccion> response) {
                             if (response.code() == 201){
                                 Direccion result = response.body();
+                                editor = prefs.edit();
 
-                                newUser.setNombre(nombre);
-                                newUser.setApellidos(apellidos);
-                                newUser.setEmail(email);
-                                newUser.setPassword(password);
-                                newUser.setPais(pais);
-                                newUser.setTelefono(telefono);
-                                newUser.getAddress_id().add(result.getId());
+                                editor.putString(PreferenceKeys.ADDRESS_ID, result.getId());
+                                editor.putString(PreferenceKeys.ADDRESS_PROVINCIA, result.getProvincia());
+                                editor.putString(PreferenceKeys.ADDRESS_LOCALIDAD, result.getLocalidad());
+                                editor.putString(PreferenceKeys.ADDRESS_CALLE, result.getCalle());
+                                editor.putInt(PreferenceKeys.ADDRESS_NUMERO, result.getNumero());
 
-                                Call<UserRegister> call2 = api.registerUser(newUser);
+                                if (result.getPiso() != null)
+                                    editor.putString(PreferenceKeys.ADDRESS_PISO, result.getPiso());
+                                if (result.getBloque() != null)
+                                    editor.putString(PreferenceKeys.ADDRESS_BLOQUE, result.getBloque());
+                                if (result.getPuerta() != null)
+                                    editor.putString(PreferenceKeys.ADDRESS_PUERTA, result.getPuerta());
+
+                                editor.commit();
+
+                                Intent intentDomicilio = new Intent(DomicilioActivity.this, ContactosActivity.class);
+                                startActivity(intentDomicilio);
+
+
+
+//                                newUser.setNombre(nombre);
+//                                newUser.setApellidos(apellidos);
+//                                newUser.setEmail(email);
+//                                newUser.setPassword(password);
+//                                newUser.setPais(pais);
+//                                newUser.setTelefono(telefono);
+//                                newUser.getAddress_id().add(result.getId());
+
+                                //Call<UserRegister> call2 = api.registerUser(newUser);
                                 
-                                call2.enqueue(new Callback<UserRegister>() {
-                                    @Override
-                                    public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
-                                        if (response.isSuccessful()){
-                                            Intent intentDomicilio = new Intent(DomicilioActivity.this, ContactosActivity.class);
-
-                                            UserRegister result = response.body();
-                                            editor = prefs.edit();
-                                            editor.putString(PreferenceKeys.USER_TOKEN, result.getToken());
-                                            editor.commit();
-
-                                            startActivity(intentDomicilio);
-                                        } else {
-                                            Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<UserRegister> call, Throwable t) {
-                                        Log.e("TAG","onFailure newUser: "+t.toString());
-                                    }
-                                });
+//                                call2.enqueue(new Callback<UserRegister>() {
+//                                    @Override
+//                                    public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
+//                                        if (response.isSuccessful()){
+//                                            Intent intentDomicilio = new Intent(DomicilioActivity.this, ContactosActivity.class);
+//
+//                                            UserRegister result = response.body();
+//                                            editor = prefs.edit();
+//                                            editor.putString(PreferenceKeys.USER_TOKEN, result.getToken());
+//                                            editor.commit();
+//
+//                                            startActivity(intentDomicilio);
+//                                        } else {
+//                                            Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onFailure(Call<UserRegister> call, Throwable t) {
+//                                        Log.e("TAG","onFailure newUser: "+t.toString());
+//                                    }
+//                                });
 
                             } else {
                                 Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();

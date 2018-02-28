@@ -32,6 +32,17 @@ public class UserRegister {
         this.contacto_id = contacto_id;
     }
 
+    public UserRegister(String nombre, String apellidos, String email, String password, String pais, String telefono) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.password = password;
+        this.pais = pais;
+        this.telefono = telefono;
+        this.address_id = new ArrayList<>();
+        this.contacto_id = new ArrayList<>();
+    }
+
     public UserRegister() {
     }
 
