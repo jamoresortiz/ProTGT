@@ -2,6 +2,7 @@ package com.joandma.protgt.Activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -142,7 +143,7 @@ public class HomeActivity extends AppCompatActivity
         imagenEmergencia = findViewById(R.id.imageViewEmergencia);
         imagenLlamada = findViewById(R.id.imageViewLlamada);
 
-
+        /*enviado = prefs.getBoolean(PreferenceKeys.)*/
 
         imagenEmergencia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,16 +152,11 @@ public class HomeActivity extends AppCompatActivity
                 FragmentManager fragmentManager = getFragmentManager();
                 DialogConfirmacion dialogConfirmacion = new DialogConfirmacion();
                 DialogCancelacion dialogCancelacion = new DialogCancelacion();
-                
-                
+
                 if (enviado == false) {
-                    //imagenEmergencia.setImageResource(R.drawable.ic_checked);
-                    //Toast.makeText(HomeActivity.this, "Se han enviado los datos de emergencia", Toast.LENGTH_SHORT).show();
                     dialogConfirmacion.show(fragmentManager, "tagConfirmacion");
                     enviado = true;
                 }  else {
-                    /*Toast.makeText(HomeActivity.this, "¿Seguro que quiere parar la emergencia?", Toast.LENGTH_SHORT).show();
-                    imagenEmergencia.setImageResource(R.drawable.ic_emergency);*/
                     dialogCancelacion.show(fragmentManager, "tagCancelacion");
                     enviado = false;
                 }
