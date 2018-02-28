@@ -109,16 +109,13 @@ public class DomicilioActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
                                         if (response.isSuccessful()){
-<<<<<<< HEAD
                                             Intent intentDomicilio = new Intent(DomicilioActivity.this, ContactosActivity.class);
-=======
+
                                             UserRegister result = response.body();
                                             editor = prefs.edit();
                                             editor.putString(PreferenceKeys.USER_TOKEN, result.getToken());
                                             editor.commit();
 
-                                            Intent intentDomicilio = new Intent(DomicilioActivity.this, HomeActivity.class);
->>>>>>> 1289eb66217ef9655729893ba0617085cb02605a
                                             startActivity(intentDomicilio);
                                         } else {
                                             Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();

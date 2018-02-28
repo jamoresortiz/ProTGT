@@ -1,6 +1,7 @@
 package com.joandma.protgt.API;
 
 import com.joandma.protgt.Models.Aviso;
+import com.joandma.protgt.Models.ContactoConfianza;
 import com.joandma.protgt.Models.Direccion;
 import com.joandma.protgt.Models.User;
 import com.joandma.protgt.Models.UserRegister;
@@ -44,6 +45,10 @@ public interface InterfaceRequestApi {
     //Añadir una dirección
     @POST("protgt/api/v1/address/addaddress")
     public Call<Direccion> addDireccion(@Body Direccion newDireccion);
+
+    //Añadir un contacto de confianza
+    @POST("protgt/api/v1/auth/addcontacto")
+    public Call<ContactoConfianza> addContactoConfianza(@Body ContactoConfianza contactoConfianza);
 
     //Añadir un aviso
     @POST("protgt/api/v1/aviso/addaviso")
