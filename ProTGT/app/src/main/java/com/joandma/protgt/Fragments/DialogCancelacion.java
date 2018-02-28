@@ -5,12 +5,14 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.joandma.protgt.Constant.PreferenceKeys;
 import com.joandma.protgt.Interfaces.ICancelacionDialog;
 import com.joandma.protgt.R;
 
@@ -24,6 +26,9 @@ public class DialogCancelacion extends DialogFragment {
     EditText editTextPassword;
     ICancelacionDialog mListener;
 
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+
     public DialogCancelacion(){
 
     }
@@ -32,6 +37,8 @@ public class DialogCancelacion extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        prefs = getActivity().getSharedPreferences("datos", Context.MODE_PRIVATE);
+        editor = prefs.edit();
 
         builder.setMessage("¿Ya no tienes una emergencia?")
                 .setTitle("Parar emergencia")
@@ -41,7 +48,7 @@ public class DialogCancelacion extends DialogFragment {
                         Toast.makeText(getActivity(), "Emergencia desactivada", Toast.LENGTH_SHORT).show();
                         imageViewEmergencia = getActivity().findViewById(R.id.imageViewEmergencia);
                         imageViewEmergencia.setImageResource(R.drawable.ic_emergency);
-
+                        editor.putBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
                         String pass = editTextPassword.getText().toString();
                         mListener.onCancelarClick(pass);
 

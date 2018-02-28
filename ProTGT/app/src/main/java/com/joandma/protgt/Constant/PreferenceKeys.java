@@ -23,4 +23,7 @@ public interface PreferenceKeys {
     final String ADDRESS_PISO = "addressPiso";
     final String ADDRESS_BLOQUE = "addressBloque";
     final String ADDRESS_PUERTA = "addressPuerta";
+
+    //Esto es para la comprobacion del boton de emergencia
+    final String BOOLEAN_COMPROBACION = "comprobacion";
 }

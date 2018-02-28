@@ -203,7 +203,7 @@ public class HomeActivity extends AppCompatActivity
         imagenEmergencia = findViewById(R.id.imageViewEmergencia);
         imagenLlamada = findViewById(R.id.imageViewLlamada);
 
-        /*enviado = prefs.getBoolean(PreferenceKeys.)*/
+        enviado = prefs.getBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
 
         imagenEmergencia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,10 +215,8 @@ public class HomeActivity extends AppCompatActivity
 
                 if (enviado == false) {
                     dialogConfirmacion.show(fragmentManager, "tagConfirmacion");
-                    enviado = true;
                 }  else {
                     dialogCancelacion.show(fragmentManager, "tagCancelacion");
-                    enviado = false;
                 }
             }
         });
