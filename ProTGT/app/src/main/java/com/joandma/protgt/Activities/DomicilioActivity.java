@@ -65,12 +65,6 @@ public class DomicilioActivity extends AppCompatActivity {
                     final UserRegister newUser = new UserRegister();
 
                     final SharedPreferences prefs = DomicilioActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
-//                    final String nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
-//                    final String apellidos = prefs.getString(PreferenceKeys.USER_SURNAME, null);
-//                    final String email = prefs.getString(PreferenceKeys.USER_EMAIL, null);
-//                    final String password = prefs.getString(PreferenceKeys.USER_PASSWORD, null);
-//                    final String pais = prefs.getString(PreferenceKeys.USER_PAIS, null);
-//                    final String telefono = prefs.getString(PreferenceKeys.USER_TELEFONO, null);
 
 
                     Direccion direccion = new Direccion();
@@ -115,40 +109,6 @@ public class DomicilioActivity extends AppCompatActivity {
                                 Intent intentDomicilio = new Intent(DomicilioActivity.this, ContactosActivity.class);
                                 startActivity(intentDomicilio);
 
-
-
-//                                newUser.setNombre(nombre);
-//                                newUser.setApellidos(apellidos);
-//                                newUser.setEmail(email);
-//                                newUser.setPassword(password);
-//                                newUser.setPais(pais);
-//                                newUser.setTelefono(telefono);
-//                                newUser.getAddress_id().add(result.getId());
-
-                                //Call<UserRegister> call2 = api.registerUser(newUser);
-                                
-//                                call2.enqueue(new Callback<UserRegister>() {
-//                                    @Override
-//                                    public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
-//                                        if (response.isSuccessful()){
-//                                            Intent intentDomicilio = new Intent(DomicilioActivity.this, ContactosActivity.class);
-//
-//                                            UserRegister result = response.body();
-//                                            editor = prefs.edit();
-//                                            editor.putString(PreferenceKeys.USER_TOKEN, result.getToken());
-//                                            editor.commit();
-//
-//                                            startActivity(intentDomicilio);
-//                                        } else {
-//                                            Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }
-//
-//                                    @Override
-//                                    public void onFailure(Call<UserRegister> call, Throwable t) {
-//                                        Log.e("TAG","onFailure newUser: "+t.toString());
-//                                    }
-//                                });
 
                             } else {
                                 Toast.makeText(DomicilioActivity.this, "Fallo crítico", Toast.LENGTH_SHORT).show();
