@@ -23,6 +23,8 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.joandma.protgt.Constant.PreferenceKeys;
@@ -273,11 +275,50 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class NotificationPreferenceFragment extends PreferenceFragment {
+        SharedPreferences prefs;
+        EditTextPreference etProvincia, etLocalidad, etCalle, etNumero, etPiso, etBloque, etPuerta;
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_domicilio);
             setHasOptionsMenu(true);
+
+            prefs = getActivity().getSharedPreferences("datos", Context.MODE_PRIVATE);
+
+            String provincia = prefs.getString(PreferenceKeys.ADDRESS_PROVINCIA, null);
+            String localidad = prefs.getString(PreferenceKeys.ADDRESS_LOCALIDAD, null);
+            String calle = prefs.getString(PreferenceKeys.ADDRESS_CALLE, null);
+            int numero = prefs.getInt(PreferenceKeys.ADDRESS_NUMERO, 0);
+            String piso = prefs.getString(PreferenceKeys.ADDRESS_PISO, null);
+            String bloque = prefs.getString(PreferenceKeys.ADDRESS_BLOQUE, null);
+            String puerta = prefs.getString(PreferenceKeys.ADDRESS_PUERTA, null);
+
+            etProvincia = (EditTextPreference) findPreference("etpProvincia");
+            etLocalidad = (EditTextPreference) findPreference("etpLocalidad");
+            etCalle = (EditTextPreference) findPreference("etpCalle");
+            etNumero = (EditTextPreference) findPreference("etpNumero");
+            etPiso = (EditTextPreference) findPreference("etpPiso");
+            etBloque = (EditTextPreference) findPreference("etpBloque");
+            etPuerta = (EditTextPreference) findPreference("etpPuerta");
+
+            etProvincia.setText(provincia);
+            etLocalidad.setText(localidad);
+            etCalle.setText(calle);
+            etNumero.setText(String.valueOf(numero));
+
+            if (piso != null)
+                etPiso.setText(piso);
+            else
+                etPiso.setText("");
+            if (bloque != null)
+                etBloque.setText(bloque);
+            else
+                etBloque.setText("");
+            if (puerta != null)
+                etPuerta.setText(puerta);
+            else
+                etPuerta.setText("");
+
 
             bindPreferenceSummaryToValue(findPreference("etpProvincia"));
             bindPreferenceSummaryToValue(findPreference("etpLocalidad"));
