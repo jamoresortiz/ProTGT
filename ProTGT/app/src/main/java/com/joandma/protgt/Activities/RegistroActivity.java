@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class RegistroActivity extends AppCompatActivity {
 
     Button buttonRegistro;
-    TextInputEditText nombre, apellidos, correo, pass;
+    TextInputEditText nombre, apellidos, correo, pass, repPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,8 @@ public class RegistroActivity extends AppCompatActivity {
         apellidos = findViewById(R.id.textInputApellidos);
         correo = findViewById(R.id.textInputCorreo);
         pass = findViewById(R.id.textInputPass);
+        repPass = findViewById(R.id.textInputPassRep);
+
 
         buttonRegistro = findViewById(R.id.button_telefono_siguiente);
 
@@ -51,8 +53,10 @@ public class RegistroActivity extends AppCompatActivity {
                     apellidos.setError("Escriba los apellidos por favor");
                 } else if(correo.getText().toString().equals("")){
                     correo.setError("Escriba el correo por favor");
-                } else if(pass.getText().toString().equals("")){
+                } else if(pass.getText().toString().equals("")) {
                     pass.setError("Escriba la contraseña por favor");
+                } else if(repPass.getText().toString().equals("") || !repPass.getText().toString().equals(pass.getText().toString())){
+                    repPass.setError("Las contraseñas no coinciden");
                 } else {
 
                     InterfaceRequestApi api = ServiceGenerator.createService(InterfaceRequestApi.class);
