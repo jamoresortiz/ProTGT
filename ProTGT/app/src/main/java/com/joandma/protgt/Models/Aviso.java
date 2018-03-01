@@ -1,5 +1,7 @@
 package com.joandma.protgt.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +11,12 @@ import java.util.List;
 
 public class Aviso {
     private String _id;
+    @SerializedName("rutas")
     private List<String> ruta_id;
-    private User user;
+    private String user;
     private int estado;
 
-    public Aviso(List<Ruta> ruta_id, User idUser, int estado) {
+    public Aviso(List<Ruta> ruta_id, String idUser, int estado) {
         this.ruta_id = new ArrayList<String>();
         this.user = idUser;
         this.estado = estado;
@@ -39,11 +42,11 @@ public class Aviso {
         this.ruta_id = ruta_id;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
