@@ -89,7 +89,7 @@ public interface InterfaceRequestApi {
 
     //Enviar localización de aviso
     @PUT("protgt/api/v1/aviso/{id_aviso}/sendlocation")
-    public Call<Aviso> sendLocation(@Header("Authorization") String token, @Body String localizacion);
+    public Call<Aviso> sendLocation(@Header("Authorization") String token, @Body Ruta ruta);
 
     //Eliminar una dirección del usuario
     @DELETE("protgt/api/v1/auth/deleteaddress")

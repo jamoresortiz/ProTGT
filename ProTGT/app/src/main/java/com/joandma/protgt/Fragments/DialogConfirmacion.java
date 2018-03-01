@@ -42,6 +42,10 @@ public class DialogConfirmacion extends DialogFragment {
 
     Activity ctx;
 
+    Ruta ruta;
+
+    String location;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -53,6 +57,7 @@ public class DialogConfirmacion extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         ctx = getActivity();
+        final String token = prefs.getString(PreferenceKeys.USER_TOKEN, null);
 
 
 
@@ -63,11 +68,9 @@ public class DialogConfirmacion extends DialogFragment {
                     @Override
                     public void onClick(final DialogInterface dialog, int id) {
 
-                        String location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
-                        String token = prefs.getString(PreferenceKeys.USER_TOKEN, null);
+                        location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
 
-                        Ruta ruta = new Ruta();
-                        Aviso aviso = new Aviso();
+                        ruta = new Ruta();
 
                         ruta.setLocalizacion(location);
 
@@ -116,12 +119,22 @@ public class DialogConfirmacion extends DialogFragment {
 
                                  */
 
-                                String token = "";
-                                Ruta ruta = new Ruta();
-                                Call<Aviso> scheduledCall = api.addAviso("Bearer "+token, ruta);
+                                location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
+                                ruta = new Ruta();
+                                ruta.setLocalizacion(location);
+
+                                Call<Aviso> scheduledCall = api.sendLocation("Bearer "+token, ruta);
+
 
                                 try {
                                     Response<Aviso> scheduledResponse = scheduledCall.execute();
+                                    if (scheduledResponse.isSuccessful()){
+                                        Aviso aviso = scheduledResponse.body();
+
+                                        Toast.makeText(ctx, "Se mete aquí", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(ctx, "Fallo crítico enviando la loc", Toast.LENGTH_SHORT).show();
+                                    }
 
                                 } catch (IOException e) {
                                     e.printStackTrace();
