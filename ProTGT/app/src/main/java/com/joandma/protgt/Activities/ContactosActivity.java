@@ -120,7 +120,7 @@ public class ContactosActivity extends AppCompatActivity {
 
 
                                     } else {
-                                        Toast.makeText(ContactosActivity.this, "Fallo crítico creando user", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ContactosActivity.this, R.string.fallo_creando_user, Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

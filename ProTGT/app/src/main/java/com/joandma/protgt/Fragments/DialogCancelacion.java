@@ -43,11 +43,11 @@ public class DialogCancelacion extends DialogFragment {
         editor = prefs.edit();
 
         //TODO PONERLO EN ARCHIVO STRING
-        key = "SEGURIDAD";
+        key = getString(R.string.key);
 
-        builder.setMessage("Escriba SEGURIDAD si desea desactivar la emergencia")
-                .setTitle("Desactivar emergencia")
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        builder.setMessage(getString(R.string.mensaje_dialog_cancelacion))
+                .setTitle(getString(R.string.titulo_dialog_cancelacion))
+                .setPositiveButton(getString(R.string.boton_dialog_aceptar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -59,7 +59,7 @@ public class DialogCancelacion extends DialogFragment {
 //                        }
 
                         if (pass.equals(key)) {
-                            Toast.makeText(getActivity(), "Emergencia desactivada", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.emergencia_desactivada), Toast.LENGTH_SHORT).show();
 
                             imageViewEmergencia = getActivity().findViewById(R.id.imageViewEmergencia);
                             imageViewEmergencia.setImageResource(R.drawable.ic_emergency);
@@ -68,12 +68,12 @@ public class DialogCancelacion extends DialogFragment {
 
                             dialog.dismiss();
                         } else{
-                            Toast.makeText(getActivity(), "Palabra clave incorrecta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.error_palabra_incorrecta), Toast.LENGTH_SHORT).show();
                         }
 
 
                     }
-                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.boton_dialog_cancelar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

@@ -460,7 +460,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             });
         } else {
-            localizacion.setText("Active la ubicación o deslize para actualizar");
+            localizacion.setText(getString(R.string.aviso_localizacion));
         }
     }
 

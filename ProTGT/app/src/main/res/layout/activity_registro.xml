@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/poppins"
-            android:hint="Nombre"
+            android:hint="@string/et_nombre_registro"
             android:inputType="textImeMultiLine|textCapWords"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/poppins"
-            android:hint="Apellidos"
+            android:hint="@string/et_apellidos_registro"
             android:inputType="textImeMultiLine|textCapWords"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/poppins"
-            android:hint="Email"
+            android:hint="@string/et_email_registro"
             android:inputType="textImeMultiLine|textEmailAddress"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/poppins"
-            android:hint="Contraseña"
+            android:hint="@string/et_password_registro"
             android:inputType="textImeMultiLine|textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/poppins"
-            android:hint="Repetir Contraseña"
+            android:hint="@string/et_password_repetido_registro"
             android:inputType="textImeMultiLine|textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -148,7 +148,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/boton_cambio_color"
         android:fontFamily="@font/poppins"
-        android:text="Siguiente"
+        android:text="@string/bt_continuar"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

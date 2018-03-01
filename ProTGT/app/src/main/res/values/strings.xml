@@ -17,9 +17,6 @@
     </string-array>
 
 
-    <string name="aviso">ProTGT te enviará un mensaje para verificar tu número. Introduce el codigo de 4 cifras como aparece en el ejemplo</string>
-    <string name="registro">¿No tienes cuenta? Registrate</string>
-
     <string name="no_address_found">Sorry, no address found</string>
     <string name="no_location_data_provided">No location data provided</string>
     <string name="service_not_available">Sorry, the service is not available</string>
@@ -35,71 +32,133 @@
     <!-- Example General settings -->
     <string name="pref_datos_personales">Datos Personales</string>
 
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
-
-    <string name="pref_default_display_name">John Smith</string>
-
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_contacto">Contactos de confianza</string>
+    
 
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
-
-    <!-- Example settings for Notifications -->
+    <!-- Domicilio -->
     <string name="pref_domicilio">Domicilio</string>
 
-    <string name="pref_title_new_message_notifications">New message notifications</string>
+    
+    <!-- Contactos Activity -->
+    <string name="fallo_creando_user">Fallo crítico creando user</string>
+    <string name="tv_mensaje_contacto">Seleccione un contacto haciendo click en el icono</string>
 
-    <string name="pref_title_ringtone">Ringtone</string>
+
+
+    <!-- Domicilio Activity y XML-->
+    <string name="error_provincia">Introduce la provincia por favor</string>
+    <string name="error_localidad">Introduce la localidad por favor</string>
+    <string name="error_calle">Introduce la calle por favor</string>
+    <string name="error_numero">Introduce el número por favor</string>
+    <string name="et_provincia">Provincia *</string>
+    <string name="et_localidad">Localidad *</string>
+    <string name="et_calle">Calle *</string>
+    <string name="et_numero">Número *</string>
+    <string name="et_piso">Piso</string>
+    <string name="et_bloque">Bloque</string>
+    <string name="et_puerta">Puerta</string>
+
+
+    <!-- Editar Contacto Activity -->
+    <string name="tv_aviso">Seleccione un contacto haciendo click en el icono para elegir uno nuevo</string>
+    <string name="tv_contacto">Contacto</string>
+    <string name="tv_telefono_contacto">Número de teléfono</string>
+
+
+
+    <!-- Home Activity y XML-->
+    <string name="aviso_localizacion">Active la ubicación o deslize para actualizar</string>
+    <string name="tv_tuLocalizacion">Tu localización</string>
+
+
+    <!-- Login Activity y XML-->
+    <string name="error_email_login">Introduce el email por favor</string>
+    <string name="error_password_login">Introduce la contraseña por favor</string>
+    <string name="email_password_incorrecto">Email o contraseña incorrectos</string>
+    <string name="et_email_login"> Email</string>
+    <string name="et_password_login"> Contraseña</string>
+    <string name="registro">¿No tienes cuenta? Registrate</string>
+
+
+    <!-- MensajeScreen Activity y XML-->
+    <string name="error_codigo_sms">Código incorrecto</string>
+    <string name="aviso">ProTGT te enviará un mensaje para verificar tu número. Introduce el codigo de 4 cifras como aparece en el ejemplo</string>
+    <string name="et_codigo_sms">Ej: 1234</string>
+
+
+    <!-- Registro Activity y XML-->
+    <string name="error_nombre">Introduce el nombre por favor</string>
+    <string name="error_apellidos">Introduce los apellidos por favor</string>
+    <string name="error_email_registro">Introduce el correo por favor</string>
+    <string name="error_password_registro">Introduce la contraseña por favor</string>
+    <string name="error_passwords_repetidas">Las contraseñas no coinciden</string>
+    <string name="error_email_registrado">Email ya registrado</string>
+    <string name="et_nombre_registro">Nombre</string>
+    <string name="et_apellidos_registro">Apellidos</string>
+    <string name="et_email_registro">Email</string>
+    <string name="et_password_registro">Contraseña</string>
+    <string name="et_password_repetido_registro">Repetir Contraseña</string>
+
+    <!-- Telefono Activity y XML -->
+    <string name="error_telefono">Introduce su teléfono por favor</string>
+    <string name="error_telefono_registrado">Teléfono ya registrado</string>
+    <string name="et_telefono">Teléfono</string>
+
+    <!-- Dialogo Cancelacion -->
+    <string name="key">SEGURIDAD</string>
+    <string name="mensaje_dialog_cancelacion">Escriba SEGURIDAD si desea desactivar la emergencia</string>
+    <string name="titulo_dialog_cancelacion">Desactivar emergencia</string>
+    <string name="emergencia_desactivada">Emergencia desactivada</string>
+    <string name="error_palabra_incorrecta">Palabra clave incorrecta</string>
+
+    <!-- Dialogo Confirmacion -->
+    <string name="mensaje_dialog_confirmacion">¿Estás seguro/a que es una alerta?</string>
+    <string name="titulo_dialog_confirmacion">Confirmación de alerta</string>
+    <string name="emergencia_activada">Emergencia activada</string>
+
+    <!-- Dialogo logout -->
+    <string name="mensaje_dialog_logout">¿Estás seguro/a que quieres cerrar sesión?</string>
+    <string name="titulo_dialog_logout">Cerrar Sesión</string>
+
+    <!-- Dialog Cancel -->
+    <string name="palabra_clave">Palabra clave</string>
+
+
+    <!-- BOTONES -->
+    <string name="bt_continuar">Continuar</string>
+    <string name="bt_aceptar">Aceptar</string>
+    <string name="bt_iniciar_sesion">Iniciar Sesión</string>
+    <string name="boton_dialog_cancelar">Cancelar</string>
+    <string name="boton_dialog_aceptar">Aceptar</string>
+    <string name="bt_finalizar">Finalizar</string>
+
+
     <string name="pref_ringtone_silent">Silent</string>
 
-    <string name="pref_title_vibrate">Vibrate</string>
+    <!-- Settings pref datos personales -->
+    <string name="etp_nombre">Nombre</string>
+    <string name="etp_apellidos">Apellidos</string>
+    <string name="etp_email">Email</string>
+    <string name="etp_password">Contraseña</string>
+    <string name="etp_telefono">Teléfono</string>
+    <string name="etp_pais">Pais</string>
+
+    <!-- Settings pref contactos -->
+    <string name="editar_contacto">Editar contacto</string>
+
+    <!-- Settings pref domicilio -->
+    <string name="etp_provincia">Provincia</string>
+    <string name="etp_localidad">Localidad</string>
+    <string name="etp_calle">Calle</string>
+    <string name="etp_numero">Número</string>
+    <string name="etp_piso">Piso</string>
+    <string name="etp_bloque">Bloque</string>
+    <string name="etp_puerta">Puerta</string>
+
+
+
 
 
 </resources>

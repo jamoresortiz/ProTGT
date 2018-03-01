@@ -32,9 +32,9 @@ public class DialogLogOut extends DialogFragment {
         prefs = getActivity().getSharedPreferences("datos", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
-        builder.setMessage("¿Estás seguro/a que quieres cerrar sesión?")
-                .setTitle("Cerrar Sesión")
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        builder.setMessage(getString(R.string.mensaje_dialog_logout))
+                .setTitle(getString(R.string.titulo_dialog_logout))
+                .setPositiveButton(getString(R.string.boton_dialog_aceptar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -49,7 +49,7 @@ public class DialogLogOut extends DialogFragment {
                         startActivity(intentLogOut);
                         dialog.cancel();
                     }
-                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.boton_dialog_cancelar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProTGT</string>
+    <string-array name="paises">
+        <item>Spain</item>
+        <item>United Kingdom</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Greece</item>
+    </string-array>
+
+    <string-array name="codigopais">
+        <item>ESP</item>
+        <item>UK</item>
+        <item>FRA</item>
+        <item>ITA</item>
+        <item>GRE</item>
+    </string-array>
+
+
+    <string name="no_address_found">Sorry, no address found</string>
+    <string name="no_location_data_provided">No location data provided</string>
+    <string name="service_not_available">Sorry, the service is not available</string>
+    <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
+
+    <string name="address_found">Address found</string>
+
+    <string name="msg">Please activate all the permissions</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_datos_personales">Personal Information</string>
+
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_contacto">Trusted Contacts</string>
+
+
+    <!-- Domicilio -->
+    <string name="pref_domicilio">Address</string>
+
+
+    <!-- Contactos Activity -->
+    <string name="fallo_creando_user">Critical failure creating user</string>
+    <string name="tv_mensaje_contacto">Select a contact by clicking on the icon</string>
+
+
+
+    <!-- Domicilio Activity y XML-->
+    <string name="error_provincia">Enter the province please</string>
+    <string name="error_localidad">Enter the location please</string>
+    <string name="error_calle">Enter the street please</string>
+    <string name="error_numero">Enter the number please</string>
+    <string name="et_provincia">Province *</string>
+    <string name="et_localidad">Location *</string>
+    <string name="et_calle">Street *</string>
+    <string name="et_numero">Number *</string>
+    <string name="et_piso">Flat</string>
+    <string name="et_bloque">Block</string>
+    <string name="et_puerta">Door</string>
+
+
+    <!-- Editar Contacto Activity -->
+    <string name="tv_aviso">Select a contact by clicking on the icon to choose a new one</string>
+    <string name="tv_contacto">Contact</string>
+    <string name="tv_telefono_contacto">Phone number</string>
+
+
+
+    <!-- Home Activity y XML-->
+    <string name="aviso_localizacion">Activate the location or swipe to update. Emergency data sent</string>
+    <string name="tv_tuLocalizacion">Your location</string>
+
+
+    <!-- Login Activity y XML-->
+    <string name="error_email_login">Enter the email please</string>
+    <string name="error_password_login">Enter the password please</string>
+    <string name="email_password_incorrecto">Wrong email or password</string>
+    <string name="et_email_login"> Email</string>
+    <string name="et_password_login"> Password</string>
+    <string name="registro">You do not have an account? Sign up</string>
+
+
+    <!-- MensajeScreen Activity y XML-->
+    <string name="error_codigo_sms">Incorrect code</string>
+    <string name="aviso">ProTGT will send you a message to verify your number. Enter the four digit code as shown in the example</string>
+    <string name="et_codigo_sms">Ex: 1234</string>
+
+
+    <!-- Registro Activity y XML-->
+    <string name="error_nombre">Entre the name please</string>
+    <string name="error_apellidos">Enter the last name please</string>
+    <string name="error_email_registro">Enter the mail please</string>
+    <string name="error_password_registro">Enter the password please</string>
+    <string name="error_passwords_repetidas">Las contraseñas no coinciden</string>
+    <string name="error_email_registrado">Email already registered</string>
+    <string name="et_nombre_registro">Name</string>
+    <string name="et_apellidos_registro">Last Name</string>
+    <string name="et_email_registro">Email</string>
+    <string name="et_password_registro">Password</string>
+    <string name="et_password_repetido_registro">Repeat password</string>
+
+    <!-- Telefono Activity y XML -->
+    <string name="error_telefono">Enter your phone please</string>
+    <string name="error_telefono_registrado">Phone already registered</string>
+    <string name="et_telefono">Phone</string>
+
+    <!-- Dialogo Cancelacion -->
+    <string name="key">SECURITY</string>
+    <string name="mensaje_dialog_cancelacion">Enter SECURITY if you wish to deactivate the emergency</string>
+    <string name="titulo_dialog_cancelacion">Deactivate emergency</string>
+    <string name="emergencia_desactivada">Emergency deactivated</string>
+    <string name="error_palabra_incorrecta">Incorrect keyword</string>
+
+    <!-- Dialogo Confirmacion -->
+    <string name="mensaje_dialog_confirmacion">Are you sure it is an alert?</string>
+    <string name="titulo_dialog_confirmacion">Alert confirmation</string>
+    <string name="emergencia_activada">Emergency activated</string>
+
+    <!-- Dialogo logout -->
+    <string name="mensaje_dialog_logout">Are you sure you want to log out?</string>
+    <string name="titulo_dialog_logout">Log Out</string>
+
+    <!-- Dialog Cancel -->
+    <string name="palabra_clave">Keyword</string>
+
+
+    <!-- BOTONES -->
+    <string name="bt_continuar">Continue</string>
+    <string name="bt_aceptar">Accept</string>
+    <string name="bt_iniciar_sesion">Log In</string>
+    <string name="boton_dialog_cancelar">Cancel</string>
+    <string name="boton_dialog_aceptar">Accept</string>
+    <string name="bt_finalizar">Register</string>
+
+
+
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <!-- Settings pref datos personales -->
+    <string name="etp_nombre">Name</string>
+    <string name="etp_apellidos">Last Name</string>
+    <string name="etp_email">Email</string>
+    <string name="etp_password">Password</string>
+    <string name="etp_telefono">Phone</string>
+    <string name="etp_pais">Country</string>
+
+    <!-- Settings pref contactos -->
+    <string name="editar_contacto">Edit Contact</string>
+
+    <!-- Settings pref domicilio -->
+    <string name="etp_provincia">Province</string>
+    <string name="etp_localidad">Location</string>
+    <string name="etp_calle">Street</string>
+    <string name="etp_numero">Number</string>
+    <string name="etp_piso">Flat</string>
+    <string name="etp_bloque">Block</string>
+    <string name="etp_puerta">Door</string>
+
+</resources>

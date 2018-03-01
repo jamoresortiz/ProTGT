@@ -1,23 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!--
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="notifications_new_message"
-        android:title="@string/pref_title_new_message_notifications" />
-
-    <RingtonePreference
-        android:defaultValue="content://settings/system/notification_sound"
-        android:dependency="notifications_new_message"
-        android:key="notifications_new_message_ringtone"
-        android:ringtoneType="notification"
-        android:title="@string/pref_title_ringtone" />
-
-    <SwitchPreference
-        android:defaultValue="true"
-        android:dependency="notifications_new_message"
-        android:key="notifications_new_message_vibrate"
-        android:title="@string/pref_title_vibrate" />-->
     <EditTextPreference
         android:capitalize="words"
         android:inputType="textCapWords"
@@ -25,7 +7,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Provincia" />
+        android:title="@string/etp_provincia" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -34,7 +16,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Localidad" />
+        android:title="@string/etp_localidad" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -43,7 +25,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Calle" />
+        android:title="@string/etp_calle" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -52,7 +34,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Número" />
+        android:title="@string/etp_numero" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -61,7 +43,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Piso" />
+        android:title="@string/etp_piso" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -70,7 +52,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Bloque" />
+        android:title="@string/etp_bloque" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -79,7 +61,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Puerta" />
+        android:title="@string/etp_puerta" />
 
 
 </PreferenceScreen>

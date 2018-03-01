@@ -1,6 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference android:title="Editar contacto">
+    <Preference android:title="@string/editar_contacto">
         <!--<intent android:action="android.intent.action." />-->
         <intent android:targetPackage="com.joandma.protgt"
             android:targetClass="com.joandma.protgt.Activities.EditContactoActivity"/>

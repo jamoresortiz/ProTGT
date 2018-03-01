@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProTGT</string>
+    <string-array name="paises">
+        <item>Spain</item>
+        <item>United Kingdom</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Greece</item>
+    </string-array>
+
+    <string-array name="codigopais">
+        <item>ESP</item>
+        <item>UK</item>
+        <item>FRA</item>
+        <item>ITA</item>
+        <item>GRE</item>
+    </string-array>
+
+
+    <string name="no_address_found">Entschuldigung, keine Adresse gefunden</string>
+    <string name="no_location_data_provided">Keine Standortdaten bereitgestellt</string>
+    <string name="service_not_available">Entschuldigung, der Dienst ist nicht verfügbar</string>
+    <string name="invalid_lat_long_used">Ungültige Breite oder Länge verwendet</string>
+
+    <string name="address_found">Adresse gefunden</string>
+
+    <string name="msg">Bitte aktivieren Sie alle Berechtigungen</string>
+    <string name="title_activity_settings">die Einstellungen</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_datos_personales">persÖnliche informationen</string>
+
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_contacto">Vertrauenswürdige Kontakte</string>
+
+
+    <!-- Domicilio -->
+    <string name="pref_domicilio">wohnsitz</string>
+
+
+    <!-- Contactos Activity -->
+    <string name="fallo_creando_user">Kritischer Fehler beim Erstellen des Benutzers</string>
+    <string name="tv_mensaje_contacto">Wählen Sie einen Kontakt, indem Sie auf das Symbol klicken</string>
+
+
+
+    <!-- Domicilio Activity y XML-->
+    <string name="error_provincia">Bitte betreten Sie die Provinz</string>
+    <string name="error_localidad">Bitte geben Sie den Standort ein</string>
+    <string name="error_calle">Betreten Sie bitte die Straße</string>
+    <string name="error_numero">Bitte geben Sie die Nummer ein</string>
+    <string name="et_provincia">provinz *</string>
+    <string name="et_localidad">lokalitÄt *</string>
+    <string name="et_calle">straBe *</string>
+    <string name="et_numero"></string>
+    <string name="et_piso">stock</string>
+    <string name="et_bloque">bloekieren</string>
+    <string name="et_puerta">tÜr</string>
+
+
+    <!-- Editar Contacto Activity -->
+    <string name="tv_aviso">Wählen Sie einen Kontakt aus, indem Sie auf das Symbol klicken, um ein neues auszuwählen</string>
+    <string name="tv_contacto">Kontakt</string>
+    <string name="tv_telefono_contacto">Telefonnummer</string>
+
+
+
+    <!-- Home Activity y XML-->
+    <string name="aviso_localizacion">Aktivieren Sie den Ort oder wischen Sie, um zu aktualisieren</string>
+    <string name="tv_tuLocalizacion">Dein Standort</string>
+
+
+    <!-- Login Activity y XML-->
+    <string name="error_email_login">Geben Sie die E-Mail bitte ein</string>
+    <string name="error_password_login">Bitte geben Sie das Passwort ein</string>
+    <string name="email_password_incorrecto">Falsche E-Mail-Adresse oder falsches Passwort</string>
+    <string name="et_email_login"> Email</string>
+    <string name="et_password_login"> Passwort</string>
+    <string name="registro">Hast du kein konto? registrieren</string>
+
+
+    <!-- MensajeScreen Activity y XML-->
+    <string name="error_codigo_sms">Falscher Code</string>
+    <string name="aviso">ProTGT sendet Ihnen eine Nachricht, um Ihre Nummer zu bestätigen. Geben Sie den 4-stelligen Code ein, wie im Beispiel gezeigt</string>
+    <string name="et_codigo_sms">Ex: 1234</string>
+
+
+    <!-- Registro Activity y XML-->
+    <string name="error_nombre">Bitte geben Sie den Namen ein</string>
+    <string name="error_apellidos">Geben Sie bitte die Nachnamen ein</string>
+    <string name="error_email_registro">Bitte die Post eingeben</string>
+    <string name="error_password_registro">Bitte geben Sie das Passwort ein</string>
+    <string name="error_passwords_repetidas">Passwörter stimmen nicht überein</string>
+    <string name="error_email_registrado">E-Mail bereits registriert</string>
+    <string name="et_nombre_registro">heiBt/name</string>
+    <string name="et_apellidos_registro">nachname</string>
+    <string name="et_email_registro">Email</string>
+    <string name="et_password_registro">Contraseña</string>
+    <string name="et_password_repetido_registro">Passwort wiederholen</string>
+
+    <!-- Telefono Activity y XML -->
+    <string name="error_telefono">Bitte geben Sie Ihr Telefon ein</string>
+    <string name="error_telefono_registrado">Telefon bereits registriert</string>
+    <string name="et_telefono">telefonnummer</string>
+
+    <!-- Dialogo Cancelacion -->
+    <string name="key">SECURITY</string>
+    <string name="mensaje_dialog_cancelacion">Geben Sie SECURITY ein, wenn Sie den Notfall deaktivieren möchten</string>
+    <string name="titulo_dialog_cancelacion">Notfall deaktivieren</string>
+    <string name="emergencia_desactivada">Notfall deaktiviert</string>
+    <string name="error_palabra_incorrecta">Falsches Schlüsselwort</string>
+
+    <!-- Dialogo Confirmacion -->
+    <string name="mensaje_dialog_confirmacion">Sind Sie sicher, dass es sich um eine Warnung handelt?</string>
+    <string name="titulo_dialog_confirmacion">Alarmbestätigung</string>
+    <string name="emergencia_activada">Notfall aktiviert</string>
+
+    <!-- Dialogo logout -->
+    <string name="mensaje_dialog_logout">Sind Sie sicher, dass Sie sich abmelden möchten?</string>
+    <string name="titulo_dialog_logout">Sitzung schließen</string>
+
+    <!-- Dialog Cancel -->
+    <string name="palabra_clave">Stichwort</string>
+
+
+    <!-- BOTONES -->
+    <string name="bt_continuar">Fortfahren</string>
+    <string name="bt_aceptar">akzeptieren</string>
+    <string name="bt_iniciar_sesion">einloggen</string>
+    <string name="boton_dialog_cancelar">abbuchen</string>
+    <string name="boton_dialog_aceptar">akzeptieren</string>
+    <string name="bt_finalizar">Fertig</string>
+
+
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <!-- Settings pref datos personales -->
+    <string name="etp_nombre">heiBt/name</string>
+    <string name="etp_apellidos">nachname</string>
+    <string name="etp_email">Email</string>
+    <string name="etp_password">Contraseña</string>
+    <string name="etp_telefono">telefonnummer</string>
+    <string name="etp_pais">Land</string>
+
+    <!-- Settings pref contactos -->
+    <string name="editar_contacto">Kontakt bearbeiten</string>
+
+    <!-- Settings pref domicilio -->
+    <string name="etp_provincia">provinz</string>
+    <string name="etp_localidad">lokalitÄt</string>
+    <string name="etp_calle">straBe</string>
+    <string name="etp_numero">nummer</string>
+    <string name="etp_piso">stock</string>
+    <string name="etp_bloque">bloekieren</string>
+    <string name="etp_puerta">tÜr</string>
+
+
+
+
+</resources>

@@ -23,9 +23,6 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.joandma.protgt.Constant.PreferenceKeys;
 import com.joandma.protgt.Fragments.DialogLogOut;
@@ -346,7 +343,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_data_sync);
+            addPreferencesFromResource(R.xml.pref_contacto);
             setHasOptionsMenu(true);
         }
 

@@ -48,7 +48,7 @@ public class TelefonoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (telefono.getText().toString().equals("")){
-                    telefono.setError("Escriba su teléfono por favor");
+                    telefono.setError(getString(R.string.error_telefono));
                 } else {
 
                     VerifyModel verifyModel = new VerifyModel();
@@ -73,7 +73,7 @@ public class TelefonoActivity extends AppCompatActivity {
                                 Intent intentTelefono = new Intent(TelefonoActivity.this, MensajeScreenActivity.class);
                                 startActivity(intentTelefono);
                             } else {
-                                telefono.setError("Teléfono ya registrado");
+                                telefono.setError(getString(R.string.error_telefono_registrado));
                             }
                         }
 

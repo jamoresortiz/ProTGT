@@ -22,7 +22,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginTop="48dp"
             android:fontFamily="@font/poppins"
-            android:text="Tu localización"
+            android:text="@string/tv_tuLocalizacion"
             android:textAlignment="center"
             android:textSize="22sp"
             android:textStyle="bold"

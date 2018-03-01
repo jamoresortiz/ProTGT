@@ -54,7 +54,7 @@ public class MensajeScreenActivity extends AppCompatActivity {
                     startActivity(i);
 
                 } else {
-                    codigo.setError("Código incorrecto");
+                    codigo.setError(getString(R.string.error_codigo_sms));
                 }
             }
         });

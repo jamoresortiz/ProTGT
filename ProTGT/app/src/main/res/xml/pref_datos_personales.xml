@@ -14,7 +14,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Nombre" />
+        android:title="@string/etp_nombre" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -23,7 +23,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Apellidos" />
+        android:title="@string/etp_apellidos" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -32,7 +32,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Email" />
+        android:title="@string/etp_email" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -44,7 +44,7 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:textStyle="bold"
-        android:title="Contraseña" />
+        android:title="@string/etp_password" />
 
     <EditTextPreference
         android:capitalize="words"
@@ -54,7 +54,7 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:textStyle="bold"
-        android:title="Teléfono" />
+        android:title="@string/etp_telefono" />
 
     <ListPreference
         android:entries="@array/paises"
@@ -62,6 +62,6 @@
         android:key="lpPais"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="Pais" />
+        android:title="@string/etp_pais" />
 
 </PreferenceScreen>

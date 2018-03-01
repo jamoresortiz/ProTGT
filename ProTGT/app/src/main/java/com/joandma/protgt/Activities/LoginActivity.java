@@ -122,9 +122,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.button_iniciarSesion:
                 if (email.getText().toString().equals("")) {
-                    email.setError("Escriba el email por favor");
+                    email.setError(getString(R.string.error_email_login));
                 } else if (password.getText().toString().equals("")) {
-                    password.setError("Escriba la contraseña por favor");
+                    password.setError(getString(R.string.error_password_login));
                 } else {
 
                     UserRegister userLoged = new UserRegister();
@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 startActivity(intentLogin);
                                 finish();
                             } else {
-                                Toast.makeText(LoginActivity.this, "Email o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, getString(R.string.email_password_incorrecto), Toast.LENGTH_SHORT).show();
                             }
                         }
 

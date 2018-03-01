@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
-            android:hint="Provincia *"
+            android:hint="@string/et_provincia"
             android:inputType="textImeMultiLine"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
-            android:hint="Localidad *"
+            android:hint="@string/et_localidad"
             android:inputType="textImeMultiLine"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
-            android:hint="Calle *"
+            android:hint="@string/et_calle"
             android:inputType="textImeMultiLine"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -99,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
-            android:hint="Piso"
+            android:hint="@string/et_piso"
             android:inputType="textImeMultiLine"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -120,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
-            android:hint="Numero *"
+            android:hint="@string/et_numero"
             android:inputType="textImeMultiLine|number"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -141,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
-            android:hint="Bloque"
+            android:hint="@string/et_bloque"
             android:inputType="textImeMultiLine"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -161,7 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
-            android:hint="Puerta"
+            android:hint="@string/et_puerta"
             android:inputType="textImeMultiLine"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
@@ -176,7 +176,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/boton_cambio_color"
-        android:text="Continuar"
+        android:text="@string/bt_continuar"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

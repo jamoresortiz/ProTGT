@@ -48,15 +48,15 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (nombre.getText().toString().equals("")){
-                    nombre.setError("Escriba el nombre por favor");
+                    nombre.setError(getString(R.string.error_nombre));
                 } else  if(apellidos.getText().toString().equals("")){
-                    apellidos.setError("Escriba los apellidos por favor");
+                    apellidos.setError(getString(R.string.error_apellidos));
                 } else if(correo.getText().toString().equals("")){
-                    correo.setError("Escriba el correo por favor");
+                    correo.setError(getString(R.string.error_email_registro));
                 } else if(pass.getText().toString().equals("")) {
-                    pass.setError("Escriba la contraseña por favor");
+                    pass.setError(getString(R.string.error_password_registro));
                 } else if(repPass.getText().toString().equals("") || !repPass.getText().toString().equals(pass.getText().toString())){
-                    repPass.setError("Las contraseñas no coinciden");
+                    repPass.setError(getString(R.string.error_passwords_repetidas));
                 } else {
 
                     InterfaceRequestApi api = ServiceGenerator.createService(InterfaceRequestApi.class);
@@ -87,7 +87,7 @@ public class RegistroActivity extends AppCompatActivity {
                                 Intent i = new Intent(RegistroActivity.this, TelefonoActivity.class);
                                 startActivity(i);
                             } else {
-                                correo.setError("Email ya registrado");
+                                correo.setError(getString(R.string.error_email_registrado));
                             }
                         }
 

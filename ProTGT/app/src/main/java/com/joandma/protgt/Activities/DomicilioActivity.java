@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.joandma.protgt.API.InterfaceRequestApi;
@@ -20,6 +21,8 @@ import com.joandma.protgt.Models.Direccion;
 import com.joandma.protgt.Models.User;
 import com.joandma.protgt.Models.UserRegister;
 import com.joandma.protgt.R;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -53,13 +56,13 @@ public class DomicilioActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(provincia.getText().toString().equals("")){
-                    provincia.setError("Escriba la provincia por favor");
+                    provincia.setError(getString(R.string.error_provincia));
                 } else if(localidad.getText().toString().equals("")){
-                    localidad.setError("Escriba la localidad por favor");
+                    localidad.setError(getString(R.string.error_localidad));
                 } else if(calle.getText().toString().equals("")){
-                    calle.setError("Escriba la calle por favor");
+                    calle.setError(getString(R.string.error_calle));
                 } else if(numero.getText().toString().equals("")){
-                    numero.setError("Escriba el número por favor");
+                    numero.setError(getString(R.string.error_numero));
                 } else {
 
                     final UserRegister newUser = new UserRegister();

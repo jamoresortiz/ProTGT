@@ -32,19 +32,19 @@ public class DialogConfirmacion extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setMessage("¿Estás seguro/a que es una alerta?")
-                .setTitle("Confirmación de alerta")
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        builder.setMessage(getString(R.string.mensaje_dialog_confirmacion))
+                .setTitle(getString(R.string.titulo_dialog_confirmacion))
+                .setPositiveButton(getString(R.string.boton_dialog_aceptar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(getActivity(), "Emergencia activada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), getString(R.string.emergencia_activada), Toast.LENGTH_SHORT).show();
                         imageViewChecked = getActivity().findViewById(R.id.imageViewEmergencia);
                         imageViewChecked.setImageResource(R.drawable.ic_checked);
                         editor.putBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, true);
                         editor.commit();
                         dialog.cancel();
                     }
-                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.boton_dialog_cancelar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Toast.makeText(getActivity(), "Alerta cancelada", Toast.LENGTH_SHORT).show();
