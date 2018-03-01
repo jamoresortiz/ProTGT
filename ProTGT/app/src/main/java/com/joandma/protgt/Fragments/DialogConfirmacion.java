@@ -41,12 +41,14 @@ public class DialogConfirmacion extends DialogFragment {
                         imageViewChecked = getActivity().findViewById(R.id.imageViewEmergencia);
                         imageViewChecked.setImageResource(R.drawable.ic_checked);
                         editor.putBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, true);
+                        editor.commit();
                         dialog.cancel();
                     }
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "Alerta cancelada", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "Alerta cancelada", Toast.LENGTH_SHORT).show();
+
                         dialog.cancel();
                     }
         });

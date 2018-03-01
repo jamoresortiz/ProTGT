@@ -23,8 +23,10 @@ import com.joandma.protgt.R;
 public class DialogCancelacion extends DialogFragment {
 
     ImageView imageViewEmergencia;
-    EditText editTextPassword;
+    EditText editTextKey;
     ICancelacionDialog mListener;
+
+    String key;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -40,17 +42,35 @@ public class DialogCancelacion extends DialogFragment {
         prefs = getActivity().getSharedPreferences("datos", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
-        builder.setMessage("¿Ya no tienes una emergencia?")
-                .setTitle("Parar emergencia")
+        //TODO PONERLO EN ARCHIVO STRING
+        key = "SEGURIDAD";
+
+        builder.setMessage("Escriba SEGURIDAD si desea desactivar la emergencia")
+                .setTitle("Desactivar emergencia")
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(getActivity(), "Emergencia desactivada", Toast.LENGTH_SHORT).show();
-                        imageViewEmergencia = getActivity().findViewById(R.id.imageViewEmergencia);
-                        imageViewEmergencia.setImageResource(R.drawable.ic_emergency);
-                        editor.putBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
-                        String pass = editTextPassword.getText().toString();
-                        mListener.onCancelarClick(pass);
+
+                        String pass = editTextKey.getText().toString();
+//                        if (pass.equals(key)) {
+//                            mListener.onCancelarClick(pass);
+//                        }else {
+//                            Toast.makeText(getActivity(), "Palabra clave incorrecta", Toast.LENGTH_SHORT).show();
+//                        }
+
+                        if (pass.equals(key)) {
+                            Toast.makeText(getActivity(), "Emergencia desactivada", Toast.LENGTH_SHORT).show();
+
+                            imageViewEmergencia = getActivity().findViewById(R.id.imageViewEmergencia);
+                            imageViewEmergencia.setImageResource(R.drawable.ic_emergency);
+                            editor.putBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
+                            editor.commit();
+
+                            dialog.dismiss();
+                        } else{
+                            Toast.makeText(getActivity(), "Palabra clave incorrecta", Toast.LENGTH_SHORT).show();
+                        }
+
 
                     }
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -62,7 +82,9 @@ public class DialogCancelacion extends DialogFragment {
 
         View v = getActivity().getLayoutInflater().inflate(R.layout.dialog_cancel, null);
 
-        editTextPassword = v.findViewById(R.id.editTextPasswordCancel);
+
+
+        editTextKey = v.findViewById(R.id.editTextKeyCancel);
 
         builder.setView(v);
 

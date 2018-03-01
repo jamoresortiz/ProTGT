@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.widget.Toast;
 
 import com.joandma.protgt.Activities.LoginActivity;
@@ -40,6 +41,7 @@ public class DialogLogOut extends DialogFragment {
                         editor.putString(PreferenceKeys.USER_TOKEN, null);
                         editor.putString(PreferenceKeys.USER_NAME, null);
                         editor.putString(PreferenceKeys.ADDRESS_ID, null);
+                        editor.putBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
                         editor.commit();
 
 

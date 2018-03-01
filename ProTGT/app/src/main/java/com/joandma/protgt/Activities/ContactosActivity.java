@@ -116,6 +116,7 @@ public class ContactosActivity extends AppCompatActivity {
 
                                         Intent intentHome = new Intent(ContactosActivity.this, HomeActivity.class);
                                         startActivity(intentHome);
+                                        finish();
 
 
                                     } else {
@@ -140,9 +141,6 @@ public class ContactosActivity extends AppCompatActivity {
                     }
                 });
 
-
-//                Intent intentFinalizarRegistro = new Intent(ContactosActivity.this, HomeActivity.class);
-//                startActivity(intentFinalizarRegistro);
             }
         });
 
@@ -176,8 +174,6 @@ public class ContactosActivity extends AppCompatActivity {
 
                 tvNombreContacto.setText(nombre);
                 tvTelefonoContacto.setText(telefono);
-
-
 
             }
         }

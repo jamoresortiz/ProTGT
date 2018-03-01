@@ -154,7 +154,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 DialogLogOut dialogLogOut = new DialogLogOut();
 
                 dialogLogOut.show(fragmentManager, "tagLogOut");
-
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -349,7 +348,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_data_sync);
             setHasOptionsMenu(true);
-
         }
 
         @Override

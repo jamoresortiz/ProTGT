@@ -78,13 +78,17 @@ public class HomeActivity extends AppCompatActivity
     private GoogleApiClient apiClient;
     ImageView botonSettings;
 
-    boolean enviado = false;
+    boolean enviado;
 
     SharedPreferences prefs;
     String token, nombre, provincia, address_id;
     InterfaceRequestApi api;
     UserRegister result;
     SharedPreferences.Editor editor;
+
+    DialogConfirmacion dialogConfirmacion;
+    DialogCancelacion dialogCancelacion;
+    FragmentManager fragmentManager;
 
 
     //TODO Falta darle retrofit a la imagen para que mande los datos
@@ -204,14 +208,28 @@ public class HomeActivity extends AppCompatActivity
         imagenLlamada = findViewById(R.id.imageViewLlamada);
 
         enviado = prefs.getBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
+        fragmentManager = getFragmentManager();
+        dialogConfirmacion = new DialogConfirmacion();
+        dialogCancelacion = new DialogCancelacion();
+
+        if (enviado) {
+            //dialogCancelacion.show(fragmentManager, "tagCancelacion");
+            imagenEmergencia.setImageResource(R.drawable.ic_checked);
+        } else {
+            //dialogConfirmacion.show(fragmentManager, "tagConfirmacion");
+            imagenEmergencia.setImageResource(R.drawable.ic_emergency);
+
+        }
 
         imagenEmergencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                FragmentManager fragmentManager = getFragmentManager();
-                DialogConfirmacion dialogConfirmacion = new DialogConfirmacion();
-                DialogCancelacion dialogCancelacion = new DialogCancelacion();
+                enviado = prefs.getBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
+
+                fragmentManager = getFragmentManager();
+                dialogConfirmacion = new DialogConfirmacion();
+                dialogCancelacion = new DialogCancelacion();
 
                 if (enviado == false) {
                     dialogConfirmacion.show(fragmentManager, "tagConfirmacion");
