@@ -46,16 +46,13 @@ public class DialogConfirmacion extends DialogFragment {
                 .setTitle(getString(R.string.titulo_dialog_confirmacion))
                 .setPositiveButton(getString(R.string.boton_dialog_aceptar), new DialogInterface.OnClickListener() {
                     @Override
-<<<<<<< HEAD
-                    public void onClick(DialogInterface dialog, int id) {
+                    public void onClick(final DialogInterface dialog, int id) {
                         Toast.makeText(getActivity(), getString(R.string.emergencia_activada), Toast.LENGTH_SHORT).show();
                         imageViewChecked = getActivity().findViewById(R.id.imageViewEmergencia);
                         imageViewChecked.setImageResource(R.drawable.ic_checked);
                         editor.putBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, true);
                         editor.commit();
                         dialog.cancel();
-=======
-                    public void onClick(final DialogInterface dialog, int id) {
 
                         String location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
                         String token = prefs.getString(PreferenceKeys.USER_TOKEN, null);
@@ -94,8 +91,6 @@ public class DialogConfirmacion extends DialogFragment {
                             }
                         });
 
-
->>>>>>> dbcbb73d99c4b59f14b4173dffd145afde6d8526
                     }
                 }).setNegativeButton(getString(R.string.boton_dialog_cancelar), new DialogInterface.OnClickListener() {
                     @Override
