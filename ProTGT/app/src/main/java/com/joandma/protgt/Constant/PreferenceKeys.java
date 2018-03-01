@@ -26,4 +26,7 @@ public interface PreferenceKeys {
 
     //Esto es para la comprobacion del boton de emergencia
     final String BOOLEAN_COMPROBACION = "comprobacion";
+
+    //Constante para guardar localizacion
+    final String LOCATION_LATLNG = "locLanLtd";
 }

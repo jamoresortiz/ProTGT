@@ -1,21 +1,15 @@
 package com.joandma.protgt.API;
 
-import java.io.IOException;
-
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by mrdiaz on 21/02/2018.
+ * Created by jamores on 01/03/2018.
  */
 
-public class ServiceGenerator {
+public class ServiceGeneratorSMS {
     private static final String BASE_URL = "https://apinodejs-lwcvvursag.now.sh";
 
     private static Retrofit.Builder builder =
@@ -46,8 +40,6 @@ public class ServiceGenerator {
         }
 
 
-
         return retrofit.create(serviceClass);
     }
-
 }

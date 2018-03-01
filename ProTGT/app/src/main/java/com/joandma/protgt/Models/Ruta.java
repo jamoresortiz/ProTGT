@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Jorge Amores on 25/02/2018.
  */
 
-class Ruta {
+public class Ruta {
     private String _id;
     private String localizacion;
     private Date fecha_envio_loc;
@@ -14,6 +14,9 @@ class Ruta {
     public Ruta(String localizacion, Date fecha_envio_loc) {
         this.localizacion = localizacion;
         this.fecha_envio_loc = fecha_envio_loc;
+    }
+
+    public Ruta() {
     }
 
     public String getId() {
