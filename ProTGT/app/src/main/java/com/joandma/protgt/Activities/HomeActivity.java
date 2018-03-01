@@ -90,6 +90,8 @@ public class HomeActivity extends AppCompatActivity
     DialogCancelacion dialogCancelacion;
     FragmentManager fragmentManager;
 
+    String location;
+
 
     //TODO Falta darle retrofit a la imagen para que mande los datos
     SwipeRefreshLayout swipeContainer;
@@ -238,6 +240,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             }
         });
+
 
 
         //////////////////////////// SETTINGS //////////////////////////////
@@ -435,7 +438,15 @@ public class HomeActivity extends AppCompatActivity
                     loc.getLatitude(),
                     loc.getLongitude());
 
-            final String text2 = text;
+            String text2 = text;
+
+            location = loc.getLatitude() + "," +loc.getLongitude();
+
+            editor = prefs.edit();
+
+            editor.putString(PreferenceKeys.LOCATION_LATLNG, location);
+
+            editor.commit();
 
             if(text != text2){
                 localizacion.setText(text);

@@ -3,6 +3,7 @@ package com.joandma.protgt.API;
 import com.joandma.protgt.Models.Aviso;
 import com.joandma.protgt.Models.ContactoConfianza;
 import com.joandma.protgt.Models.Direccion;
+import com.joandma.protgt.Models.Ruta;
 import com.joandma.protgt.Models.User;
 import com.joandma.protgt.Models.UserRegister;
 import com.joandma.protgt.Models.VerifyModel;
@@ -52,7 +53,7 @@ public interface InterfaceRequestApi {
 
     //Añadir un aviso
     @POST("protgt/api/v1/aviso/addaviso")
-    public Call<Aviso> addAviso(@Header("Authorization") String token, @Body Aviso newAviso);
+    public Call<Aviso> addAviso(@Header("Authorization") String token, @Body Ruta ruta);
 
     //Obtener detalles de un aviso
     @GET ("/protgt/api/v1/aviso/{id_aviso}")
@@ -63,7 +64,7 @@ public interface InterfaceRequestApi {
     public Call<List<Direccion>> showAddressesOfUser(@Header("Authorization") String token);
 
     //Obtener todos los avisos
-    @GET("protgt/api/v1/aviso/")
+    @GET("protgt/api/v1/aviso")
     public Call<List<Aviso>> showAllAvisos(@Header("Authorization") String token);
 
     //Obtener avisos sin resolver (Estado = 0)

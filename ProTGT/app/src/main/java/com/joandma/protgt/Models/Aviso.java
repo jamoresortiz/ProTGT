@@ -9,17 +9,18 @@ import java.util.List;
 
 public class Aviso {
     private String _id;
-    private List<Ruta> listaRutas;
+    private List<String> ruta_id;
     private User user;
     private int estado;
 
-    public Aviso(List<Ruta> listaRutas, User idUser, int estado) {
-        this.listaRutas = new ArrayList<>();
+    public Aviso(List<Ruta> ruta_id, User idUser, int estado) {
+        this.ruta_id = new ArrayList<String>();
         this.user = idUser;
         this.estado = estado;
     }
 
     public Aviso() {
+        this.ruta_id = new ArrayList<>();
     }
 
     public String getId() {
@@ -30,12 +31,12 @@ public class Aviso {
         this._id = _id;
     }
 
-    public List<Ruta> getListaRutas() {
-        return listaRutas;
+    public List<String> getRuta_id() {
+        return ruta_id;
     }
 
-    public void setListaRutas(List<Ruta> listaRutas) {
-        this.listaRutas = listaRutas;
+    public void setRuta_id(List<String> ruta_id) {
+        this.ruta_id = ruta_id;
     }
 
     public User getUser() {
@@ -63,7 +64,7 @@ public class Aviso {
 
         if (estado != aviso.estado) return false;
         if (_id != null ? !_id.equals(aviso._id) : aviso._id != null) return false;
-        if (listaRutas != null ? !listaRutas.equals(aviso.listaRutas) : aviso.listaRutas != null)
+        if (ruta_id != null ? !ruta_id.equals(aviso.ruta_id) : aviso.ruta_id != null)
             return false;
         return user != null ? user.equals(aviso.user) : aviso.user == null;
     }
@@ -71,7 +72,7 @@ public class Aviso {
     @Override
     public int hashCode() {
         int result = _id != null ? _id.hashCode() : 0;
-        result = 31 * result + (listaRutas != null ? listaRutas.hashCode() : 0);
+        result = 31 * result + (ruta_id != null ? ruta_id.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + estado;
         return result;
@@ -81,7 +82,7 @@ public class Aviso {
     public String toString() {
         return "Aviso{" +
                 "id=" + _id +
-                ", listaRutas=" + listaRutas +
+                ", ruta_id=" + ruta_id +
                 ", user=" + user +
                 ", estado=" + estado +
                 '}';
