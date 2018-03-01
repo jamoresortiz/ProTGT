@@ -94,7 +94,7 @@
     <string name="error_apellidos">Enter the last name please</string>
     <string name="error_email_registro">Enter the mail please</string>
     <string name="error_password_registro">Enter the password please</string>
-    <string name="error_passwords_repetidas">Las contraseñas no coinciden</string>
+    <string name="error_passwords_repetidas">Passwords do not match</string>
     <string name="error_email_registrado">Email already registered</string>
     <string name="et_nombre_registro">Name</string>
     <string name="et_apellidos_registro">Last Name</string>
