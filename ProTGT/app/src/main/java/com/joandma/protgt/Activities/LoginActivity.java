@@ -162,6 +162,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onFailure(Call<UserRegister> call, Throwable t) {
                             Log.e("TAG","onFailure login: "+t.toString());
+                            Toast.makeText(LoginActivity.this, "Fallo de conexión", Toast.LENGTH_SHORT).show();
                         }
                     });
 

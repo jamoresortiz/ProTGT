@@ -46,6 +46,8 @@ public class DialogConfirmacion extends DialogFragment {
 
     String location;
 
+    Boolean comprobacion;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -62,11 +64,12 @@ public class DialogConfirmacion extends DialogFragment {
 
 
 
+
         builder.setMessage(getString(R.string.mensaje_dialog_confirmacion))
                 .setTitle(getString(R.string.titulo_dialog_confirmacion))
                 .setPositiveButton(getString(R.string.boton_dialog_aceptar), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(final DialogInterface dialog, int id) {
+                    public void onClick(final DialogInterface dialog, final int id) {
 
                         location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
 
@@ -82,6 +85,7 @@ public class DialogConfirmacion extends DialogFragment {
                             @Override
                             public void onResponse(Call<Aviso> call, Response<Aviso> response) {
                                 if (response.isSuccessful()) {
+                                    Aviso result = response.body();
 
                                     Toast.makeText(ctx, R.string.emergencia_activada, Toast.LENGTH_SHORT).show();
 
@@ -91,6 +95,57 @@ public class DialogConfirmacion extends DialogFragment {
                                     editor.commit();
                                     dialog.cancel();
 
+                                    final String id_aviso = result.getId();
+
+                                    ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+
+                                    
+                                    scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+                                        
+
+                                        @Override
+                                        public void run() {
+                                            comprobacion = prefs.getBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
+
+                                            if (comprobacion) {
+                                                /*
+                                                Algoritmo del ciclo
+
+                                                - Tomar la lat, lng actualizada
+                                                - Enviarla al servidor
+                                                - Comprobar si tenemos que seguir enviando
+
+                                             */
+
+                                                location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
+                                                ruta = new Ruta();
+                                                ruta.setLocalizacion(location);
+
+                                                Log.i("LOC", "" +location);
+
+                                                Call<Aviso> scheduledCall = api.sendLocation("Bearer "+token, id_aviso, ruta);
+
+
+                                                try {
+                                                    Response<Aviso> scheduledResponse = scheduledCall.execute();
+                                                    if (scheduledResponse.isSuccessful()){
+                                                        Aviso aviso = scheduledResponse.body();
+
+                                                    } else {
+                                                        Toast.makeText(ctx, "Fallo crítico enviando la loc", Toast.LENGTH_SHORT).show();
+                                                    }
+
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                
+                                            } else {
+                                                Toast.makeText(ctx, "No envia location", Toast.LENGTH_SHORT).show();
+                                            }
+                                            
+                                        }
+                                    }, 0, 10, TimeUnit.SECONDS);
+
                                 } else {
                                     Log.i("ERROR", "Fallo crítico creando aviso");
                                 }
@@ -99,50 +154,51 @@ public class DialogConfirmacion extends DialogFragment {
                             @Override
                             public void onFailure(Call<Aviso> call, Throwable t) {
                                 Log.e("TAG", "onFailure login: " + t.toString());
+                                Toast.makeText(ctx, "Fallo de conexión", Toast.LENGTH_SHORT).show();
                             }
                         });
 
 
-                        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-
-                        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
-
-                            @Override
-                            public void run() {
-
-                                /*
-                                    Algoritmo del ciclo
-
-                                    - Tomar la lat, lng actualizada
-                                    - Enviarla al servidor
-                                    - Comprobar si tenemos que seguir enviando
-
-                                 */
-
-                                location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
-                                ruta = new Ruta();
-                                ruta.setLocalizacion(location);
-
-                                Call<Aviso> scheduledCall = api.sendLocation("Bearer "+token, ruta);
-
-
-                                try {
-                                    Response<Aviso> scheduledResponse = scheduledCall.execute();
-                                    if (scheduledResponse.isSuccessful()){
-                                        Aviso aviso = scheduledResponse.body();
-
-                                        Toast.makeText(ctx, "Se mete aquí", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(ctx, "Fallo crítico enviando la loc", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-
-
-                            }
-                        }, 0, 5, TimeUnit.SECONDS);
+//                        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+//
+//                        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//
+//                                /*
+//                                    Algoritmo del ciclo
+//
+//                                    - Tomar la lat, lng actualizada
+//                                    - Enviarla al servidor
+//                                    - Comprobar si tenemos que seguir enviando
+//
+//                                 */
+//
+//                                location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
+//                                ruta = new Ruta();
+//                                ruta.setLocalizacion(location);
+//
+//                                Call<Aviso> scheduledCall = api.sendLocation("Bearer "+token, ruta);
+//
+//
+//                                try {
+//                                    Response<Aviso> scheduledResponse = scheduledCall.execute();
+//                                    if (scheduledResponse.isSuccessful()){
+//                                        Aviso aviso = scheduledResponse.body();
+//
+//                                        Toast.makeText(ctx, "Se mete aquí", Toast.LENGTH_SHORT).show();
+//                                    } else {
+//                                        Toast.makeText(ctx, "Fallo crítico enviando la loc", Toast.LENGTH_SHORT).show();
+//                                    }
+//
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                }
+//
+//
+//                            }
+//                        }, 0, 5, TimeUnit.SECONDS);
 
 
 

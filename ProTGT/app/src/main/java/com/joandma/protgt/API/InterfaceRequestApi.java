@@ -20,6 +20,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Jorge Amores on 25/02/2018.
@@ -89,7 +90,9 @@ public interface InterfaceRequestApi {
 
     //Enviar localización de aviso
     @PUT("protgt/api/v1/aviso/{id_aviso}/sendlocation")
-    public Call<Aviso> sendLocation(@Header("Authorization") String token, @Body Ruta ruta);
+    public Call<Aviso> sendLocation(@Header("Authorization") String token,
+                                    @Path("id_aviso") String id_aviso,
+                                    @Body Ruta ruta);
 
     //Eliminar una dirección del usuario
     @DELETE("protgt/api/v1/auth/deleteaddress")
