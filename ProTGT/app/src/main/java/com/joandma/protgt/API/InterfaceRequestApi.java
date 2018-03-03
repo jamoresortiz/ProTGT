@@ -64,6 +64,10 @@ public interface InterfaceRequestApi {
     @GET("protgt/api/v1/auth/showaddresses")
     public Call<List<Direccion>> showAddressesOfUser(@Header("Authorization") String token);
 
+    //Obtener contactos de confianza de un usuario
+    @GET("protgt/api/v1/auth/showcontactos")
+    public Call<List<ContactoConfianza>> showContactsOfUser(@Header("Authorization") String token);
+
     //Obtener todos los avisos
     @GET("protgt/api/v1/aviso")
     public Call<List<Aviso>> showAllAvisos(@Header("Authorization") String token);

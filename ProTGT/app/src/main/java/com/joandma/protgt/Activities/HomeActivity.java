@@ -49,6 +49,7 @@ import com.joandma.protgt.Constant.PreferenceKeys;
 import com.joandma.protgt.Fragments.DialogCancelacion;
 import com.joandma.protgt.Fragments.DialogConfirmacion;
 import com.joandma.protgt.Interfaces.ICancelacionDialog;
+import com.joandma.protgt.Models.ContactoConfianza;
 import com.joandma.protgt.Models.Direccion;
 import com.joandma.protgt.Models.UserRegister;
 import com.joandma.protgt.R;
@@ -81,7 +82,7 @@ public class HomeActivity extends AppCompatActivity
     boolean enviado;
 
     SharedPreferences prefs;
-    String token, nombre, provincia, address_id;
+    String token, nombre, address_id, contact_id;
     InterfaceRequestApi api;
     UserRegister result;
     SharedPreferences.Editor editor;
@@ -110,6 +111,8 @@ public class HomeActivity extends AppCompatActivity
         nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
 
         address_id = prefs.getString(PreferenceKeys.ADDRESS_ID, null);
+
+        contact_id = prefs.getString(PreferenceKeys.CONTACT_ID, null);
 
         // Comprueba si ya están los datos del usuario cargados en las preferencias o no
         if (nombre == null) {
@@ -196,7 +199,26 @@ public class HomeActivity extends AppCompatActivity
 
                 @Override
                 public void onFailure(Call<List<Direccion>> call, Throwable t) {
+                    Toast.makeText(HomeActivity.this, "Fallo de conexión", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
+        //Comprueba si ya están los datos del contacto de confianza del usuario
+        if (contact_id == null) {
+            api = ServiceGenerator.createService(InterfaceRequestApi.class);
+
+            Call<List<ContactoConfianza>> call = api.showContactsOfUser("Bearer " +token);
+            
+            call.enqueue(new Callback<List<ContactoConfianza>>() {
+                @Override
+                public void onResponse(Call<List<ContactoConfianza>> call, Response<List<ContactoConfianza>> response) {
+                    //TODO POR HACER
+                }
+
+                @Override
+                public void onFailure(Call<List<ContactoConfianza>> call, Throwable t) {
+                    Toast.makeText(HomeActivity.this, "Fallo de conexión", Toast.LENGTH_SHORT).show();
                 }
             });
         }

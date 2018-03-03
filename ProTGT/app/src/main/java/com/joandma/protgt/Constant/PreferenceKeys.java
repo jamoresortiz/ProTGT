@@ -25,6 +25,7 @@ public interface PreferenceKeys {
     final String ADDRESS_PUERTA = "addressPuerta";
 
     //Constantes para atributo de contacto
+    final String CONTACT_ID = "contacId";
     final String CONTACT_NAME = "contactName";
     final String CONTACT_TELEFONO = "contactTelefono";
 

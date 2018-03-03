@@ -35,7 +35,7 @@ public class ContactosActivity extends AppCompatActivity {
     Button buttonTerminarContacto;
     ImageView imageViewAgregarContacto;
 
-    String nombre, telefono;
+    String nombre, telefono, nombreContactoResult, telefonoContactoResult;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -80,7 +80,10 @@ public class ContactosActivity extends AppCompatActivity {
                         if (response.isSuccessful()){
                             ContactoConfianza result = response.body();
 
-                            String contacto_id = result.get_id();
+                            nombreContactoResult = result.getNombre();
+                            telefonoContactoResult = result.getTelefono();
+
+                            final String contacto_id = result.get_id();
 
                             prefs = ContactosActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
 
@@ -111,6 +114,10 @@ public class ContactosActivity extends AppCompatActivity {
                                         editor = prefs.edit();
 
                                         editor.putString(PreferenceKeys.USER_TOKEN, result.getToken());
+                                        editor.putString(PreferenceKeys.CONTACT_NAME, nombreContactoResult);
+                                        editor.putString(PreferenceKeys.CONTACT_TELEFONO, telefonoContactoResult);
+                                        editor.putString(PreferenceKeys.CONTACT_ID, contacto_id);
+
                                         editor.commit();
 
 
