@@ -42,7 +42,6 @@ public class DialogCancelacion extends DialogFragment {
         prefs = getActivity().getSharedPreferences("datos", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
-        //TODO PONERLO EN ARCHIVO STRING
         key = getString(R.string.key);
 
         builder.setMessage(getString(R.string.mensaje_dialog_cancelacion))

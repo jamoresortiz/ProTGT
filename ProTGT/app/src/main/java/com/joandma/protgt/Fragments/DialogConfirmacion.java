@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -48,6 +50,12 @@ public class DialogConfirmacion extends DialogFragment {
 
     Boolean comprobacion;
 
+    //Mensaje de texto que se va a enviar por defecto
+    String smsMensaje = "Mensaje de SMS por defecto";
+
+    //Este sería el número que se coge por defecto al elegir un contacto de confianza
+    String smsNumero = "653675459";
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -60,8 +68,6 @@ public class DialogConfirmacion extends DialogFragment {
 
         ctx = getActivity();
         final String token = prefs.getString(PreferenceKeys.USER_TOKEN, null);
-
-
 
 
 
@@ -200,7 +206,13 @@ public class DialogConfirmacion extends DialogFragment {
 //                            }
 //                        }, 0, 5, TimeUnit.SECONDS);
 
+                        //////////////////// SMS /////////////////////
 
+                        Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + smsNumero));
+                        smsIntent.putExtra("sms_body", smsMensaje);
+                        startActivity(smsIntent);
+
+                        //////////////////////////////////////////////
 
                     }
                 }).setNegativeButton(getString(R.string.boton_dialog_cancelar), new DialogInterface.OnClickListener() {
@@ -214,4 +226,7 @@ public class DialogConfirmacion extends DialogFragment {
         return builder.create();
 
     }
+
+
+
 }

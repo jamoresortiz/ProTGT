@@ -94,13 +94,14 @@ public class HomeActivity extends AppCompatActivity
     String location;
 
 
+
     //TODO Falta darle retrofit a la imagen para que mande los datos
     SwipeRefreshLayout swipeContainer;
     ImageView imagenEmergencia, imagenLlamada;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -289,14 +290,6 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        //Esto recoge las preferencias que se están guardando cuando escribes algo en el Dialog
-        /*SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
-
-        //Muestra las preferencias que se están guardando como ejemplo
-        Log.i("Pref", "Nombre: " + pref.getString("pref_nombre", ""));
-        Log.i("Pref", "Apellidos: " + pref.getString("pref_apellidos", ""));
-        Log.i("Pref", "Email: " + pref.getString("pref_email", ""));*/
-
         //////////////////////////////////////////////////////////////////////
 
         //Construccion cliente API Google
@@ -324,6 +317,9 @@ public class HomeActivity extends AppCompatActivity
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
     }
+
+    //AQUI TERMINA ONCREATE
+
 
     //Esto es para hacer la llamada de telefono
     public void dialPhoneNumber() {
