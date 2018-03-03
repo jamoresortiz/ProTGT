@@ -147,6 +147,7 @@ public class HomeActivity extends AppCompatActivity
                 @Override
                 public void onFailure(Call<UserRegister> call, Throwable t) {
                     Log.e("TAG", "onFailure login: " + t.toString());
+                    Toast.makeText(HomeActivity.this, "Fallo de conexión", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -214,6 +215,19 @@ public class HomeActivity extends AppCompatActivity
                 @Override
                 public void onResponse(Call<List<ContactoConfianza>> call, Response<List<ContactoConfianza>> response) {
                     //TODO POR HACER
+                    if(response.isSuccessful()){
+                        ContactoConfianza result = response.body().get(0);
+
+                        editor = prefs.edit();
+
+                        editor.putString(PreferenceKeys.CONTACT_ID, result.get_id());
+                        editor.putString(PreferenceKeys.CONTACT_NAME, result.getNombre());
+                        editor.putString(PreferenceKeys.CONTACT_TELEFONO, result.getTelefono());
+                        
+                        editor.commit();
+                    } else {
+                        Toast.makeText(HomeActivity.this, "Error crítico recogiendo contacto", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override

@@ -1,6 +1,8 @@
 package com.joandma.protgt.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.joandma.protgt.Constant.PreferenceKeys;
 import com.joandma.protgt.R;
 
 public class EditContactoActivity extends AppCompatActivity {
@@ -20,16 +23,31 @@ public class EditContactoActivity extends AppCompatActivity {
     Button buttonEditarContacto;
     ImageView imageViewElegirContacto;
 
+    String nombreContacto, telefonoContacto;
+
+    SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_contacto);
+
+        prefs = EditContactoActivity.this.getSharedPreferences("datos", Context.MODE_PRIVATE);
+
 
         buttonEditarContacto = findViewById(R.id.buttonEditarContacto);
         imageViewElegirContacto = findViewById(R.id.ivElegirContacto);
 
         tvNombreContactoEdit = findViewById(R.id.tvNombreContactoEdit);
         tvTelefonoContactoEdit = findViewById(R.id.tvTelefonoContactoEdit);
+
+        nombreContacto = prefs.getString(PreferenceKeys.CONTACT_NAME, null);
+        telefonoContacto = prefs.getString(PreferenceKeys.CONTACT_TELEFONO, null);
+
+        tvNombreContactoEdit.setText(nombreContacto);
+        tvTelefonoContactoEdit.setText(telefonoContacto);
+
+
 
         imageViewElegirContacto.setOnClickListener(new View.OnClickListener() {
             @Override

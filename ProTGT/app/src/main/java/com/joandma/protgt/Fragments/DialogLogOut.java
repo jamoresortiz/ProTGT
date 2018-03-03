@@ -42,6 +42,7 @@ public class DialogLogOut extends DialogFragment {
                         editor.putString(PreferenceKeys.USER_NAME, null);
                         editor.putString(PreferenceKeys.ADDRESS_ID, null);
                         editor.putBoolean(PreferenceKeys.BOOLEAN_COMPROBACION, false);
+                        editor.putString(PreferenceKeys.CONTACT_ID, null);
                         editor.commit();
 
 
