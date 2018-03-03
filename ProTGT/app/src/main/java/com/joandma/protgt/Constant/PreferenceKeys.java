@@ -24,6 +24,10 @@ public interface PreferenceKeys {
     final String ADDRESS_BLOQUE = "addressBloque";
     final String ADDRESS_PUERTA = "addressPuerta";
 
+    //Constantes para atributo de contacto
+    final String CONTACT_NAME = "contactName";
+    final String CONTACT_TELEFONO = "contactTelefono";
+
     //Esto es para la comprobacion del boton de emergencia
     final String BOOLEAN_COMPROBACION = "comprobacion";
 

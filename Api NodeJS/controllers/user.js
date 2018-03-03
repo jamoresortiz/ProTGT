@@ -163,6 +163,33 @@ module.exports.showAdressesOfUser = (req, res) => {
       });
 };
 
+// GET Mostrar contactos de confianza de un usuario
+module.exports.showContactosofUser = (req, res) => {
+    User
+        .findOne({_id: req.user}, (err, user) => {
+            if (err) return res.status(401).jsonp({
+                error: 401,
+                mensaje: `Error de autentificación`
+            });
+
+            if (!user) return res.status(404).jsonp({
+                error: 404,
+                mensaje: `No se encuentra el usuario`
+            });
+
+
+            User.populate(user, {path: "contactos_confianza", select: '_id telefono nombre'}, (err, user) => {
+
+
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: `${err.message}`
+                });
+                res.status(200).jsonp(user.contactos_confianza);
+            });
+        });
+};
+
 // PUT Editar datos usuario
 module.exports.editUser = (req, res) => {
   User
