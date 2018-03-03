@@ -215,7 +215,6 @@ public class HomeActivity extends AppCompatActivity
             call.enqueue(new Callback<List<ContactoConfianza>>() {
                 @Override
                 public void onResponse(Call<List<ContactoConfianza>> call, Response<List<ContactoConfianza>> response) {
-                    //TODO POR HACER
                     if(response.isSuccessful()){
                         ContactoConfianza result = response.body().get(0);
 

@@ -18,8 +18,17 @@ module.exports.addAviso = (req, res) => {
             mensaje: `No se encuentra el usuario`
         });
 
+        let fecha_envio_loc;
+
+        if (req.body.fecha_envio_loc){
+            fecha_envio_loc = req.body.fecha_envio_loc;
+        } else {
+            fecha_envio_loc = Date.now();
+        }
+
         let ruta = new Ruta({
-            localizacion: req.body.localizacion
+            localizacion: req.body.localizacion,
+            fecha_envio_loc: fecha_envio_loc
         });
 
         ruta.save(function (err, ruta) {
@@ -155,8 +164,17 @@ module.exports.sendLocation = (req, res) => {
                         mensaje: `No se encuentra el aviso`
                     });
 
+                    let fecha_envio_loc;
+
+                    if (req.body.fecha_envio_loc){
+                        fecha_envio_loc = req.body.fecha_envio_loc;
+                    } else {
+                        fecha_envio_loc = Date.now();
+                    }
+
                     let ruta = new Ruta({
-                        localizacion: req.body.localizacion
+                        localizacion: req.body.localizacion,
+                        fecha_envio_loc: fecha_envio_loc
                     });
 
                     ruta.save(function (err, ruta) {
