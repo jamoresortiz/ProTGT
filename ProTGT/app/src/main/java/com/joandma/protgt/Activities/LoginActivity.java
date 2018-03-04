@@ -15,8 +15,7 @@ import android.widget.Toast;
 import com.joandma.protgt.API.InterfaceRequestApi;
 import com.joandma.protgt.API.ServiceGenerator;
 import com.joandma.protgt.Constant.PreferenceKeys;
-import com.joandma.protgt.Models.User;
-import com.joandma.protgt.Models.UserRegister;
+import com.joandma.protgt.Models.ModelsApiProTGT.UserRegister;
 import com.joandma.protgt.R;
 
 import retrofit2.Call;

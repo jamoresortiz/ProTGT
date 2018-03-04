@@ -7,7 +7,6 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,10 +16,13 @@ import android.widget.Toast;
 
 import com.joandma.protgt.API.InterfaceRequestApi;
 import com.joandma.protgt.API.ServiceGenerator;
-import com.joandma.protgt.Activities.HomeActivity;
+import com.joandma.protgt.API.ServiceGeneratorSMS;
 import com.joandma.protgt.Constant.PreferenceKeys;
-import com.joandma.protgt.Models.Aviso;
-import com.joandma.protgt.Models.Ruta;
+import com.joandma.protgt.Models.ModelsApiProTGT.Aviso;
+import com.joandma.protgt.Models.ModelsApiProTGT.Ruta;
+import com.joandma.protgt.Models.ModelsApiSMSPubli.Message;
+import com.joandma.protgt.Models.ModelsApiSMSPubli.Sms;
+import com.joandma.protgt.Models.ModelsApiSMSPubli.SmsResponse;
 import com.joandma.protgt.R;
 
 import java.io.IOException;
@@ -50,11 +52,22 @@ public class DialogConfirmacion extends DialogFragment {
 
     Boolean comprobacion;
 
-    //Mensaje de texto que se va a enviar por defecto
-    String smsMensaje = "Mensaje de SMS por defecto";
+    //Datos de nombre y apellidos de la persona en emergencia
+    String nombre;
+    String apellidos;
 
-    //Este sería el número que se coge por defecto al elegir un contacto de confianza
-    String smsNumero = "653675459";
+    //Cadena de caracteres formado por nombre y apellidos del usuario + ProTGT
+    String from;
+
+    //KEY de la api SmsPubli
+    String api_key = "a1fe84b7d2a873aef9c5a357b516468f";
+
+    //Mensaje de texto que se va a enviar por defecto
+    String smsMensaje = "¡Estoy en urgencia! ";
+
+    //Datos de número nombre del contacto de confianza
+    String smsNumero;
+    String smsNombreContacto;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -68,6 +81,13 @@ public class DialogConfirmacion extends DialogFragment {
 
         ctx = getActivity();
         final String token = prefs.getString(PreferenceKeys.USER_TOKEN, null);
+
+        nombre = prefs.getString(PreferenceKeys.USER_NAME, null);
+        apellidos = prefs.getString(PreferenceKeys.USER_SURNAME, null);
+
+        smsNumero = prefs.getString(PreferenceKeys.CONTACT_TELEFONO,null);
+        smsNombreContacto = prefs.getString(PreferenceKeys.CONTACT_NAME, null);
+
 
 
 
@@ -102,6 +122,47 @@ public class DialogConfirmacion extends DialogFragment {
                                     dialog.cancel();
 
                                     final String id_aviso = result.getId();
+
+                                    from = nombre +" " +apellidos +" - ProTGT";
+
+                                    Message message = new Message();
+
+                                    message.setFrom(from);
+                                    message.setTo(smsNumero);
+                                    message.setText(smsMensaje);
+
+                                    Sms sms = new Sms();
+
+                                    sms.setApi_key(api_key);
+                                    sms.getMessages().add(message);
+                                    sms.setFake(1);
+
+                                    InterfaceRequestApi apiSMS = ServiceGeneratorSMS.createService(InterfaceRequestApi.class);
+
+                                    Call<SmsResponse> callSMS = apiSMS.sendSms(sms);
+
+                                    callSMS.enqueue(new Callback<SmsResponse>() {
+                                        @Override
+                                        public void onResponse(Call<SmsResponse> call, Response<SmsResponse> response) {
+                                            SmsResponse smsResponse = response.body();
+
+                                            if (smsResponse.getStatus().equalsIgnoreCase("ok")){
+                                                Log.i("OKMSG","MSG: Mensaje enviado correctamente");
+
+                                            } else {
+                                                Log.i("MSGERROR","MSG: " +smsResponse.getError_msg());
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<SmsResponse> call, Throwable t) {
+                                            Log.e("TAG", "onFailure login: " + t.toString());
+                                            Toast.makeText(ctx, "Fallo de conexión", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
 
                                     ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
@@ -159,58 +220,17 @@ public class DialogConfirmacion extends DialogFragment {
 
                             @Override
                             public void onFailure(Call<Aviso> call, Throwable t) {
-                                Log.e("TAG", "onFailure login: " + t.toString());
+                                Log.e("TAG", "onFailure: " + t.toString());
                                 Toast.makeText(ctx, "Fallo de conexión", Toast.LENGTH_SHORT).show();
                             }
                         });
 
 
-//                        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-//
-//                        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
-//
-//                            @Override
-//                            public void run() {
-//
-//                                /*
-//                                    Algoritmo del ciclo
-//
-//                                    - Tomar la lat, lng actualizada
-//                                    - Enviarla al servidor
-//                                    - Comprobar si tenemos que seguir enviando
-//
-//                                 */
-//
-//                                location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
-//                                ruta = new Ruta();
-//                                ruta.setLocalizacion(location);
-//
-//                                Call<Aviso> scheduledCall = api.sendLocation("Bearer "+token, ruta);
-//
-//
-//                                try {
-//                                    Response<Aviso> scheduledResponse = scheduledCall.execute();
-//                                    if (scheduledResponse.isSuccessful()){
-//                                        Aviso aviso = scheduledResponse.body();
-//
-//                                        Toast.makeText(ctx, "Se mete aquí", Toast.LENGTH_SHORT).show();
-//                                    } else {
-//                                        Toast.makeText(ctx, "Fallo crítico enviando la loc", Toast.LENGTH_SHORT).show();
-//                                    }
-//
-//                                } catch (IOException e) {
-//                                    e.printStackTrace();
-//                                }
-//
-//
-//                            }
-//                        }, 0, 5, TimeUnit.SECONDS);
-
                         //////////////////// SMS /////////////////////
 
-                        Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + smsNumero));
-                        smsIntent.putExtra("sms_body", smsMensaje);
-                        startActivity(smsIntent);
+                        //Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + smsNumero));
+                        //smsIntent.putExtra("sms_body", smsMensaje);
+                        //startActivity(smsIntent);
 
                         //////////////////////////////////////////////
 

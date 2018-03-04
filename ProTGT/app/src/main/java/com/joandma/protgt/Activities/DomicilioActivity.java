@@ -2,29 +2,21 @@ package com.joandma.protgt.Activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.location.Address;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.joandma.protgt.API.InterfaceRequestApi;
 import com.joandma.protgt.API.ServiceGenerator;
 import com.joandma.protgt.Constant.PreferenceKeys;
-import com.joandma.protgt.Models.Direccion;
-import com.joandma.protgt.Models.User;
-import com.joandma.protgt.Models.UserRegister;
+import com.joandma.protgt.Models.ModelsApiProTGT.Direccion;
+import com.joandma.protgt.Models.ModelsApiProTGT.UserRegister;
 import com.joandma.protgt.R;
-
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -8,15 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.joandma.protgt.API.InterfaceRequestApi;
 import com.joandma.protgt.API.ServiceGenerator;
 import com.joandma.protgt.Constant.PreferenceKeys;
-import com.joandma.protgt.Models.VerifyModel;
+import com.joandma.protgt.Models.ModelsApiProTGT.VerifyModel;
 import com.joandma.protgt.R;
 
 import okhttp3.ResponseBody;
