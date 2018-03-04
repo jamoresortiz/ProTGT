@@ -1,4 +1,4 @@
-package com.joandma.protgt.Models;
+package com.joandma.protgt.Models.ModelsApiProTGT;
 
 /**
  * Created by jamores on 26/02/2018.

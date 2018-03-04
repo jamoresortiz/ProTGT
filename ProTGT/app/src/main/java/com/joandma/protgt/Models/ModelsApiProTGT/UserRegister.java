@@ -1,15 +1,14 @@
-package com.joandma.protgt.Models;
-
-import android.location.Address;
+package com.joandma.protgt.Models.ModelsApiProTGT;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Jorge Amores on 25/02/2018.
+ * Created by jamores on 26/02/2018.
  */
 
-public class User {
+public class UserRegister {
+
     private String _id;
     private String token;
     private String nombre;
@@ -18,9 +17,10 @@ public class User {
     private String password;
     private String pais;
     private String telefono;
-    private List<Direccion> listaDirecciones;
+    private List<String> address_id;
+    private List<String> contacto_id;
 
-    public User(String token, String nombre, String apellidos, String email, String password, String pais, String telefono, List<Address> listaDirecciones) {
+    public UserRegister(String token, String nombre, String apellidos, String email, String password, String pais, String telefono, List<String> address_id, List<String> contacto_id) {
         this.token = token;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -28,17 +28,29 @@ public class User {
         this.password = password;
         this.pais = pais;
         this.telefono = telefono;
-        this.listaDirecciones = new ArrayList<>();
+        this.address_id = address_id;
+        this.contacto_id = contacto_id;
     }
 
-    public User() {
+    public UserRegister(String nombre, String apellidos, String email, String password, String pais, String telefono) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.password = password;
+        this.pais = pais;
+        this.telefono = telefono;
+        this.address_id = new ArrayList<>();
+        this.contacto_id = new ArrayList<>();
     }
 
-    public String getId() {
+    public UserRegister() {
+    }
+
+    public String get_id() {
         return _id;
     }
 
-    public void setId(String _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
@@ -98,12 +110,20 @@ public class User {
         this.telefono = telefono;
     }
 
-    public List<Direccion> getListaDirecciones() {
-        return listaDirecciones;
+    public List<String> getAddress_id() {
+        return address_id;
     }
 
-    public void setListaDirecciones(List<Direccion> listaDirecciones) {
-        this.listaDirecciones = listaDirecciones;
+    public void setAddress_id(List<String> address_id) {
+        this.address_id = address_id;
+    }
+
+    public List<String> getContacto_id() {
+        return contacto_id;
+    }
+
+    public void setContacto_id(List<String> contacto_id) {
+        this.contacto_id = contacto_id;
     }
 
     @Override
@@ -111,20 +131,22 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserRegister that = (UserRegister) o;
 
-        if (_id != null ? !_id.equals(user._id) : user._id != null) return false;
-        if (token != null ? !token.equals(user.token) : user.token != null) return false;
-        if (nombre != null ? !nombre.equals(user.nombre) : user.nombre != null) return false;
-        if (apellidos != null ? !apellidos.equals(user.apellidos) : user.apellidos != null)
+        if (_id != null ? !_id.equals(that._id) : that._id != null) return false;
+        if (token != null ? !token.equals(that.token) : that.token != null) return false;
+        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
+        if (apellidos != null ? !apellidos.equals(that.apellidos) : that.apellidos != null)
             return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null)
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null)
             return false;
-        if (pais != null ? !pais.equals(user.pais) : user.pais != null) return false;
-        if (telefono != null ? !telefono.equals(user.telefono) : user.telefono != null)
+        if (pais != null ? !pais.equals(that.pais) : that.pais != null) return false;
+        if (telefono != null ? !telefono.equals(that.telefono) : that.telefono != null)
             return false;
-        return listaDirecciones != null ? listaDirecciones.equals(user.listaDirecciones) : user.listaDirecciones == null;
+        if (address_id != null ? !address_id.equals(that.address_id) : that.address_id != null)
+            return false;
+        return contacto_id != null ? contacto_id.equals(that.contacto_id) : that.contacto_id == null;
     }
 
     @Override
@@ -137,14 +159,15 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (pais != null ? pais.hashCode() : 0);
         result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
-        result = 31 * result + (listaDirecciones != null ? listaDirecciones.hashCode() : 0);
+        result = 31 * result + (address_id != null ? address_id.hashCode() : 0);
+        result = 31 * result + (contacto_id != null ? contacto_id.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + _id +
+        return "UserRegister{" +
+                "_id='" + _id + '\'' +
                 ", token='" + token + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
@@ -152,7 +175,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", pais='" + pais + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", listaDirecciones=" + listaDirecciones +
+                ", address_id=" + address_id +
+                ", contacto_id=" + contacto_id +
                 '}';
     }
 }

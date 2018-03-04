@@ -1,4 +1,4 @@
-package com.joandma.protgt.Models;
+package com.joandma.protgt.Models.ModelsApiProTGT;
 
 import com.google.gson.annotations.SerializedName;
 

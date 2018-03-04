@@ -3,7 +3,6 @@ package com.joandma.protgt.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.joandma.protgt.API.InterfaceRequestApi;
 import com.joandma.protgt.API.ServiceGenerator;
 import com.joandma.protgt.Constant.PreferenceKeys;
-import com.joandma.protgt.Models.VerifyModel;
+import com.joandma.protgt.Models.ModelsApiProTGT.VerifyModel;
 import com.joandma.protgt.R;
 
 import okhttp3.ResponseBody;

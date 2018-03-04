@@ -1,14 +1,14 @@
 package com.joandma.protgt.API;
 
-import com.joandma.protgt.Models.Aviso;
-import com.joandma.protgt.Models.ContactoConfianza;
-import com.joandma.protgt.Models.Direccion;
-import com.joandma.protgt.Models.Ruta;
-import com.joandma.protgt.Models.User;
-import com.joandma.protgt.Models.UserRegister;
-import com.joandma.protgt.Models.VerifyModel;
+import com.joandma.protgt.Models.ModelsApiProTGT.Aviso;
+import com.joandma.protgt.Models.ModelsApiProTGT.ContactoConfianza;
+import com.joandma.protgt.Models.ModelsApiProTGT.Direccion;
+import com.joandma.protgt.Models.ModelsApiProTGT.Ruta;
+import com.joandma.protgt.Models.ModelsApiProTGT.UserRegister;
+import com.joandma.protgt.Models.ModelsApiProTGT.VerifyModel;
+import com.joandma.protgt.Models.ModelsApiSMSPubli.Sms;
+import com.joandma.protgt.Models.ModelsApiSMSPubli.SmsResponse;
 
-import java.security.PublicKey;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -20,13 +20,14 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Created by Jorge Amores on 25/02/2018.
  */
 
 public interface InterfaceRequestApi {
+
+    //MÉTODOS API PROTGT
 
     //Registro de usuario
     @POST("protgt/api/v1/auth/register")
@@ -101,4 +102,12 @@ public interface InterfaceRequestApi {
     //Eliminar una dirección del usuario
     @DELETE("protgt/api/v1/auth/deleteaddress")
     public Call<Direccion> deleteAddressOfUser(@Header("Authorization") String token, @Body String id_direccion);
+
+
+
+    //MÉTODOS API SMSPUBLI
+
+    //Enviar SMS
+    @POST("sms/send")
+    public Call<SmsResponse> sendSms(@Body Sms sms);
 }

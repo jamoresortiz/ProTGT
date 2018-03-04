@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ServiceGeneratorSMS {
-    private static final String BASE_URL = "https://apinodejs-lwcvvursag.now.sh";
+    private static final String BASE_URL = "https://api.gateway360.com/api/3.0/";
 
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
