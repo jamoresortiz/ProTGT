@@ -63,7 +63,7 @@ public class DialogConfirmacion extends DialogFragment {
     String api_key = "a1fe84b7d2a873aef9c5a357b516468f";
 
     //Mensaje de texto que se va a enviar por defecto
-    String smsMensaje = "¡Estoy en urgencia! ";
+    String smsMensaje;
 
     //Datos de número nombre del contacto de confianza
     String smsNumero;
@@ -87,6 +87,10 @@ public class DialogConfirmacion extends DialogFragment {
 
         smsNumero = prefs.getString(PreferenceKeys.CONTACT_TELEFONO,null);
         smsNombreContacto = prefs.getString(PreferenceKeys.CONTACT_NAME, null);
+
+        smsNumero = "34" +smsNumero.replace(" ","");
+
+        Toast.makeText(ctx, "NUMERO: " +smsNumero, Toast.LENGTH_SHORT).show();
 
 
 
@@ -123,9 +127,11 @@ public class DialogConfirmacion extends DialogFragment {
 
                                     final String id_aviso = result.getId();
 
-                                    from = nombre +" " +apellidos +" - ProTGT";
+                                    from = "ProTGT";
 
                                     Message message = new Message();
+
+                                    smsMensaje = "¡¡EMERGENCIA!! " +nombre +" " +apellidos +" se encuentra en peligro";
 
                                     message.setFrom(from);
                                     message.setTo(smsNumero);
@@ -135,7 +141,9 @@ public class DialogConfirmacion extends DialogFragment {
 
                                     sms.setApi_key(api_key);
                                     sms.getMessages().add(message);
-                                    sms.setFake(1);
+
+                                    //Set to 1 if you want to simulate submitting messages, it's perfect for testing and debugging, it has no cost.
+                                    //sms.setFake(1);
 
                                     InterfaceRequestApi apiSMS = ServiceGeneratorSMS.createService(InterfaceRequestApi.class);
 
@@ -147,7 +155,8 @@ public class DialogConfirmacion extends DialogFragment {
                                             SmsResponse smsResponse = response.body();
 
                                             if (smsResponse.getStatus().equalsIgnoreCase("ok")){
-                                                Log.i("OKMSG","MSG: Mensaje enviado correctamente");
+                                                //Log.i("OKMSG","MSG: Mensaje enviado correctamente");
+                                                Toast.makeText(ctx, "Hemos avisado a su contacto de confianza", Toast.LENGTH_SHORT).show();
 
                                             } else {
                                                 Log.i("MSGERROR","MSG: " +smsResponse.getError_msg());
