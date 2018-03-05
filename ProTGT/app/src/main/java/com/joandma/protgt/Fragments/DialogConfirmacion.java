@@ -69,6 +69,9 @@ public class DialogConfirmacion extends DialogFragment {
     String smsNumero;
     String smsNombreContacto;
 
+    //URL que referencia la última ubicación de la persona en google maps
+    String urlMaps;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -90,7 +93,7 @@ public class DialogConfirmacion extends DialogFragment {
 
         smsNumero = "34" +smsNumero.replace(" ","");
 
-        Toast.makeText(ctx, "NUMERO: " +smsNumero, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(ctx, "NUMERO: " +smsNumero, Toast.LENGTH_SHORT).show();
 
 
 
@@ -129,11 +132,15 @@ public class DialogConfirmacion extends DialogFragment {
 
                                     from = "ProTGT";
 
+                                    urlMaps = "https://maps.google.com/?q=" +location;
+
                                     Message message = new Message();
 
-                                    smsMensaje = "¡¡EMERGENCIA!! " +nombre +" " +apellidos +" se encuentra en peligro";
+                                    smsMensaje = "¡¡EMERGENCIA!! " +nombre +" " +apellidos +" se encuentra en peligro.\nPara ver su última ubicación pulse aquí "
+                                            +urlMaps;
 
                                     message.setFrom(from);
+                                    //message.setTo(smsNumero);
                                     message.setTo(smsNumero);
                                     message.setText(smsMensaje);
 
@@ -143,7 +150,7 @@ public class DialogConfirmacion extends DialogFragment {
                                     sms.getMessages().add(message);
 
                                     //Set to 1 if you want to simulate submitting messages, it's perfect for testing and debugging, it has no cost.
-                                    //sms.setFake(1);
+                                    sms.setFake(1);
 
                                     InterfaceRequestApi apiSMS = ServiceGeneratorSMS.createService(InterfaceRequestApi.class);
 

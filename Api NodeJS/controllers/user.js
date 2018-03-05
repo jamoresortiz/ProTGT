@@ -136,6 +136,37 @@ module.exports.showUser = (req, res) => {
         });
 };
 
+// GET Mostrar teléfono de todos los usuarios
+module.exports.showAllTelephone = (req, res) => {
+    User
+        .findOne({_id: req.user}, (err, user) => {
+            if (err) return res.status(401).jsonp({
+                error: 401,
+                mensaje: `Error de autentificación`
+            });
+
+            if (!user) return res.status(404).jsonp({
+                error: 404,
+                mensaje: `No se encuentra el usuario`
+            });
+
+            User
+                .find()
+                .select('telefono').exec((err, result) => {
+                if (err) return res.status(500).jsonp({
+                    error: 500,
+                    mensaje: err.message
+                });
+
+                if (result && result.length) {
+                    res.status(200).jsonp(result);
+                } else {
+                    res.sendStatus(404);
+                }
+            });
+        });
+};
+
 // GET Mostrar direcciones de un usuario
 module.exports.showAdressesOfUser = (req, res) => {
   User
