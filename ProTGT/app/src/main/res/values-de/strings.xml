@@ -160,6 +160,11 @@
     <string name="etp_puerta">tÜr</string>
 
 
+    <!-- MENSAJE SMS DE EMERGENCIA -->
+    <string name="emergencia">¡¡NOTFALL!! </string>
+    <string name="continuacion_emergencia"> Er ist in Gefahr.</string>
+    <string name="continuacion_emergencia2">Um Ihren letzten Standort zu sehen, klicken Sie hier</string>
+
 
 
 </resources>

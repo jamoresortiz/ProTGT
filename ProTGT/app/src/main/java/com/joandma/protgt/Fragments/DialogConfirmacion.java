@@ -136,7 +136,7 @@ public class DialogConfirmacion extends DialogFragment {
 
                                     Message message = new Message();
 
-                                    smsMensaje = "¡¡EMERGENCIA!! " +nombre +" " +apellidos +" se encuentra en peligro.\nPara ver su última ubicación pulse aquí "
+                                    smsMensaje = getString(R.string.emergencia) + nombre + " " + apellidos + getString(R.string.continuacion_emergencia) + "\n" + getString(R.string.continuacion_emergencia2)
                                             +urlMaps;
 
                                     message.setFrom(from);

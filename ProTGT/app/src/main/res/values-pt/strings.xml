@@ -159,6 +159,12 @@
     <string name="etp_bloque">Bloco</string>
     <string name="etp_puerta">Porta</string>
 
+    <!-- MENSAJE SMS DE EMERGENCIA -->
+    <string name="emergencia">¡¡EMERGÊNCIA!! </string>
+    <string name="continuacion_emergencia"> Ele está em perigo.</string>
+    <string name="continuacion_emergencia2">Para ver sua última localização, clique aqui</string>
+
+
 
 
 </resources>

@@ -159,6 +159,10 @@
     <string name="etp_puerta">Porte</string>
 
 
+    <!-- MENSAJE SMS DE EMERGENCIA -->
+    <string name="emergencia">¡¡URGENCE!! </string>
+    <string name="continuacion_emergencia"> il est en danger.</string>
+    <string name="continuacion_emergencia2">Pour voir votre dernier emplacement, cliquez ici</string>
 
 
 
