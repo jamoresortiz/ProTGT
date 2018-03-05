@@ -34,4 +34,7 @@ public interface PreferenceKeys {
 
     //Constante para guardar localizacion
     final String LOCATION_LATLNG = "locLanLtd";
+
+    //Constante para guardar api key de SMS Publi
+    final String SMS_APIKEY = "a1fe84b7d2a873aef9c5a357b516468f";
 }

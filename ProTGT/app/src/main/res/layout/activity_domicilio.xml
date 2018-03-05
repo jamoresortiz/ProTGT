@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:hint="@string/et_provincia"
-            android:inputType="textImeMultiLine"
+            android:inputType="textImeMultiLine|textCapWords"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:hint="@string/et_localidad"
-            android:inputType="textImeMultiLine"
+            android:inputType="textImeMultiLine|textCapWords"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
     </android.support.design.widget.TextInputLayout>

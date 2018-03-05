@@ -164,5 +164,16 @@
     <string name="continuacion_emergencia2">Para ver su última ubicación pulse aquí</string>
 
 
+    <!-- Dialog de inicio de sesion -->
+    <string name="inicio_sesion">Iniciando sesión</string>
+    <string name="cargando">Cargando.....</string>
+
+    <!-- Dialogo de registro -->
+    <string name="registrando">Registrando</string>
+
+    <!-- Diálogo de SMS de verificación -->
+    <string name="verificacion">Código de verificación:</string>
+
+
 
 </resources>

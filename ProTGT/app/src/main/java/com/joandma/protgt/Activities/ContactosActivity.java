@@ -1,17 +1,22 @@
 package com.joandma.protgt.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +43,7 @@ public class ContactosActivity extends AppCompatActivity {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
+    ProgressDialog pd;
 
 
     @Override
@@ -67,6 +73,26 @@ public class ContactosActivity extends AppCompatActivity {
                 contactoConfianza.setNombre(nombre);
                 contactoConfianza.setTelefono(telefono);
 
+
+                //Progess Dialog
+                pd = new ProgressDialog(ContactosActivity.this);
+                pd.setIndeterminate(true);
+                pd.setCancelable(false);
+
+                //Estilo del dialog de spinner
+                pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                Drawable drawable = new ProgressBar(ContactosActivity.this).getIndeterminateDrawable().mutate();
+                drawable.setColorFilter(ContextCompat.getColor(ContactosActivity.this, R.color.colorBar), PorterDuff.Mode.SRC_IN);
+                pd.setIndeterminateDrawable(drawable);
+
+
+                //Titulo y mensaje de spinner
+                pd.setTitle(getString(R.string.registrando));
+                pd.setMessage(getString(R.string.cargando));
+
+                //Muestra el dialog
+                pd.show();
+
                 final InterfaceRequestApi api = ServiceGenerator.createService(InterfaceRequestApi.class);
 
                 Call<ContactoConfianza> call = api.addContactoConfianza(contactoConfianza);
@@ -77,6 +103,8 @@ public class ContactosActivity extends AppCompatActivity {
 
                         if (response.isSuccessful()){
                             ContactoConfianza result = response.body();
+
+                            pd.dismiss();
 
                             nombreContactoResult = result.getNombre();
                             telefonoContactoResult = result.getTelefono();

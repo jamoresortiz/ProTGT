@@ -1,14 +1,21 @@
 package com.joandma.protgt.Activities;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
+
+    ProgressDialog pd;
 
 
     @Override
@@ -108,6 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         iniciarSesion.setOnClickListener(this);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onClick(View v) {
 
@@ -131,6 +141,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     userLoged.setEmail(email.getText().toString());
                     userLoged.setPassword(password.getText().toString());
 
+                    //Progess Dialog
+                    pd = new ProgressDialog(LoginActivity.this);
+                    pd.setIndeterminate(true);
+                    pd.setCancelable(false);
+
+                    //Estilo del dialog de spinner
+                    pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    Drawable drawable = new ProgressBar(this).getIndeterminateDrawable().mutate();
+                    drawable.setColorFilter(ContextCompat.getColor(this, R.color.colorBar), PorterDuff.Mode.SRC_IN);
+                    pd.setIndeterminateDrawable(drawable);
+
+
+                    //Titulo y mensaje de spinner
+                    pd.setTitle(getString(R.string.inicio_sesion));
+                    pd.setMessage(getString(R.string.cargando));
+
+                    //Muestra el dialog
+                    pd.show();
+
 
                     api = ServiceGenerator.createService(InterfaceRequestApi.class);
 
@@ -143,6 +172,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (response.isSuccessful()){
                                 result = response.body();
 
+                                pd.dismiss();
 
                                 editor = prefs.edit();
 

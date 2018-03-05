@@ -164,6 +164,16 @@
     <string name="continuacion_emergencia"> es troba en perill.</string>
     <string name="continuacion_emergencia2">Per veure la seva última ubicació premi aquí</string>
 
+    <!-- Dialog de inicio de sesion -->
+    <string name="inicio_sesion">Iniciant sessió</string>
+    <string name="cargando">Carregant.....</string>
+
+    <!-- Dialog de registro -->
+    <string name="registrando">Registrant</string>
+
+    <!-- Diálogo de SMS de verificación -->
+    <string name="verificacion">Codi de verificació:</string>
+
 
 
 </resources>

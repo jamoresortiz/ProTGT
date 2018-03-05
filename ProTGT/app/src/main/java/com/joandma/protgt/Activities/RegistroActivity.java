@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.joandma.protgt.API.InterfaceRequestApi;
 import com.joandma.protgt.API.ServiceGenerator;
@@ -91,6 +92,7 @@ public class RegistroActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
                             Log.e("TAG","onFailure login: "+t.toString());
+                            Toast.makeText(RegistroActivity.this, "Fallo de conexión", Toast.LENGTH_SHORT).show();
                         }
                     });
 

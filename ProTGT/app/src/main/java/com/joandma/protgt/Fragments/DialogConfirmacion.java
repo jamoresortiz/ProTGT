@@ -59,8 +59,6 @@ public class DialogConfirmacion extends DialogFragment {
     //Cadena de caracteres formado por nombre y apellidos del usuario + ProTGT
     String from;
 
-    //KEY de la api SmsPubli
-    String api_key = "a1fe84b7d2a873aef9c5a357b516468f";
 
     //Mensaje de texto que se va a enviar por defecto
     String smsMensaje;
@@ -91,11 +89,12 @@ public class DialogConfirmacion extends DialogFragment {
         smsNumero = prefs.getString(PreferenceKeys.CONTACT_TELEFONO,null);
         smsNombreContacto = prefs.getString(PreferenceKeys.CONTACT_NAME, null);
 
-        smsNumero = "34" +smsNumero.replace(" ","");
+        smsNumero = smsNumero.replace(" ","");
+        smsNumero = smsNumero.replace("+", "");
 
-        //Toast.makeText(ctx, "NUMERO: " +smsNumero, Toast.LENGTH_SHORT).show();
-
-
+        if (smsNumero.charAt(0) != '3'){
+            smsNumero = "34"+smsNumero;
+        }
 
 
         builder.setMessage(getString(R.string.mensaje_dialog_confirmacion))
@@ -106,6 +105,11 @@ public class DialogConfirmacion extends DialogFragment {
 
                         location = prefs.getString(PreferenceKeys.LOCATION_LATLNG, null);
 
+                        urlMaps = "https://maps.google.com/?q=" +location;
+
+                        smsMensaje = getString(R.string.emergencia) + " " + nombre + " " + apellidos + " " + getString(R.string.continuacion_emergencia) + "\n" + getString(R.string.continuacion_emergencia2)
+                                + " " + urlMaps;
+
                         ruta = new Ruta();
 
                         ruta.setLocalizacion(location);
@@ -113,6 +117,8 @@ public class DialogConfirmacion extends DialogFragment {
                         final InterfaceRequestApi api = ServiceGenerator.createService(InterfaceRequestApi.class);
 
                         Call<Aviso> call = api.addAviso("Bearer "+token, ruta);
+
+
                         
                         call.enqueue(new Callback<Aviso>() {
                             @Override
@@ -132,21 +138,20 @@ public class DialogConfirmacion extends DialogFragment {
 
                                     from = "ProTGT";
 
-                                    urlMaps = "https://maps.google.com/?q=" +location;
+
 
                                     Message message = new Message();
 
-                                    smsMensaje = getString(R.string.emergencia) + nombre + " " + apellidos + getString(R.string.continuacion_emergencia) + "\n" + getString(R.string.continuacion_emergencia2)
-                                            +urlMaps;
+                                    //smsMensaje = getString(R.string.emergencia) + " " + nombre + " " + apellidos + " " + getString(R.string.continuacion_emergencia) + "\n" + getString(R.string.continuacion_emergencia2)
+                                     //       + " " + urlMaps;
 
                                     message.setFrom(from);
-                                    //message.setTo(smsNumero);
                                     message.setTo(smsNumero);
                                     message.setText(smsMensaje);
 
                                     Sms sms = new Sms();
 
-                                    sms.setApi_key(api_key);
+                                    sms.setApi_key(PreferenceKeys.SMS_APIKEY);
                                     sms.getMessages().add(message);
 
                                     //Set to 1 if you want to simulate submitting messages, it's perfect for testing and debugging, it has no cost.

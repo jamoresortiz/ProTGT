@@ -161,10 +161,19 @@
 
     <!-- MENSAJE SMS DE EMERGENCIA -->
     <string name="emergencia">¡¡EMERGÊNCIA!! </string>
-    <string name="continuacion_emergencia"> Ele está em perigo.</string>
+    <string name="continuacion_emergencia"> está em perigo.</string>
     <string name="continuacion_emergencia2">Para ver sua última localização, clique aqui</string>
 
 
+    <!-- Dialog de inicio de sesion -->
+    <string name="inicio_sesion">Sessão inicial</string>
+    <string name="cargando">Carregando.....</string>
+
+    <!-- Dialog de registro -->
+    <string name="registrando">Registrando</string>
+
+    <!-- Diálogo de SMS de verificación -->
+    <string name="verificacion">Código de verificação:</string>
 
 
 </resources>
