@@ -47,7 +47,9 @@ public class TelefonoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (telefono.getText().toString().equals("")){
                     telefono.setError(getString(R.string.error_telefono));
-                } else {
+                } else if(telefono.getText().toString().length() < 9){
+                    telefono.setError(getString(R.string.error_tamanyo_telefono));
+                }else {
 
                     VerifyModel verifyModel = new VerifyModel();
 

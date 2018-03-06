@@ -174,9 +174,7 @@
 
     <!-- Diálogo de SMS de verificación -->
     <string name="verificacion">Bestätigungscode:</string>
-
-
-
+    <string name="error_tamanyo_telefono">geben sie neun ziffern ein</string>
 
 
 </resources>

@@ -173,7 +173,7 @@
 
     <!-- Diálogo de SMS de verificación -->
     <string name="verificacion">Verify code:</string>
-
+    <string name="error_tamanyo_telefono">Introduce nine digits</string>
 
 
 </resources>

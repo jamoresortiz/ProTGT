@@ -50,6 +50,7 @@
         android:layout_marginBottom="32dp"
         android:backgroundTint="@android:color/white"
         android:ems="10"
+        android:maxLength="9"
         android:fontFamily="@font/poppins"
         android:hint="@string/et_telefono"
         android:inputType="textImeMultiLine|phone|text"

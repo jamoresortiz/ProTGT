@@ -173,7 +173,7 @@
 
     <!-- Diálogo de SMS de verificación -->
     <string name="verificacion">Codi de verificació:</string>
-
+    <string name="error_tamanyo_telefono">introdueixi nou dígits</string>
 
 
 </resources>
