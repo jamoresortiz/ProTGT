@@ -101,6 +101,8 @@ module.exports.showAllAvisosSinResolver = (req, res) => {
                     error: 500,
                     mensaje: `${err.message}`
                 });
+
+                //console.log(avisos.localizacion);
                 res.status(200).jsonp(avisos);
             });
         });

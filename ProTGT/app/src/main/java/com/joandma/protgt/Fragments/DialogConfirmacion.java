@@ -155,7 +155,7 @@ public class DialogConfirmacion extends DialogFragment {
                                     sms.getMessages().add(message);
 
                                     //Set to 1 if you want to simulate submitting messages, it's perfect for testing and debugging, it has no cost.
-                                    sms.setFake(1);
+                                    //sms.setFake(1);
 
                                     InterfaceRequestApi apiSMS = ServiceGeneratorSMS.createService(InterfaceRequestApi.class);
 

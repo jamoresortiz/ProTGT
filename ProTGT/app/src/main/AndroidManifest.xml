@@ -19,16 +19,20 @@
         android:supportsRtl="true">
         <activity
             android:name=".Activities.RegistroActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.DomicilioActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.MensajeScreenActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.LoginActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,10 +41,12 @@
         </activity>
         <activity
             android:name=".Activities.TelefonoActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.HomeActivity"
-            android:theme="@style/AppTheme.Home" >
+            android:theme="@style/AppTheme.Home"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -56,15 +62,18 @@
             android:name=".Activities.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".Activities.HomeActivity"
-            android:theme="@style/AppTheme.Settings">
+            android:theme="@style/AppTheme.Settings"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />
         </activity>
         <activity
             android:name=".Activities.ContactosActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.EditContactoActivity" android:theme="@style/AppTheme.Settings"></activity>
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.EditContactoActivity" android:theme="@style/AppTheme.Settings"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

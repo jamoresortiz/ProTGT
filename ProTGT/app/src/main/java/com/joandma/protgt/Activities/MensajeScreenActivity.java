@@ -60,7 +60,7 @@ public class MensajeScreenActivity extends AppCompatActivity {
         message.setText(getString(R.string.verificacion) +" " +numCode);
 
         sms.getMessages().add(message);
-        sms.setFake(1);
+        //sms.setFake(1);
         sms.setApi_key(PreferenceKeys.SMS_APIKEY);
 
         InterfaceRequestApi api = ServiceGeneratorSMS.createService(InterfaceRequestApi.class);

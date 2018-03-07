@@ -169,10 +169,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
 
+                            pd.dismiss();
+
                             if (response.isSuccessful()){
                                 result = response.body();
-
-                                pd.dismiss();
 
                                 editor = prefs.edit();
 

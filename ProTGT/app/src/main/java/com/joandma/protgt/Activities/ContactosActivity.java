@@ -101,10 +101,12 @@ public class ContactosActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ContactoConfianza> call, Response<ContactoConfianza> response) {
 
+                        pd.dismiss();
+
                         if (response.isSuccessful()){
                             ContactoConfianza result = response.body();
 
-                            pd.dismiss();
+
 
                             nombreContactoResult = result.getNombre();
                             telefonoContactoResult = result.getTelefono();
